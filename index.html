@@ -1494,6 +1494,51 @@
 
     @media (max-width: 680px) {
       .project-grid { grid-template-columns: 1fr; }
+      .top-nav-inner {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: center;
+        gap: 10px 8px;
+        padding: 12px 16px;
+      }
+      .brand {
+        grid-column: 1;
+        grid-row: 1;
+        min-width: 0;
+        font-size: 0.72rem;
+        letter-spacing: 1.4px;
+        white-space: nowrap;
+      }
+      .nav-meta {
+        display: contents;
+      }
+      .status-pill {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end;
+        white-space: nowrap;
+      }
+      #liveClock {
+        grid-column: 1;
+        grid-row: 2;
+        justify-self: stretch;
+        text-align: center;
+        white-space: nowrap;
+      }
+      .meta-chip {
+        grid-column: 2;
+        grid-row: 2;
+        justify-self: stretch;
+        justify-content: center;
+        white-space: nowrap;
+      }
+      .status-pill,
+      .meta-chip,
+      #liveClock {
+        padding: 6px 8px;
+        font-size: 0.54rem;
+        letter-spacing: 1.2px;
+      }
       .hero {
         gap: 28px;
         padding: 56px 0 44px;
@@ -1510,9 +1555,22 @@
         letter-spacing: 1.6px;
         line-height: 1.45;
       }
+      .hero-terminal {
+        min-height: calc(2em * 1.45);
+        line-height: 1.45;
+      }
       .hero-link {
         flex: 1 1 130px;
         text-align: center;
+      }
+      .hero-links a.hero-link {
+        order: 1;
+        flex: 1 1 calc(50% - 6px);
+      }
+      #openResumeForm {
+        order: 2;
+        flex: 1 1 100%;
+        width: 100%;
       }
       .threat-widget {
         min-width: 0;
@@ -3011,11 +3069,11 @@
     <section class="hero reveal">
       <div class="hero-left">
         <div class="hero-name glitch" data-text="DHRUV PATEL">DHRUV <span>PATEL</span></div>
-        <div class="hero-title">Entry-Level Cybersecurity Analyst &nbsp;|&nbsp; SOC, IAM &amp; Threat Detection</div>
+        <div class="hero-title">Entry-Level Cybersecurity Analyst &nbsp;|&nbsp; SOC, IAM &amp; Security Operations</div>
         <div class="hero-terminal"><span id="typewriter"></span><span class="cursor"></span></div>
         <div class="modern-focus-tags" aria-label="Professional focus areas">
           <span>SOC Analysis</span>
-          <span>Threat Detection</span>
+          <span>MITRE ATT&CK</span>
           <span>IAM</span>
           <span>Risk &amp; Compliance</span>
           <span>Secure Systems</span>
@@ -3054,13 +3112,13 @@
           <div class="pc-header">
             <div>
               <div class="pc-meta">Apr 2026</div>
-              <h3 class="pc-name">Firewall Security Analysis</h3>
+              <h3 class="pc-name">Netfilter Firewall Configuration & Analysis</h3>
             </div>
           </div>
           <div class="pc-body">
-            <p>Completed a firewall security project by implementing controls and documenting validation results against class requirements.</p>
+            <p>Configured and tested a Linux Netfilter firewall across a 3-VM network, comparing static and stateful filtering rules and analyzing traffic with tcpdump and Nmap ACK scans.</p>
             <div class="tag-row">
-              <span class="tag">Firewall</span><span class="tag">Network Security</span><span class="tag">Security Analysis</span>
+              <span class="tag">Netfilter</span><span class="tag">iptables</span><span class="tag">tcpdump</span><span class="tag">Nmap</span>
             </div>
           </div>
           <div class="pc-footer">
@@ -3075,9 +3133,43 @@
             </div>
           </div>
           <div class="pc-body">
-            <p>Tested password strength, cracking strategies, hashing, salting, and weak credential patterns in offline attack scenarios.</p>
+            <p>Evaluated password strength and offline attack strategies with John the Ripper, assessing hashing, salting, password length, and compute power.</p>
             <div class="tag-row">
               <span class="tag">Password Security</span><span class="tag">John the Ripper</span><span class="tag">Vulnerability Assessment</span>
+            </div>
+          </div>
+          <div class="pc-footer">
+            <span>Learn More</span><span class="pc-arrow">↗</span>
+          </div>
+        </article>
+        <article class="project-card reveal" data-project="network-recon-forensics">
+          <div class="pc-header">
+            <div>
+              <div class="pc-meta">Apr 2026</div>
+              <h3 class="pc-name">Network Reconnaissance & Packet Forensics</h3>
+            </div>
+          </div>
+          <div class="pc-body">
+            <p>Performed idle scan and ARP poisoning MITM attacks across a multi-VM network, then decoded packet evidence with tcpdump and Wireshark.</p>
+            <div class="tag-row">
+              <span class="tag">Wireshark</span><span class="tag">tcpdump</span><span class="tag">hping3</span><span class="tag">ettercap</span>
+            </div>
+          </div>
+          <div class="pc-footer">
+            <span>Learn More</span><span class="pc-arrow">↗</span>
+          </div>
+        </article>
+        <article class="project-card reveal" data-project="tcp-ip-attack-analysis">
+          <div class="pc-header">
+            <div>
+              <div class="pc-meta">Mar 2026</div>
+              <h3 class="pc-name">TCP/IP Attack Analysis</h3>
+            </div>
+          </div>
+          <div class="pc-body">
+            <p>Executed and analyzed SYN flooding, TCP RST, and session hijacking attacks across a 3-VM environment using Netwox, Scapy, and tcpdump.</p>
+            <div class="tag-row">
+              <span class="tag">TCP/IP</span><span class="tag">Scapy</span><span class="tag">Netwox</span><span class="tag">tcpdump</span>
             </div>
           </div>
           <div class="pc-footer">
@@ -3178,7 +3270,7 @@
             <div class="cert-name">CompTIA Security+</div>
           </div>
           <div class="cert-footer">
-            <span>Target: End of Summer 2026</span><span class="pc-arrow">↗</span>
+            <span>Expected: August 2026</span><span class="pc-arrow">↗</span>
           </div>
         </article>
       </div>
@@ -3195,7 +3287,7 @@
           <div class="skill-group">
             <div class="skill-group-title">Security Operations</div>
             <div class="skill-item">
-              <div class="skill-label"><span>SIEM: Splunk, Chronicle</span><span>Developing</span></div>
+              <div class="skill-label"><span>SIEM (Splunk, Chronicle)</span><span>Developing</span></div>
               <div class="skill-bar"><div class="skill-fill developing" style="--level: 60%"></div></div>
             </div>
             <div class="skill-item">
@@ -3211,7 +3303,7 @@
               <div class="skill-bar"><div class="skill-fill" style="--level: 65%"></div></div>
             </div>
             <div class="skill-item">
-              <div class="skill-label"><span>Threat Detection</span><span>Intermediate</span></div>
+              <div class="skill-label"><span>MITRE ATT&CK</span><span>Intermediate</span></div>
               <div class="skill-bar"><div class="skill-fill" style="--level: 65%"></div></div>
             </div>
             <div class="skill-item">
@@ -3220,85 +3312,85 @@
             </div>
           </div>
           <div class="skill-group">
-            <div class="skill-group-title">Identity, Risk &amp; Compliance</div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Access Control</span><span>Proficient</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Identity &amp; Access Management</span><span>Intermediate</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 65%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>NIST Cybersecurity Framework</span><span>Intermediate</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 65%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Security Policy &amp; Controls</span><span>Intermediate</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 65%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Compliance Mapping</span><span>Developing</span></div>
-              <div class="skill-bar"><div class="skill-fill developing" style="--level: 60%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Risk Assessment</span><span>Intermediate</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 65%"></div></div>
-            </div>
-          </div>
-        </div>
-        <div class="skill-panel">
-          <div class="skill-group">
             <div class="skill-group-title">Network &amp; System Security</div>
             <div class="skill-item">
-              <div class="skill-label"><span>Wireshark</span><span>Developing</span></div>
+              <div class="skill-label"><span>Wireshark / tcpdump</span><span>Developing</span></div>
               <div class="skill-bar"><div class="skill-fill developing" style="--level: 60%"></div></div>
             </div>
             <div class="skill-item">
-              <div class="skill-label"><span>Network Traffic Analysis</span><span>Intermediate</span></div>
+              <div class="skill-label"><span>Nmap / Packet Analysis</span><span>Developing</span></div>
+              <div class="skill-bar"><div class="skill-fill developing" style="--level: 60%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Firewalls / IDS / IPS</span><span>Intermediate</span></div>
               <div class="skill-bar"><div class="skill-fill" style="--level: 65%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Network Protocols (TCP/IP, DNS, HTTP)</span><span>Proficient</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
             </div>
             <div class="skill-item">
               <div class="skill-label"><span>Linux / Unix</span><span>Proficient</span></div>
               <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
             </div>
             <div class="skill-item">
-              <div class="skill-label"><span>Windows</span><span>Proficient</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>macOS</span><span>Advanced</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Endpoint Troubleshooting</span><span>Proficient</span></div>
+              <div class="skill-label"><span>Virtual Machines</span><span>Proficient</span></div>
               <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
             </div>
           </div>
+        </div>
+        <div class="skill-panel">
           <div class="skill-group">
-            <div class="skill-group-title">Data, Reporting &amp; Business Tools</div>
+            <div class="skill-group-title">Identity, Risk &amp; Compliance</div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Access Control</span><span>Proficient</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Active Directory</span><span>Proficient</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>ACLs (Access Control Lists)</span><span>Proficient</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>NIST Cybersecurity Framework</span><span>Intermediate</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 65%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Privacy &amp; PII Compliance</span><span>Proficient</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Ticketing Systems / Help Desk</span><span>Advanced</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title">Programming &amp; Tools</div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Python</span><span>Proficient</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>SQL</span><span>Proficient</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Git</span><span>Advanced</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
+            </div>
             <div class="skill-item">
               <div class="skill-label"><span>Correlation Analysis</span><span>Advanced</span></div>
               <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
             </div>
             <div class="skill-item">
-              <div class="skill-label"><span>Data Visualization</span><span>Advanced</span></div>
+              <div class="skill-label"><span>Windows</span><span>Advanced</span></div>
               <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
             </div>
             <div class="skill-item">
-              <div class="skill-label"><span>Tableau</span><span>Proficient</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Microsoft Office Suite</span><span>Advanced</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>NetSuite CRM</span><span>Advanced</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Technical Documentation</span><span>Advanced</span></div>
+              <div class="skill-label"><span>macOS</span><span>Advanced</span></div>
               <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
             </div>
           </div>
@@ -3316,8 +3408,8 @@
         <article class="exp-card reveal" data-experience="research-assistant">
           <div class="exp-main">
             <div class="exp-topline">
-              <div class="exp-org">The University of Tennessee</div>
-              <div class="exp-time">Jan 2026 - Present</div>
+              <div class="exp-org">The University of Tennessee, Knoxville</div>
+              <div class="exp-time">Jan 2026 - May 2026</div>
             </div>
             <h3 class="exp-role">Research Assistant</h3>
           </div>
@@ -3359,11 +3451,11 @@
         <div class="section-line"></div>
       </div>
       <div class="contact-grid">
-        <a class="contact-card" href="mailto:drvptl19@gmail.com">
+        <a class="contact-card" href="mailto:drvptl19@email.com">
           <div class="contact-icon">@</div>
           <div class="contact-info">
             <div class="contact-label">Email</div>
-            <div class="contact-val">drvptl19@gmail.com</div>
+            <div class="contact-val">drvptl19@email.com</div>
           </div>
         </a>
         <a class="contact-card" href="https://linkedin.com/in/drvptl" target="_blank" rel="noopener noreferrer">
@@ -3473,7 +3565,7 @@
     const terminalMessages = [
       "Loading profile: Dhruv Patel...",
       "Focus: cybersecurity, analytics, and secure systems.",
-      "Status: portfolio online and accepting opportunities."
+      "Status: portfolio online and open to opportunities."
     ];
     const typewriterEl = document.getElementById("typewriter");
     let tLine = 0;
@@ -3727,7 +3819,7 @@
         }
 
         // Static-host fallback: opens a prefilled mail draft.
-        const ownerEmail = "drvptl19@gmail.com";
+        const ownerEmail = "drvptl19@email.com";
         const subject = encodeURIComponent("Resume Request: " + (payload.fullName || "New Request"));
         const body = encodeURIComponent(
           "Resume request details:\n\n" +
@@ -3751,13 +3843,13 @@
     function setupProjectDetailModal() {
     const projectDetails = {
       "firewall-security-analysis": {
-        title: "Firewall Security Analysis",
+        title: "Netfilter Firewall Configuration & Analysis",
         meta: "Apr 2026",
         bullets: [
-          "Designed and tested a multi-network Netfilter firewall lab across segmented subnets, validating forwarding behavior, packet flow, and filter outcomes using tcpdump, hping3, and nmap.",
-          "Compared static and stateful filtering behavior, analyzed scan leakage and rule-counter evidence, and improved handling of related ICMP traffic by upgrading policy logic from static to advanced stateful rules."
+          "Configured and tested a Linux Netfilter (iptables) firewall across a 3-VM network environment, implementing and comparing static versus stateful packet filtering rules.",
+          "Analyzed traffic behavior using tcpdump and Nmap ACK scans to evaluate firewall logging, packet flow, scan leakage, and ICMP error handling."
         ],
-        skills: ["Netfilter", "iptables", "Packet Analysis", "Network Security"]
+        skills: ["Netfilter", "iptables", "tcpdump", "Nmap", "Packet Filtering", "Network Security"]
       },
       "retour-report": {
         title: "ReTour",
@@ -3781,12 +3873,30 @@
       },
       "password-security": {
         title: "Password Security Analysis",
-        meta: "Nov 2025 - Nov 2025",
+        meta: "Nov 2025",
         bullets: [
-          "Conducted hands-on password security analysis using John the Ripper to test password strength, evaluate guessing strategies, and identify weak credential patterns in offline attack scenarios.",
-          "Assessed the impact of hashing, salting, password length, and computing power on password resistance, using results to recommend stronger password practices and improve overall security posture."
+          "Conducted credential security analysis using John the Ripper to evaluate password strength and test offline attack strategies.",
+          "Assessed the impact of hashing, salting, password length, and compute power on resistance to cracking, connecting results to stronger password practices."
         ],
-        skills: ["Vulnerability Assessment", "Password Security", "John the Ripper", "Security Testing", "Risk Evaluation"]
+        skills: ["John the Ripper", "Password Security", "Hashing", "Salting", "Offline Attacks", "Risk Evaluation"]
+      },
+      "network-recon-forensics": {
+        title: "Network Reconnaissance & Packet Forensics",
+        meta: "Apr 2026",
+        bullets: [
+          "Performed idle scan and ARP poisoning MITM attacks using hping3 and ettercap across a multi-VM network environment.",
+          "Conducted packet-level forensic analysis on a live capture using tcpdump and Wireshark to decode TCP flags, identify DNS/HTTP servers, and detect active port scanning activity."
+        ],
+        skills: ["Wireshark", "tcpdump", "hping3", "ettercap", "ARP Poisoning", "Packet Forensics", "Network Reconnaissance"]
+      },
+      "tcp-ip-attack-analysis": {
+        title: "TCP/IP Attack Analysis",
+        meta: "Mar 2026",
+        bullets: [
+          "Executed and analyzed SYN flooding, TCP RST, and session hijacking attacks across a 3-VM network environment using Netwox, Scapy, and tcpdump.",
+          "Validated the impact of SYN cookies on DoS resilience and demonstrated live command injection into active Telnet sessions."
+        ],
+        skills: ["TCP/IP", "SYN Flooding", "Session Hijacking", "Netwox", "Scapy", "tcpdump", "Telnet"]
       },
       "leeterboard": {
         title: "LeeterBoard",
@@ -3835,20 +3945,21 @@
     const experienceDetails = {
       "research-assistant": {
         title: "Research Assistant",
-        meta: "The University of Tennessee | January 2026 - Present",
+        meta: "The University of Tennessee, Knoxville | January 2026 - May 2026",
         bullets: [
-          "Improved the reliability and usability of county-level public health analysis by collecting, cleaning, validating, and integrating multi-source CDC, Census, and CHR data into a 95-county, 2018-2023 dataset with 12,000+ values.",
-          "Delivered clear, decision-oriented insights on Tennessee longevity patterns by building Tableau dashboards and analytical workflows to identify links between structural conditions, behavioral risk factors, and longevity outcomes."
+          "Built a 95-county, 2018-2023 public health dataset by collecting, cleaning, and integrating multi-source CDC, Census, and CHR data, producing 12,000+ validated data points to enable analysis of Tennessee health outcomes.",
+          "Delivered actionable insights on Tennessee longevity patterns by developing 3 interactive Tableau dashboards with 25+ views and charts and presenting a research poster at UTK's university-wide EURECA research symposium.",
+          "Surfaced links between structural conditions, behavioral risk factors, and county-level outcomes through dashboard analysis and research presentation materials."
         ],
-        skills: ["Data Cleaning", "Data Validation", "CDC Data", "Census Data", "CHR Data", "Tableau", "Public Health Analysis"]
+        skills: ["Data Cleaning", "Data Validation", "CDC Data", "Census Data", "CHR Data", "Tableau", "Public Health Analysis", "Research Presentation"]
       },
       "voltech-specialist": {
         title: "Student Supervisor - Technical Specialist",
         meta: "VolTech - Apple Campus Store | October 2023 - Present",
         bullets: [
-          "Resolved hardware and software issues using Apple's official diagnostic tools and ticketing workflows, following structured playbooks to ensure consistent diagnostics, accurate escalation, and privacy-aware handling of customer devices and data.",
-          "Managed technical data logs for 500+ Apple parts by consolidating GSX inventory and pricing data, improving asset visibility, stock accuracy, and procurement workflows.",
-          "Led and trained a technical support team on diagnostic procedures, service documentation, and customer communication, strengthening consistency across frontline technical operations."
+          "Diagnosed and resolved 30+ hardware and software issues per week by following structured playbooks and ticketing workflows, ensuring accurate issue resolution and compliance with Apple's customer data privacy standards.",
+          "Maintained data integrity across 500+ Apple parts by consolidating and validating GSX inventory and pricing records, reducing stock discrepancies and improving procurement accuracy.",
+          "Onboarded and trained 7+ new team members on diagnostic procedures, privacy compliance protocols, and ticketing standards, ensuring consistent adherence to service and security guidelines."
         ],
         skills: ["Apple Diagnostics", "Ticketing Systems", "GSX", "Inventory Data", "Technical Support", "Team Training", "Customer Data Privacy"]
       },
@@ -3856,11 +3967,10 @@
         title: "Operations Manager",
         meta: "G6 Hospitality LLC | November 2021 - August 2024",
         bullets: [
-          "Enhanced data privacy and operational security by upgrading digital booking workflows and training staff on secure handling of customer PII, access discipline, and process consistency.",
-          "Achieved 17% YoY revenue growth by analyzing guest booking patterns, identifying occupancy trends, and using data-driven strategies to optimize room utilization.",
-          "Streamlined operational decision-making by organizing booking and revenue datasets, improving reporting accuracy, and identifying long-term occupancy trends."
+          "Strengthened operational data security by training 15+ staff members on secure PII handling practices and leading upgrades to digital booking tools to reduce unauthorized data exposure.",
+          "Drove 26% YoY revenue growth by implementing data-driven strategies to analyze guest booking patterns."
         ],
-        skills: ["PII Handling", "Operational Security", "Revenue Analysis", "Booking Data", "Occupancy Strategy", "Staff Training"]
+        skills: ["PII Handling", "Operational Security", "Revenue Analysis", "Booking Data", "Staff Training", "Digital Booking Tools"]
       }
     };
 
