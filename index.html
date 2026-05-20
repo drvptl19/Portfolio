@@ -3,12 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dhruv Patel - Portfolio</title>
-  <meta property="og:title" content="Dhruv Patel Portfolio">
-  <meta property="og:description" content="Cybersecurity and Computer Science Portfolio">
+  <title>Dhruv Patel | Cybersecurity Analyst Portfolio</title>
+  <meta name="description" content="Cybersecurity analyst portfolio for Dhruv Patel, featuring security operations, IAM, network security, and software engineering projects.">
+  <meta property="og:title" content="Dhruv Patel | Cybersecurity Analyst Portfolio">
+  <meta property="og:description" content="Security operations, IAM, network security, and software engineering projects from a University of Tennessee computer science graduate.">
   <meta property="og:image" content="https://drvptl.com/preview.png">
   <meta property="og:url" content="https://drvptl.com">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Dhruv Patel Portfolio">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dhruv Patel | Cybersecurity Analyst Portfolio">
+  <meta name="twitter:description" content="Security operations, IAM, network security, and software engineering projects from a University of Tennessee computer science graduate.">
+  <meta name="twitter:image" content="https://drvptl.com/preview.png">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 96 96%27%3E%3Crect width=%2796%27 height=%2796%27 rx=%2718%27 fill=%27%23020408%27/%3E%3Cpath d=%27M16 73L73 16M24 80L80 24%27 stroke=%27%2300d4ff%27 stroke-width=%274%27 stroke-linecap=%27square%27 opacity=%27.55%27/%3E%3Ctext x=%2748%27 y=%2761%27 text-anchor=%27middle%27 font-family=%27Arial, Helvetica, sans-serif%27 font-size=%2737%27 font-weight=%27700%27 letter-spacing=%27-2%27 fill=%27%2300ff88%27%3EDP%3C/text%3E%3Crect x=%278%27 y=%278%27 width=%2780%27 height=%2780%27 rx=%2714%27 fill=%27none%27 stroke=%27%2300ff88%27 stroke-width=%273%27 opacity=%27.72%27/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -746,8 +752,8 @@
 
     .certs-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-      gap: 12px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
     }
 
     .cert-badge {
@@ -1324,27 +1330,67 @@
       border: 1px solid var(--line-2);
       background: var(--panel);
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
-      padding: 18px;
+      padding: 30px 32px 28px;
       max-height: 86vh;
       overflow: auto;
+      position: relative;
+    }
+
+    .project-modal .modal-head {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    .project-modal .close-btn {
+      width: 34px;
+      height: 34px;
+      display: inline-grid;
+      place-items: center;
+      padding: 0;
+      font-size: 1.05rem;
+      line-height: 1;
+      transition: transform 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    }
+
+    .project-modal .close-btn:hover,
+    .project-modal .close-btn:focus-visible {
+      color: var(--accent);
+      border-color: var(--accent);
+      transform: scale(1.12);
+    }
+
+    .close-icon {
+      display: inline-block;
+      transition: transform 0.16s ease;
+    }
+
+    .project-modal .close-btn:hover .close-icon {
+      transform: scale(1.18);
     }
 
     .project-modal-meta {
       font-family: "Share Tech Mono", monospace;
-      color: var(--accent-2);
-      font-size: 0.7rem;
+      color: var(--muted);
+      font-size: 0.62rem;
       letter-spacing: 1px;
       text-transform: uppercase;
       white-space: pre-line;
-      margin-bottom: 8px;
+      margin: 8px 44px 22px 0;
     }
 
     .project-modal-title {
-      margin: 0 0 10px;
-      padding-top: 10px;
+      margin: 0 44px 0 0;
+      padding-top: 0;
       font-family: "Orbitron", sans-serif;
-      font-size: 1.15rem;
-      letter-spacing: 1px;
+      font-size: 1.05rem;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      line-height: 1.35;
+      white-space: pre-line;
     }
 
     .project-modal-list {
@@ -1352,8 +1398,8 @@
       padding-left: 18px;
       padding-bottom: 5px;
       color: var(--muted);
-      font-size: 0.8rem;
-      line-height: 1.6;
+      font-size: 0.82rem;
+      line-height: 1.65;
     }
 
     .project-modal-list li {
@@ -1364,9 +1410,16 @@
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-top: 14px;
-      padding-top: 12px;
+      margin-top: 20px;
+      padding-top: 16px;
       border-top: 1px solid var(--line);
+    }
+
+    .project-modal-skills .tag {
+      color: var(--muted);
+      border-color: var(--line);
+      font-size: 0.48rem;
+      letter-spacing: 1.4px;
     }
 
     .project-modal-links {
@@ -1488,12 +1541,14 @@
       .hero { grid-template-columns: 1fr; }
       .skills-wrap { grid-template-columns: 1fr; }
       .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .certs-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .exp-grid { grid-template-columns: 1fr; }
       .contact-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 680px) {
       .project-grid { grid-template-columns: 1fr; }
+      .certs-grid { grid-template-columns: 1fr; }
       .top-nav-inner {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2280,6 +2335,10 @@
       border-bottom-color: rgba(18, 27, 44, 0.08);
     }
 
+    body.modern .project-modal .modal-head {
+      border-bottom: 0;
+    }
+
     body.modern .modal-title {
       font-family: 'Inter', system-ui, sans-serif;
       font-weight: 700;
@@ -2296,20 +2355,27 @@
       padding: 5px 14px;
     }
 
+    body.modern .project-modal .close-btn {
+      width: 34px;
+      height: 34px;
+      padding: 0;
+      font-size: 1rem;
+    }
+
     body.modern .project-modal-meta {
       font-family: 'Inter', system-ui, sans-serif;
       letter-spacing: 0;
       text-transform: none;
-      color: var(--accent-2);
+      color: var(--muted);
       font-size: 0.76rem;
       font-weight: 500;
     }
 
     body.modern .project-modal-title {
       font-family: 'Inter', system-ui, sans-serif;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      font-size: 1.2rem;
+      font-weight: 400;
+      letter-spacing: 0;
+      font-size: 1.08rem;
     }
 
     body.modern .project-modal-list {
@@ -2321,6 +2387,12 @@
 
     body.modern .project-modal-skills {
       border-top-color: rgba(18, 27, 44, 0.08);
+    }
+
+    body.modern .project-modal-skills .tag {
+      color: var(--muted);
+      border-color: rgba(18, 27, 44, 0.12);
+      letter-spacing: 0;
     }
 
     body.modern .project-modal-link {
@@ -3094,16 +3166,63 @@
       <aside class="threat-widget">
         <div class="threat-row"><span class="threat-key">Status</span><span class="threat-val">Open to Opportunities</span></div>
         <div class="threat-row"><span class="threat-key">Target</span><span class="threat-val teal">SOC / Security / IAM Analyst</span></div>
-        <div class="threat-row"><span class="threat-key">Graduation</span><span class="threat-val orange">May 2026</span></div>
+        <div class="threat-row"><span class="threat-key">Graduated</span><span class="threat-val orange">May 2026</span></div>
         <div class="threat-row"><span class="threat-key">Location</span><span class="threat-val">Knoxville, TN</span></div>
         <div class="threat-row"><span class="threat-key">Citizenship</span><span class="threat-val">US Citizen</span></div>
         <div class="threat-row"><span class="threat-key">Languages</span><span class="threat-val">English / Hindi / Gujarati</span></div>
       </aside>
     </section>
 
-    <section class="section reveal" id="projects">
+    <section class="section reveal" id="credentials">
       <div class="section-head">
         <span class="section-num">01</span>
+        <h2 class="section-title">Credentials</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="certs-grid">
+        <article class="cert-badge reveal" data-credential="google-cybersecurity">
+          <div class="cert-main">
+            <div class="cert-topline">
+              <div class="cert-org">Coursera</div>
+              <div class="cert-status">Verified</div>
+            </div>
+            <div class="cert-name">Google Cybersecurity Professional Certificate</div>
+          </div>
+          <div class="cert-footer">
+            <span>Learn More</span><span class="pc-arrow">↗</span>
+          </div>
+        </article>
+        <article class="cert-badge reveal" data-credential="utk-computer-science">
+          <div class="cert-main">
+            <div class="cert-topline">
+              <div class="cert-org">University of Tennessee</div>
+              <div class="cert-status">Graduated</div>
+            </div>
+            <div class="cert-name">Bachelor of Science in Computer Science<br>Minor in Cybersecurity</div>
+          </div>
+          <div class="cert-footer">
+            <span>Learn More</span><span class="pc-arrow">↗</span>
+          </div>
+        </article>
+        <article class="cert-badge reveal pending disabled" aria-disabled="true">
+          <div class="cert-main">
+            <div class="cert-topline">
+              <div class="cert-org">CompTIA</div>
+              <div class="cert-status pending">In Progress</div>
+            </div>
+            <div class="cert-name">CompTIA Security+</div>
+          </div>
+          <div class="cert-footer">
+            <span>Expected: August 2026</span><span class="pc-arrow">↗</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    
+    <section class="section reveal" id="projects">
+      <div class="section-head">
+        <span class="section-num">02</span>
         <h2 class="section-title">Featured Projects</h2>
         <div class="section-line"></div>
       </div>
@@ -3225,52 +3344,6 @@
           </div>
           <div class="pc-footer">
             <span>Learn More</span><span class="pc-arrow">↗</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section reveal" id="credentials">
-      <div class="section-head">
-        <span class="section-num">02</span>
-        <h2 class="section-title">Credentials</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="certs-grid">
-        <article class="cert-badge reveal" data-credential="google-cybersecurity">
-          <div class="cert-main">
-            <div class="cert-topline">
-              <div class="cert-org">Coursera</div>
-              <div class="cert-status">Verified</div>
-            </div>
-            <div class="cert-name">Google Cybersecurity Professional Certificate</div>
-          </div>
-          <div class="cert-footer">
-            <span>Learn More</span><span class="pc-arrow">↗</span>
-          </div>
-        </article>
-        <article class="cert-badge reveal pending" data-credential="utk-computer-science">
-          <div class="cert-main">
-            <div class="cert-topline">
-              <div class="cert-org">University of Tennessee</div>
-              <div class="cert-status pending">In Progress</div>
-            </div>
-            <div class="cert-name">B.S. Computer Science + Cybersecurity Minor</div>
-          </div>
-          <div class="cert-footer">
-            <span>Learn More</span><span class="pc-arrow">↗</span>
-          </div>
-        </article>
-        <article class="cert-badge reveal pending disabled" aria-disabled="true">
-          <div class="cert-main">
-            <div class="cert-topline">
-              <div class="cert-org">CompTIA</div>
-              <div class="cert-status pending">In Progress</div>
-            </div>
-            <div class="cert-name">CompTIA Security+</div>
-          </div>
-          <div class="cert-footer">
-            <span>Expected: August 2026</span><span class="pc-arrow">↗</span>
           </div>
         </article>
       </div>
@@ -3408,7 +3481,7 @@
         <article class="exp-card reveal" data-experience="research-assistant">
           <div class="exp-main">
             <div class="exp-topline">
-              <div class="exp-org">The University of Tennessee, Knoxville</div>
+              <div class="exp-org">The University of Tennessee</div>
               <div class="exp-time">Jan 2026 - May 2026</div>
             </div>
             <h3 class="exp-role">Research Assistant</h3>
@@ -3451,11 +3524,11 @@
         <div class="section-line"></div>
       </div>
       <div class="contact-grid">
-        <a class="contact-card" href="mailto:drvptl19@email.com">
+        <a class="contact-card" href="mailto:drvptl19@gmail.com">
           <div class="contact-icon">@</div>
           <div class="contact-info">
             <div class="contact-label">Email</div>
-            <div class="contact-val">drvptl19@email.com</div>
+            <div class="contact-val">drvptl19@gmail.com</div>
           </div>
         </a>
         <a class="contact-card" href="https://linkedin.com/in/drvptl" target="_blank" rel="noopener noreferrer">
@@ -3819,7 +3892,7 @@
         }
 
         // Static-host fallback: opens a prefilled mail draft.
-        const ownerEmail = "drvptl19@email.com";
+        const ownerEmail = "drvptl19@gmail.com";
         const subject = encodeURIComponent("Resume Request: " + (payload.fullName || "New Request"));
         const body = encodeURIComponent(
           "Resume request details:\n\n" +
@@ -3933,8 +4006,8 @@
         ]
       },
       "utk-computer-science": {
-        title: "B.S. Computer Science + Cybersecurity Minor",
-        meta: "The University of Tennessee, Knoxville \nAnticipated Graduation: May 2026 | GPA: 3.86 / 4.00",
+        title: "Bachelor of Science in Computer Science\nMinor in Cybersecurity",
+        meta: "The University of Tennessee \nGraduated: May 2026 | GPA: 3.86 / 4.00",
         bullets: [
           "Relevant coursework includes Data Structures and Algorithms I & II, Systems Programming, Operating Systems, Introduction to Cybersecurity, Applied Cryptography, Network Security, Cyber-Physical Systems Security, and Human Computer Interaction."
         ],
@@ -3945,7 +4018,7 @@
     const experienceDetails = {
       "research-assistant": {
         title: "Research Assistant",
-        meta: "The University of Tennessee, Knoxville | January 2026 - May 2026",
+        meta: "The University of Tennessee | January 2026 - May 2026",
         bullets: [
           "Built a 95-county, 2018-2023 public health dataset by collecting, cleaning, and integrating multi-source CDC, Census, and CHR data, producing 12,000+ validated data points to enable analysis of Tennessee health outcomes.",
           "Delivered actionable insights on Tennessee longevity patterns by developing 3 interactive Tableau dashboards with 25+ views and charts and presenting a research poster at UTK's university-wide EURECA research symposium.",
@@ -3976,7 +4049,6 @@
 
     const projectModal = document.getElementById("projectModal");
     const closeProjectModalBtn = document.getElementById("closeProjectModal");
-    const projectModalHeading = projectModal ? projectModal.querySelector(".modal-title") : null;
     const projectModalTitle = document.getElementById("projectModalTitle");
     const projectModalMeta = document.getElementById("projectModalMeta");
     const projectModalList = document.getElementById("projectModalList");
@@ -3994,13 +4066,6 @@
           : projectDetails;
       const data = collection[detailKey];
       if (!data || !projectModal) return;
-      if (projectModalHeading) {
-        projectModalHeading.textContent = detailType === "credential"
-          ? "Credential Details"
-          : detailType === "experience"
-            ? "Experience Details"
-            : "Project Details";
-      }
       projectModalTitle.textContent = data.title;
       projectModalMeta.textContent = data.meta;
       projectModalList.innerHTML = data.bullets.map((b) => "<li>" + b + "</li>").join("");
@@ -4142,11 +4207,10 @@
   <div class="modal-backdrop" id="projectModal" aria-hidden="true">
     <div class="project-modal">
       <div class="modal-head">
-        <h3 class="modal-title">Project Details</h3>
-        <button type="button" class="close-btn" id="closeProjectModal">Close</button>
+        <button type="button" class="close-btn" id="closeProjectModal" aria-label="Close details"><span class="close-icon">×</span></button>
       </div>
-      <div class="project-modal-meta" id="projectModalMeta"></div>
       <h4 class="project-modal-title" id="projectModalTitle"></h4>
+      <div class="project-modal-meta" id="projectModalMeta"></div>
       <ul class="project-modal-list" id="projectModalList"></ul>
       <div class="project-modal-skills" id="projectModalSkills"></div>
       <div class="project-modal-links" id="projectModalLinks" hidden></div>
