@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dhruv Patel | Portfolio</title>
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="description" content="Computer Science graduate with hands-on experience across IT support and cybersecurity. Technical problem solver focused on operations, security, and reliable systems.">
   <meta property="og:title" content="Dhruv Patel | Portfolio">
   <meta property="og:description" content="IT support and cybersecurity projects and experience.">
@@ -3531,7 +3532,7 @@
           <div class="contact-icon">@</div>
           <div class="contact-info">
             <div class="contact-label">Email</div>
-            <div class="contact-val">drvptl19@gmail.com</div>
+            <div class="contact-val">Click to email</div>
           </div>
         </a>
         <a class="contact-card" href="https://linkedin.com/in/drvptl" target="_blank" rel="noopener noreferrer">
@@ -3895,7 +3896,7 @@
         }
 
         // Static-host fallback: opens a prefilled mail draft.
-        const ownerEmail = "drvptl19@gmail.com";
+        const ownerEmail = ["drvptl19", "gmail.com"].join("@");
         const subject = encodeURIComponent("Resume Request: " + (payload.fullName || "New Request"));
         const body = encodeURIComponent(
           "Resume request details:\n\n" +
