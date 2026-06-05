@@ -1349,7 +1349,8 @@
       border: 0;
     }
 
-    .project-modal .close-btn {
+    .project-modal .close-btn,
+    .resume-modal .close-btn {
       width: 34px;
       height: 34px;
       display: inline-grid;
@@ -1361,7 +1362,9 @@
     }
 
     .project-modal .close-btn:hover,
-    .project-modal .close-btn:focus-visible {
+    .project-modal .close-btn:focus-visible,
+    .resume-modal .close-btn:hover,
+    .resume-modal .close-btn:focus-visible {
       color: var(--accent);
       border-color: var(--accent);
       transform: scale(1.12);
@@ -3528,11 +3531,11 @@
         <div class="section-line"></div>
       </div>
       <div class="contact-grid">
-        <a class="contact-card" href="mailto:drvptl19@gmail.com">
+        <a class="contact-card" id="emailContactCard" href="#">
           <div class="contact-icon">@</div>
           <div class="contact-info">
             <div class="contact-label">Email</div>
-            <div class="contact-val">Click to email</div>
+            <div class="contact-val" id="emailDisplay"></div>
           </div>
         </a>
         <a class="contact-card" href="https://linkedin.com/in/drvptl" target="_blank" rel="noopener noreferrer">
@@ -3916,6 +3919,16 @@
       setupResumeRequestModal();
     }
 
+    // Build email at runtime to prevent scraper harvesting
+    (function() {
+      const u = "drvptl19", d = "gmail", t = "com";
+      const email = u + "@" + d + "." + t;
+      const card = document.getElementById("emailContactCard");
+      const display = document.getElementById("emailDisplay");
+      if (card) card.href = "mailto:" + email;
+      if (display) display.textContent = email;
+    })();
+
     // Project detail modal flow
     function setupProjectDetailModal() {
     const projectDetails = {
@@ -4172,8 +4185,8 @@
   <div class="modal-backdrop" id="resumeModal" aria-hidden="true">
     <div class="resume-modal">
       <div class="modal-head">
-        <h3 class="modal-title">Resume Request Form</h3>
-        <button type="button" class="close-btn" id="closeResumeForm">Close</button>
+        <h3 class="modal-title">Request Resume</h3>
+        <button type="button" class="close-btn" id="closeResumeForm">×</button>
       </div>
 
       <form id="resumeRequestForm" novalidate>
@@ -4199,14 +4212,12 @@
           <input class="sr-only" id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
         </div>
 
-        <p class="tiny-note">
-          Requests are reviewed manually before sharing the resume.
-        </p>
+
         <p class="tiny-note" id="resumeFormStatus"></p>
 
         <div class="form-actions">
           <button type="button" class="btn" id="cancelResumeForm">Cancel</button>
-          <button type="submit" class="btn primary">Submit Request</button>
+          <button type="submit" class="btn primary">Send Request</button>
         </div>
       </form>
     </div>
