@@ -480,7 +480,7 @@
       text-transform: uppercase;
       font-size: 0.7rem;
       letter-spacing: 2px;
-      transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+      transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
       background: transparent;
       cursor: pointer;
     }
@@ -495,6 +495,20 @@
       border-color: var(--accent);
       color: var(--accent);
       background: rgba(53, 242, 199, 0.08);
+    }
+
+    @keyframes primaryPulseCyan {
+      0%, 100% { box-shadow: inset 0 0 6px 0 rgba(0, 212, 255, 0.35); }
+      50% { box-shadow: inset 0 0 16px 3px rgba(0, 212, 255, 0.55); }
+    }
+
+    .hero-link.primary:hover,
+    .hero-link.primary:focus-visible {
+      border-color: var(--accent-2);
+      color: var(--accent-2);
+      background: rgba(0, 212, 255, 0.1);
+      transform: scale(1.06);
+      animation: primaryPulseCyan 1.1s ease-in-out infinite;
     }
 
     .btn {
@@ -605,7 +619,8 @@
     .section-title {
       margin: 0;
       font-family: "Orbitron", sans-serif;
-      letter-spacing: 3px;
+      font-weight: 400;
+      letter-spacing: 2px;
       font-size: 1.02rem;
       text-transform: uppercase;
     }
@@ -620,6 +635,7 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 16px;
+      align-items: stretch;
     }
 
     .project-card {
@@ -639,6 +655,8 @@
       cursor: pointer;
       display: flex;
       flex-direction: column;
+      height: 100%;
+      min-height: 236px;
     }
 
     .project-card:hover {
@@ -687,18 +705,32 @@
       text-transform: uppercase;
       font-family: "Orbitron", sans-serif;
       font-weight: 400;
+      line-height: 1.35;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: calc(2 * 1.35 * 0.88rem);
     }
 
 
     .pc-body {
-      padding: 16px 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 12px 16px;
     }
 
     .project-card p {
-      margin: 0 0 14px;
+      margin: 0 0 10px;
       color: var(--muted-2);
-      font-size: 0.76rem;
-      line-height: 1.7;
+      font-size: 0.68rem;
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: calc(3 * 1.5 * 0.68rem);
     }
 
     .tag-row {
@@ -720,7 +752,7 @@
     .pc-footer {
       margin-top: auto;
       border-top: 1px solid var(--line);
-      padding: 10px 18px;
+      padding: 8px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -772,23 +804,12 @@
         ),
         var(--panel);
       padding: 0;
-      min-height: 142px;
       position: relative;
       overflow: hidden;
       cursor: pointer;
       display: flex;
       flex-direction: column;
       transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, opacity 0.2s ease;
-    }
-
-    .cert-badge::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 3px;
-      height: 100%;
-      background: var(--accent-dim);
     }
 
     .cert-badge:hover {
@@ -816,16 +837,29 @@
       opacity: 0.78;
     }
 
-    .cert-badge.pending::before {
-      background: #ff9d1c;
+    .cert-body-wrap {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .cert-icon {
+      flex: 0 0 auto;
+      font-size: 1.85rem;
+      line-height: 1;
+      padding: 0 0 0 18px;
     }
 
     .cert-main {
       flex: 1;
       display: flex;
       flex-direction: column;
-      min-height: 98px;
-      padding: 24px 24px 20px;
+      justify-content: center;
+      min-width: 0;
+      min-height: 96px;
+      padding: 8px 20px 8px 0;
     }
 
     .cert-topline {
@@ -861,6 +895,7 @@
       color: var(--accent);
       opacity: 0.75;
       flex: 0 0 auto;
+      text-transform: uppercase;
     }
 
     .cert-status.pending {
@@ -870,7 +905,7 @@
     .cert-footer {
       margin-top: auto;
       border-top: 1px solid var(--line);
-      padding: 12px 24px;
+      padding: 10px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -1027,7 +1062,6 @@
         ),
         var(--panel);
       padding: 0;
-      min-height: 142px;
       position: relative;
       overflow: hidden;
       cursor: pointer;
@@ -1041,9 +1075,9 @@
       position: absolute;
       left: 0;
       top: 0;
-      width: 3px;
-      height: 100%;
-      background: var(--accent);
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-2), var(--accent));
     }
 
     .exp-card:hover {
@@ -1070,8 +1104,7 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      min-height: 96px;
-      padding: 22px 24px 16px;
+      padding: 16px 20px 12px;
     }
 
     .exp-topline {
@@ -1111,7 +1144,7 @@
     .exp-footer {
       margin-top: auto;
       border-top: 1px solid var(--line);
-      padding: 12px 24px;
+      padding: 10px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -1166,7 +1199,19 @@
       gap: 16px;
       color: inherit;
       text-decoration: none;
+      position: relative;
+      overflow: hidden;
       transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .contact-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-2), var(--accent));
     }
 
     .contact-card:hover {
@@ -1963,7 +2008,7 @@
 
     body.modern .section-title {
       font-family: 'Inter', system-ui, sans-serif;
-      font-weight: 700;
+      font-weight: 400;
       font-size: 1.25rem;
       letter-spacing: -0.5px;
       text-transform: none;
@@ -1982,6 +2027,8 @@
       -webkit-backdrop-filter: blur(24px) saturate(1.4);
       box-shadow: var(--glass-shadow);
       position: relative;
+      height: 100%;
+      min-height: 236px;
       transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     }
 
@@ -2015,14 +2062,24 @@
       font-size: 0.92rem;
       text-transform: none;
       color: var(--text);
+      line-height: 1.35;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: calc(2 * 1.35 * 0.92rem);
     }
-
 
     body.modern .project-card p {
       font-family: 'Inter', system-ui, sans-serif;
-      font-size: 0.82rem;
-      line-height: 1.6;
+      font-size: 0.72rem;
+      line-height: 1.5;
       color: var(--muted);
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: calc(3 * 1.5 * 0.72rem);
     }
 
     body.modern .tag {
@@ -2067,21 +2124,6 @@
       transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     }
 
-    body.modern .cert-badge::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      border-radius: 16px 16px 0 0;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-    }
-
-    body.modern .cert-badge.pending::after {
-      background: linear-gradient(90deg, #fb923c, #fbbf24);
-    }
-
     body.modern .cert-badge:hover {
       border-color: rgba(255,255,255,0.95);
       background: var(--glass-bg-strong);
@@ -2111,13 +2153,18 @@
       color: var(--text);
     }
 
+    body.modern .cert-icon {
+      font-size: 1.65rem;
+      padding: 0 0 0 18px;
+    }
+
     body.modern .cert-status {
       font-family: 'Inter', system-ui, sans-serif;
-      letter-spacing: 0;
+      letter-spacing: 0.4px;
       font-size: 0.62rem;
       font-weight: 600;
       color: #15803d;
-      text-transform: none;
+      text-transform: uppercase;
       background: rgba(220,252,231,0.76);
       padding: 2px 8px;
       border-radius: 999px;
@@ -2204,7 +2251,7 @@
       right: 0;
       height: 2px;
       border-radius: 16px 16px 0 0;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      background: linear-gradient(90deg, var(--accent-2), var(--accent));
     }
 
     body.modern .exp-card:hover {
@@ -2919,10 +2966,18 @@
     }
 
 
-    body.modern .cert-badge::after,
-    body.modern .cert-badge.pending::after,
-    body.modern .exp-card::after {
-      display: none;
+    body.modern .exp-card::after,
+    body.modern .contact-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      border-radius: 16px 16px 0 0;
+      background: linear-gradient(90deg, var(--accent-2), var(--accent));
+      display: block;
+      z-index: 1;
     }
 
     body.modern .cert-badge,
@@ -3129,7 +3184,7 @@
 
   <header class="top-nav">
     <div class="top-nav-inner">
-      <div class="brand">DP // PORTFOLIO</div>
+      <div class="brand">PATEL // PORTFOLIO</div>
       <div class="nav-meta" aria-label="Portfolio status">
         <div class="status-pill"><span class="status-dot"></span>SYSTEM ONLINE</div>
         <div id="liveClock">--:--:-- ET</div>
@@ -3148,14 +3203,14 @@
     <section class="hero reveal">
       <div class="hero-left">
         <div class="hero-name glitch" data-text="DHRUV PATEL">DHRUV <span>PATEL</span></div>
-        <div class="hero-title">Computer Science Graduate &nbsp;|&nbsp; IT Support &amp; Cybersecurity</div>
+        <div class="hero-title">IT Support, Desktop Support &amp; Cybersecurity</div>
         <div class="hero-terminal"><span id="typewriter"></span><span class="cursor"></span></div>
         <div class="modern-focus-tags" aria-label="Professional focus areas">
           <span>Help Desk &amp; Desktop Support</span>
+          <span>Endpoint &amp; Hardware Troubleshooting</span>
+          <span>IT Operations</span>
           <span>Cybersecurity</span>
           <span>Security Operations (SOC)</span>
-          <span>Identity &amp; Access (IAM)</span>
-          <span>Risk &amp; Compliance (GRC)</span>
         </div>
         <div class="hero-links">
           <button class="hero-link primary" id="openResumeForm" type="button">
@@ -3172,7 +3227,7 @@
 
       <aside class="threat-widget">
         <div class="threat-row"><span class="threat-key">Status</span><span class="threat-val">Open to Opportunities</span></div>
-        <div class="threat-row"><span class="threat-key">Target</span><span class="threat-val teal">IT &amp; Cybersecurity Roles</span></div>
+        <div class="threat-row"><span class="threat-key">Target</span><span class="threat-val teal">IT / Desktop Support &amp; Help Desk</span></div>
         <div class="threat-row"><span class="threat-key">Graduated</span><span class="threat-val orange">May 2026</span></div>
         <div class="threat-row"><span class="threat-key">Location</span><span class="threat-val">Knoxville, TN</span></div>
         <div class="threat-row"><span class="threat-key">Citizenship</span><span class="threat-val">US Citizen</span></div>
@@ -3180,307 +3235,9 @@
       </aside>
     </section>
 
-    <section class="section reveal" id="credentials">
-      <div class="section-head">
-        <span class="section-num">01</span>
-        <h2 class="section-title">Credentials</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="certs-grid">
-        <article class="cert-badge reveal" data-credential="google-cybersecurity">
-          <div class="cert-main">
-            <div class="cert-topline">
-              <div class="cert-org">Coursera</div>
-              <div class="cert-status">Verified</div>
-            </div>
-            <div class="cert-name">Google Cybersecurity Professional Certificate</div>
-          </div>
-          <div class="cert-footer">
-            <span>Learn More</span><span class="pc-arrow">↗</span>
-          </div>
-        </article>
-        <article class="cert-badge reveal" data-credential="utk-computer-science">
-          <div class="cert-main">
-            <div class="cert-topline">
-              <div class="cert-org">University of Tennessee</div>
-              <div class="cert-status">Graduated</div>
-            </div>
-            <div class="cert-name">Bachelor of Science in Computer Science<br>Minor in Cybersecurity</div>
-          </div>
-          <div class="cert-footer">
-            <span>Learn More</span><span class="pc-arrow">↗</span>
-          </div>
-        </article>
-        <article class="cert-badge reveal pending disabled" aria-disabled="true">
-          <div class="cert-main">
-            <div class="cert-topline">
-              <div class="cert-org">CompTIA</div>
-              <div class="cert-status pending">In Progress</div>
-            </div>
-            <div class="cert-name">CompTIA Security+</div>
-          </div>
-          <div class="cert-footer">
-            <span>Expected: September 2026</span><span class="pc-arrow">↗</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    
-    <section class="section reveal" id="projects">
-      <div class="section-head">
-        <span class="section-num">02</span>
-        <h2 class="section-title">Featured Projects</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="project-grid">
-        <article class="project-card reveal" data-project="firewall-security-analysis">
-          <div class="pc-header">
-            <div>
-              <div class="pc-meta">Apr 2026</div>
-              <h3 class="pc-name">Netfilter Firewall Configuration & Analysis</h3>
-            </div>
-          </div>
-          <div class="pc-body">
-            <p>Configured and tested a Linux Netfilter firewall across a 3-VM network, comparing static and stateful filtering rules and analyzing traffic with tcpdump and Nmap ACK scans.</p>
-            <div class="tag-row">
-              <span class="tag">Netfilter</span><span class="tag">iptables</span><span class="tag">tcpdump</span><span class="tag">Nmap</span>
-            </div>
-          </div>
-          <div class="pc-footer">
-            <span>Learn More</span><span class="pc-arrow">↗</span>
-          </div>
-        </article>
-        <article class="project-card reveal" data-project="password-security">
-          <div class="pc-header">
-            <div>
-              <div class="pc-meta">Nov 2025</div>
-              <h3 class="pc-name">Password Security Analysis</h3>
-            </div>
-          </div>
-          <div class="pc-body">
-            <p>Evaluated password strength and offline attack strategies with John the Ripper, assessing hashing, salting, password length, and compute power.</p>
-            <div class="tag-row">
-              <span class="tag">Password Security</span><span class="tag">John the Ripper</span><span class="tag">Vulnerability Assessment</span>
-            </div>
-          </div>
-          <div class="pc-footer">
-            <span>Learn More</span><span class="pc-arrow">↗</span>
-          </div>
-        </article>
-        <article class="project-card reveal" data-project="network-recon-forensics">
-          <div class="pc-header">
-            <div>
-              <div class="pc-meta">Apr 2026</div>
-              <h3 class="pc-name">Network Reconnaissance & Packet Forensics</h3>
-            </div>
-          </div>
-          <div class="pc-body">
-            <p>Performed idle scan and ARP poisoning MITM attacks across a multi-VM network, then decoded packet evidence with tcpdump and Wireshark.</p>
-            <div class="tag-row">
-              <span class="tag">Wireshark</span><span class="tag">tcpdump</span><span class="tag">hping3</span><span class="tag">ettercap</span>
-            </div>
-          </div>
-          <div class="pc-footer">
-            <span>Learn More</span><span class="pc-arrow">↗</span>
-          </div>
-        </article>
-        <article class="project-card reveal" data-project="tcp-ip-attack-analysis">
-          <div class="pc-header">
-            <div>
-              <div class="pc-meta">Mar 2026</div>
-              <h3 class="pc-name">TCP/IP Attack Analysis</h3>
-            </div>
-          </div>
-          <div class="pc-body">
-            <p>Executed and analyzed SYN flooding, TCP RST, and session hijacking attacks across a 3-VM environment using Netwox, Scapy, and tcpdump.</p>
-            <div class="tag-row">
-              <span class="tag">TCP/IP</span><span class="tag">Scapy</span><span class="tag">Netwox</span><span class="tag">tcpdump</span>
-            </div>
-          </div>
-          <div class="pc-footer">
-            <span>Learn More</span><span class="pc-arrow">↗</span>
-          </div>
-        </article>
-        <article class="project-card reveal" data-project="retour-report">
-          <div class="pc-header">
-            <div>
-              <div class="pc-meta">Aug 2025 - May 2026</div>
-              <h3 class="pc-name">ReTour</h3>
-            </div>
-          </div>
-          <div class="pc-body">
-            <p>Built a real estate tour platform with Firebase Authentication, protected routes, role-based access boundaries, and controlled share-link exposure.</p>
-            <div class="tag-row">
-              <span class="tag">React</span><span class="tag">Firebase</span><span class="tag">Mapbox</span>
-            </div>
-          </div>
-          <div class="pc-footer">
-            <span>Learn More</span><span class="pc-arrow">↗</span>
-          </div>
-        </article>
-        <article class="project-card reveal" data-project="leeterboard">
-          <div class="pc-header">
-            <div>
-              <div class="pc-meta">Jan 2025 - May 2025</div>
-              <h3 class="pc-name">LeeterBoard</h3>
-            </div>
-          </div>
-          <div class="pc-body">
-            <p>Built a full-stack leaderboard platform with automated data collection, validation, sanitization, and anomaly detection.</p>
-            <div class="tag-row">
-              <span class="tag">Flask</span><span class="tag">MongoDB</span><span class="tag">Web Scraping</span>
-            </div>
-          </div>
-          <div class="pc-footer">
-            <span>Learn More</span><span class="pc-arrow">↗</span>
-          </div>
-        </article>
-        <article class="project-card reveal" data-project="life-expectancy">
-          <div class="pc-header">
-            <div>
-              <div class="pc-meta">Aug 2025 - Nov 2025</div>
-              <h3 class="pc-name">Global Life Expectancy Analysis</h3>
-            </div>
-          </div>
-          <div class="pc-body">
-            <p>Standardized global country data and built visual analysis around life expectancy trends, correlations, and outliers.</p>
-            <div class="tag-row">
-              <span class="tag">Python</span><span class="tag">Chart.js</span><span class="tag">Data Analysis</span>
-            </div>
-          </div>
-          <div class="pc-footer">
-            <span>Learn More</span><span class="pc-arrow">↗</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section reveal" id="skills">
-      <div class="section-head">
-        <span class="section-num">03</span>
-        <h2 class="section-title">Skills</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="skills-wrap">
-        <div class="skill-panel">
-          <div class="skill-group">
-            <div class="skill-group-title">Security Operations</div>
-            <div class="skill-item">
-              <div class="skill-label"><span>SIEM (Splunk, Chronicle)</span><span>Developing</span></div>
-              <div class="skill-bar"><div class="skill-fill developing" style="--level: 60%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Log Analysis</span><span>Proficient</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Security Event Analysis</span><span>Proficient</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Incident Response</span><span>Intermediate</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 65%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>MITRE ATT&CK</span><span>Intermediate</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 65%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Vulnerability Management</span><span>Proficient</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
-            </div>
-          </div>
-          <div class="skill-group">
-            <div class="skill-group-title">Network &amp; System Security</div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Wireshark / tcpdump</span><span>Developing</span></div>
-              <div class="skill-bar"><div class="skill-fill developing" style="--level: 60%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Nmap / Packet Analysis</span><span>Developing</span></div>
-              <div class="skill-bar"><div class="skill-fill developing" style="--level: 60%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Firewalls / IDS / IPS</span><span>Intermediate</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 65%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Network Protocols (TCP/IP, DNS, HTTP)</span><span>Proficient</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Linux / Unix</span><span>Proficient</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Virtual Machines</span><span>Proficient</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
-            </div>
-          </div>
-        </div>
-        <div class="skill-panel">
-          <div class="skill-group">
-            <div class="skill-group-title">Identity, Risk &amp; Compliance</div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Access Control</span><span>Proficient</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Active Directory</span><span>Proficient</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>ACLs (Access Control Lists)</span><span>Proficient</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>NIST Cybersecurity Framework</span><span>Intermediate</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 65%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Privacy &amp; PII Compliance</span><span>Proficient</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Ticketing Systems / Help Desk</span><span>Advanced</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
-            </div>
-          </div>
-          <div class="skill-group">
-            <div class="skill-group-title">Programming &amp; Tools</div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Python</span><span>Proficient</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>SQL</span><span>Proficient</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Git</span><span>Advanced</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Correlation Analysis</span><span>Advanced</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Windows</span><span>Advanced</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>macOS</span><span>Advanced</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section class="section reveal" id="experience">
       <div class="section-head">
-        <span class="section-num">04</span>
+        <span class="section-num">01</span>
         <h2 class="section-title">Experience</h2>
         <div class="section-line"></div>
       </div>
@@ -3524,10 +3281,334 @@
       </div>
     </section>
 
+    <section class="section reveal" id="skills">
+      <div class="section-head">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Skills</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="skills-wrap">
+        <div class="skill-panel">
+          <div class="skill-group">
+            <div class="skill-group-title">Desktop &amp; Endpoint Support</div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Hardware Diagnostics</span><span>Advanced</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Endpoint Troubleshooting</span><span>Advanced</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Ticketing Systems / Help Desk</span><span>Advanced</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Peripheral Support</span><span>Advanced</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Windows</span><span>Advanced</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>macOS</span><span>Advanced</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title">IT Operations &amp; Support Tools</div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Apple GSX / AST 2</span><span>Advanced</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Device Setup &amp; Configuration</span><span>Advanced</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Documentation &amp; Training</span><span>Advanced</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Customer Service</span><span>Advanced</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Escalation Management</span><span>Proficient</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Active Directory</span><span>Proficient</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="skill-panel">
+          <div class="skill-group">
+            <div class="skill-group-title">Security Operations</div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Log Analysis</span><span>Proficient</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Security Event Analysis</span><span>Proficient</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>SIEM (Splunk, Chronicle)</span><span>Developing</span></div>
+              <div class="skill-bar"><div class="skill-fill developing" style="--level: 60%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Incident Response</span><span>Intermediate</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 65%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Vulnerability Management</span><span>Proficient</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>NIST Cybersecurity Framework</span><span>Intermediate</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 65%"></div></div>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title">Networking &amp; Programming</div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Network Protocols (TCP/IP, DNS, HTTP)</span><span>Proficient</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Linux / Unix</span><span>Proficient</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Python</span><span>Proficient</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>SQL</span><span>Proficient</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Git</span><span>Advanced</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label"><span>Virtual Machines</span><span>Proficient</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="credentials">
+      <div class="section-head">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Credentials</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="certs-grid">
+        <article class="cert-badge reveal" data-credential="utk-computer-science">
+          <div class="cert-body-wrap">
+            <div class="cert-icon" aria-hidden="true">🎓</div>
+            <div class="cert-main">
+              <div class="cert-topline">
+                <div class="cert-org">University of Tennessee</div>
+                <div class="cert-status">Graduated</div>
+              </div>
+              <div class="cert-name">B.S. Computer Science, Minor in Cybersecurity</div>
+            </div>
+          </div>
+          <div class="cert-footer">
+            <span>Learn More</span><span class="pc-arrow">↗</span>
+          </div>
+        </article>
+        <article class="cert-badge reveal" data-credential="google-cybersecurity">
+          <div class="cert-body-wrap">
+            <div class="cert-icon" aria-hidden="true">🛡️</div>
+            <div class="cert-main">
+              <div class="cert-topline">
+                <div class="cert-org">Coursera</div>
+                <div class="cert-status">Verified</div>
+              </div>
+              <div class="cert-name">Google Cybersecurity Professional Certificate</div>
+            </div>
+          </div>
+          <div class="cert-footer">
+            <span>Learn More</span><span class="pc-arrow">↗</span>
+          </div>
+        </article>
+        <article class="cert-badge reveal pending disabled" aria-disabled="true">
+          <div class="cert-body-wrap">
+            <div class="cert-icon" aria-hidden="true">🔐</div>
+            <div class="cert-main">
+              <div class="cert-topline">
+                <div class="cert-org">CompTIA</div>
+                <div class="cert-status pending">In Progress</div>
+              </div>
+              <div class="cert-name">CompTIA Security+</div>
+            </div>
+          </div>
+          <div class="cert-footer">
+            <span>Expected: September 2026</span><span class="pc-arrow">↗</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    
+    <section class="section reveal" id="projects">
+      <div class="section-head">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="project-grid">
+        <article class="project-card reveal" data-project="retour-report">
+          <div class="pc-header">
+            <div>
+              <div class="pc-meta">Aug 2025 - May 2026</div>
+              <h3 class="pc-name">ReTour</h3>
+            </div>
+          </div>
+          <div class="pc-body">
+            <p>Built a real estate tour platform with Firebase Authentication, protected routes, role-based access boundaries, and controlled share-link exposure.</p>
+            <div class="tag-row">
+              <span class="tag">React</span><span class="tag">Firebase</span><span class="tag">Mapbox</span>
+            </div>
+          </div>
+          <div class="pc-footer">
+            <span>Learn More</span><span class="pc-arrow">↗</span>
+          </div>
+        </article>
+        <article class="project-card reveal" data-project="firewall-security-analysis">
+          <div class="pc-header">
+            <div>
+              <div class="pc-meta">Apr 2026</div>
+              <h3 class="pc-name">Netfilter Firewall Configuration & Analysis</h3>
+            </div>
+          </div>
+          <div class="pc-body">
+            <p>Configured and tested a Linux Netfilter firewall across a 3-VM network, comparing static and stateful filtering rules and analyzing traffic with tcpdump and Nmap ACK scans.</p>
+            <div class="tag-row">
+              <span class="tag">Netfilter</span><span class="tag">iptables</span><span class="tag">tcpdump</span><span class="tag">Nmap</span>
+            </div>
+          </div>
+          <div class="pc-footer">
+            <span>Learn More</span><span class="pc-arrow">↗</span>
+          </div>
+        </article>
+        <article class="project-card reveal" data-project="network-recon-forensics">
+          <div class="pc-header">
+            <div>
+              <div class="pc-meta">Apr 2026</div>
+              <h3 class="pc-name">Network Reconnaissance & Packet Forensics</h3>
+            </div>
+          </div>
+          <div class="pc-body">
+            <p>Performed idle scan and ARP poisoning MITM attacks across a multi-VM network, then decoded packet evidence with tcpdump and Wireshark.</p>
+            <div class="tag-row">
+              <span class="tag">Wireshark</span><span class="tag">tcpdump</span><span class="tag">hping3</span><span class="tag">ettercap</span>
+            </div>
+          </div>
+          <div class="pc-footer">
+            <span>Learn More</span><span class="pc-arrow">↗</span>
+          </div>
+        </article>
+        <article class="project-card reveal" data-project="tcp-ip-attack-analysis">
+          <div class="pc-header">
+            <div>
+              <div class="pc-meta">Mar 2026</div>
+              <h3 class="pc-name">TCP/IP Attack Analysis</h3>
+            </div>
+          </div>
+          <div class="pc-body">
+            <p>Executed and analyzed SYN flooding, TCP RST, and session hijacking attacks across a 3-VM environment using Netwox, Scapy, and tcpdump.</p>
+            <div class="tag-row">
+              <span class="tag">TCP/IP</span><span class="tag">Scapy</span><span class="tag">Netwox</span><span class="tag">tcpdump</span>
+            </div>
+          </div>
+          <div class="pc-footer">
+            <span>Learn More</span><span class="pc-arrow">↗</span>
+          </div>
+        </article>
+        <article class="project-card reveal" data-project="gsx-inventory-initiative">
+          <div class="pc-header">
+            <div>
+              <div class="pc-meta">Apr 2025 - Feb 2026</div>
+              <h3 class="pc-name">GSX Parts Inventory Accuracy Initiative</h3>
+            </div>
+          </div>
+          <div class="pc-body">
+            <p>Led an end-to-end inventory accuracy initiative for the Apple repair center's parts stock, consolidating and validating GSX records across 500+ parts to reduce discrepancies and improve procurement accuracy.</p>
+            <div class="tag-row">
+              <span class="tag">Apple GSX</span><span class="tag">Inventory Management</span><span class="tag">Process Improvement</span><span class="tag">Asset Tracking</span>
+            </div>
+          </div>
+          <div class="pc-footer">
+            <span>Learn More</span><span class="pc-arrow">↗</span>
+          </div>
+        </article>
+        <article class="project-card reveal" data-project="password-security">
+          <div class="pc-header">
+            <div>
+              <div class="pc-meta">Nov 2025</div>
+              <h3 class="pc-name">Password Security Analysis</h3>
+            </div>
+          </div>
+          <div class="pc-body">
+            <p>Evaluated password strength and offline attack strategies with John the Ripper, assessing hashing, salting, password length, and compute power.</p>
+            <div class="tag-row">
+              <span class="tag">Password Security</span><span class="tag">John the Ripper</span><span class="tag">Vulnerability Assessment</span>
+            </div>
+          </div>
+          <div class="pc-footer">
+            <span>Learn More</span><span class="pc-arrow">↗</span>
+          </div>
+        </article>
+        <article class="project-card reveal" data-project="life-expectancy">
+          <div class="pc-header">
+            <div>
+              <div class="pc-meta">Aug 2025 - Nov 2025</div>
+              <h3 class="pc-name">Global Life Expectancy Analysis</h3>
+            </div>
+          </div>
+          <div class="pc-body">
+            <p>Standardized global country data and built visual analysis around life expectancy trends, correlations, and outliers.</p>
+            <div class="tag-row">
+              <span class="tag">Python</span><span class="tag">Chart.js</span><span class="tag">Data Analysis</span>
+            </div>
+          </div>
+          <div class="pc-footer">
+            <span>Learn More</span><span class="pc-arrow">↗</span>
+          </div>
+        </article>
+        <article class="project-card reveal" data-project="leeterboard">
+          <div class="pc-header">
+            <div>
+              <div class="pc-meta">Jan 2025 - May 2025</div>
+              <h3 class="pc-name">LeeterBoard</h3>
+            </div>
+          </div>
+          <div class="pc-body">
+            <p>Built a full-stack leaderboard platform with automated data collection, validation, sanitization, and anomaly detection.</p>
+            <div class="tag-row">
+              <span class="tag">Flask</span><span class="tag">MongoDB</span><span class="tag">Web Scraping</span>
+            </div>
+          </div>
+          <div class="pc-footer">
+            <span>Learn More</span><span class="pc-arrow">↗</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <section class="section reveal" id="contact">
       <div class="section-head">
         <span class="section-num">05</span>
-        <h2 class="section-title">Establish Contact</h2>
+        <h2 class="section-title">Contact</h2>
         <div class="section-line"></div>
       </div>
       <div class="contact-grid">
@@ -3644,7 +3725,7 @@
     // Typewriter terminal text in hero
     const terminalMessages = [
       "Loading profile: Dhruv Patel...",
-      "Focus: IT support, cybersecurity, and secure systems.",
+      "Focus: Desktop support, IT operations, and cybersecurity fundamentals.",
       "Status: portfolio online and open to opportunities."
     ];
     const typewriterEl = document.getElementById("typewriter");
@@ -3932,6 +4013,16 @@
     // Project detail modal flow
     function setupProjectDetailModal() {
     const projectDetails = {
+      "gsx-inventory-initiative": {
+        title: "GSX Parts Inventory Accuracy Initiative",
+        meta: "Apr 2025 - Feb 2026",
+        bullets: [
+          "Led an end-to-end inventory accuracy initiative for the Apple repair center's parts stock at VolTech, identifying recurring discrepancies between physical stock and system records.",
+          "Consolidated and validated GSX inventory and pricing records across 500+ Apple parts, correcting mismatched entries and standardizing data upkeep going forward.",
+          "Reduced stock discrepancies and improved procurement accuracy, giving the team more reliable data for reordering and repair part availability."
+        ],
+        skills: ["Apple GSX", "Inventory Management", "Process Improvement", "Asset Tracking", "Data Validation", "Procurement"]
+      },
       "firewall-security-analysis": {
         title: "Netfilter Firewall Configuration & Analysis",
         meta: "Apr 2026",
@@ -4047,24 +4138,23 @@
         title: "Student Supervisor - Technical Specialist",
         meta: "VolTech - Campus Technology Center | October 2023 - Present",
         bullets: [
-          "Resolved 75+ hardware, software, account, and support requests per week across macOS and Windows by managing TeamDynamix ticketing workflows for students, faculty, staff, and 10+ university departments, maintaining high resolution accuracy in a fast-paced environment.",
-          "Reduced stock discrepancies and improved procurement accuracy by consolidating and validating GSX inventory and pricing records across 500+ Apple parts, ensuring reliable asset tracking.",
-          "Improved team-wide support consistency and reduced escalations by developing standardized helpdesk documentation, setup checklists, and best-practice guides that addressed recurring workflow gaps.",
-          "Onboarded and trained 10+ student technicians on hardware diagnostics, TDX ticketing standards, customer communication, privacy protocols, and escalation workflows, ensuring consistent adherence to service guidelines.",
-          "Supported device setup, OS recovery, system migration, and repair intake for university-owned and department-purchased endpoints using structured troubleshooting procedures and coordinating with repair technicians.",
-          "Assisted in secure data sanitization on returned and reassigned customer endpoints following proof-of-purchase verification, ensuring customer data protection in accordance with university privacy standards."
+          "Resolved 100+ hardware, software, account, and support requests per week across macOS and Windows by managing ticketing workflows for students, faculty, staff, and 10+ university departments, maintaining high resolution accuracy in a fast-paced environment.",
+          "Led an inventory accuracy initiative by consolidating and validating GSX records across 500+ Apple parts, reducing stock discrepancies and improving procurement accuracy.",
+          "Developed standardized documentation, setup checklists, and best-practice guides that addressed recurring workflow gaps, improving team-wide support consistency and reducing escalations.",
+          "Onboarded and trained 10+ student technicians on hardware diagnostics, ticketing standards, customer communication, and escalation workflows, ensuring consistent adherence to service guidelines.",
+          "Supported device setup, OS recovery, system migration, and repair intake for university-owned and department-purchased endpoints, using structured troubleshooting procedures and coordinating with repair technicians."
         ],
-        skills: ["Help Desk", "Desktop Support", "TeamDynamix (TDX)", "Hardware Diagnostics", "Device Setup & Migration", "OS Recovery", "Secure Data Sanitization", "Account Access", "GSX Inventory", "Documentation", "Process Improvement", "Team Training", "Data Privacy"]
+        skills: ["Help Desk", "Desktop Support", "Hardware Diagnostics", "Endpoint Troubleshooting", "Device Setup & Migration", "OS Recovery", "GSX Inventory", "Documentation", "Process Improvement", "Team Training", "Customer Service"]
       },
       "g6-operations": {
         title: "Operations Manager",
         meta: "G6 Hospitality LLC | November 2021 - August 2024",
         bullets: [
-          "Managed employee system access, login support, and role-based permissions across hotel operational systems, supporting secure access to guest, booking, and payment data.",
-          "Reduced exposure to unauthorized data access by training 15+ staff on secure PII handling, role-based account access expectations, and privacy-conscious operational practices.",    
-          "Supported data-informed business decisions by analyzing guest booking patterns and occupancy trends, contributing to 26% year-over-year revenue growth.",
+          "Managed employee system access and role-based permissions across hotel operational systems, supporting secure access to guest, booking, and payment data.",
+          "Trained 15+ staff on secure data handling and account access practices, reducing exposure to unauthorized access.",
+          "Supported data-informed business decisions by analyzing guest booking patterns and occupancy trends, contributing to 26% year-over-year revenue growth."
         ],
-        skills: ["Access Management", "Role-Based Permissions", "Identity & Access (IAM)", "PII Handling", "Privacy Compliance", "Operational Security", "Process Improvement", "HotelKey PMS", "Staff Training"]
+        skills: ["Access Management", "Role-Based Permissions", "Data Handling", "Process Improvement", "Staff Training", "Operations Management"]
       }
     };
 
