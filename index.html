@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dhruv Patel | Portfolio</title>
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <meta name="description" content="Computer Science graduate with hands-on experience across IT support and cybersecurity. Technical problem solver focused on operations, security, and reliable systems.">
+  <meta name="description" content="Integration Engineer at Swisslog and Computer Science graduate with a cybersecurity minor. Experience in systems integration testing, IT support, and hands-on security projects.">
   <meta property="og:title" content="Dhruv Patel | Portfolio">
-  <meta property="og:description" content="IT support and cybersecurity projects and experience.">
+  <meta property="og:description" content="Integration testing, IT support, and cybersecurity experience and projects.">
   <meta property="og:image" content="https://drvptl.com/preview.png">
   <meta property="og:url" content="https://drvptl.com">
   <meta property="og:type" content="website">
@@ -550,7 +550,7 @@
     }
 
     .threat-widget::before {
-      content: "ANALYST STATUS";
+      content: "CURRENT STATUS";
       position: absolute;
       top: -1px;
       left: 20px;
@@ -1046,7 +1046,7 @@
 
     .exp-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 16px;
     }
 
@@ -3150,6 +3150,1086 @@
       }
     }
 
+
+    /* ===== Skill map console ===== */
+    .skillmap {
+      border: 1px solid var(--line-2);
+      background:
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.015), rgba(255,255,255,0.015) 1px, transparent 1px, transparent 5px),
+        var(--panel);
+      position: relative;
+    }
+    .sm-bar { display: flex; justify-content: space-between; align-items: stretch; border-bottom: 1px solid var(--line); }
+    .sm-tabs { display: flex; position: relative; overflow-x: auto; scrollbar-width: none; }
+    .sm-tabs::-webkit-scrollbar { display: none; }
+    .sm-tab {
+      flex: 0 0 auto;
+      background: none;
+      border: 0;
+      border-right: 1px solid var(--line);
+      color: var(--muted-2);
+      font-family: "Share Tech Mono", monospace;
+      font-size: 0.66rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 15px 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: color 0.2s ease, background 0.2s ease;
+    }
+    .sm-tab .sm-tab-num { opacity: 0.55; }
+    .sm-tab:hover { color: var(--text); }
+    .sm-tab[aria-selected="true"] { color: var(--accent); background: rgba(0,255,136,0.04); }
+    .sm-tab:focus-visible { outline: 1px solid var(--accent-2); outline-offset: -1px; }
+    .sm-indicator {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-2), var(--accent));
+      box-shadow: 0 0 10px rgba(0,255,136,0.55);
+      transition: left 0.4s cubic-bezier(0.65,0,0.35,1), width 0.4s cubic-bezier(0.65,0,0.35,1);
+    }
+    .sm-stats {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 0 20px;
+      font-family: "Share Tech Mono", monospace;
+      font-size: 0.6rem;
+      letter-spacing: 1.5px;
+      color: var(--muted-2);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .sm-stats b { color: var(--accent-2); font-weight: 400; }
+    .sm-body { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); }
+    .sm-map {
+      position: relative;
+      border-right: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+      padding: 34px 20px 24px;
+      min-height: 460px;
+    }
+    .sm-label {
+      position: absolute;
+      top: 12px;
+      font-family: "Share Tech Mono", monospace;
+      font-size: 0.54rem;
+      letter-spacing: 2px;
+      color: var(--muted-2);
+      text-transform: uppercase;
+    }
+    .sm-map .sm-label { left: 16px; display: flex; gap: 8px; align-items: center; }
+    .sm-live {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px rgba(0,255,136,0.8);
+      animation: smBlink 1.2s ease-in-out infinite;
+    }
+    .sm-map svg { width: 100%; max-width: 420px; height: auto; overflow: visible; }
+    .sm-ring { fill: none; stroke: rgba(0,212,255,0.14); stroke-width: 1; }
+    .sm-ring.sm-dash-a { stroke-dasharray: 2 6; }
+    .sm-ring.sm-dash-b { stroke-dasharray: 1 9; stroke: rgba(0,255,136,0.22); }
+
+    .sm-tick { stroke: rgba(0,212,255,0.25); stroke-width: 1; }
+    .sm-tick.sm-major { stroke: rgba(0,255,136,0.45); }
+    .sm-sweep-fill { fill: rgba(0,255,136,0.05); }
+    .sm-sweep-edge { stroke: rgba(0,255,136,0.45); stroke-width: 1; }
+    .sm-web {
+      fill: rgba(0,255,136,0.02);
+      stroke: rgba(0,255,136,0.13);
+      stroke-dasharray: 3 4;
+      opacity: 0;
+      transition: opacity 0.6s ease 0.5s;
+    }
+    .sm-web.sm-in { opacity: 1; }
+    .sm-web.sm-out { opacity: 0; transition-delay: 0s; transition-duration: 0.25s; }
+    .sm-link {
+      stroke: rgba(0,212,255,0.22);
+      stroke-width: 1;
+      transition: stroke-dashoffset 0.6s ease, opacity 0.25s ease, stroke 0.2s ease;
+    }
+    .sm-link.sm-active { stroke: var(--accent-2); stroke-width: 1.5; }
+    .sm-node { transition: opacity 0.4s ease; }
+    .sm-hit { fill: transparent; }
+    .sm-halo {
+      fill: rgba(0,255,136,0.07);
+      stroke: rgba(0,255,136,0.28);
+      stroke-width: 1;
+      transform-box: fill-box;
+      transform-origin: center;
+      transition: transform 0.3s ease, stroke 0.3s ease, fill 0.6s ease;
+    }
+    .sm-core {
+      fill: var(--accent);
+      filter: drop-shadow(0 0 4px rgba(0,255,136,0.85));
+      transform-box: fill-box;
+      transform-origin: center;
+      transition: transform 0.25s ease, fill 0.7s ease;
+    }
+    .sm-node.sm-blip .sm-core { fill: #eafff4; transition-duration: 0.05s; }
+    .sm-node.sm-blip .sm-halo { fill: rgba(0,255,136,0.22); transition-duration: 0.05s; }
+    .sm-node.sm-active .sm-core { transform: scale(1.8); fill: var(--accent-2); filter: drop-shadow(0 0 6px rgba(0,212,255,0.9)); }
+    .sm-node.sm-active .sm-halo { transform: scale(1.55); stroke: var(--accent-2); fill: rgba(0,212,255,0.1); }
+    .sm-hub-bg { fill: #071019; stroke: var(--line-2); stroke-width: 1; }
+    .sm-hub-inner { fill: none; stroke: rgba(0,255,136,0.35); stroke-width: 1; stroke-dasharray: 2 3; }
+    .sm-hub-pulse {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 1.5;
+      opacity: 0;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+    .sm-hub.sm-pulse .sm-hub-pulse { animation: smPulse 0.8s ease-out; }
+    .sm-hub-label { font-family: "Orbitron", sans-serif; font-size: 9.5px; letter-spacing: 1.5px; fill: var(--text); text-anchor: middle; }
+    .sm-hub-count { font-family: "Share Tech Mono", monospace; font-size: 7.5px; letter-spacing: 1.5px; fill: var(--accent); text-anchor: middle; }
+    .sm-tip { opacity: 0; transition: opacity 0.15s ease; pointer-events: none; }
+    .sm-tip.sm-show { opacity: 1; }
+    .sm-tip rect { fill: #06111b; stroke: var(--accent-2); stroke-width: 1; }
+    .sm-tip text { font-family: "Share Tech Mono", monospace; font-size: 10px; letter-spacing: 0.6px; fill: var(--text); }
+    .sm-term {
+      position: relative;
+      padding: 40px 26px 22px;
+      font-family: "Share Tech Mono", monospace;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+    .sm-term .sm-label { right: 16px; }
+    .sm-prompt { font-size: 0.78rem; color: var(--muted); margin-bottom: 14px; min-height: 1.3em; overflow-wrap: anywhere; }
+    .sm-prompt .sm-user { color: var(--accent); }
+    .sm-prompt .sm-path { color: var(--accent-2); }
+    .sk-list { list-style: none; margin: 0; padding: 0; }
+    .sk-line {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 7px 12px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: opacity 0.3s ease, transform 0.3s ease, color 0.2s ease;
+    }
+    .sk-line.sm-in { opacity: 1; transform: none; }
+    .sk-line::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0,212,255,0.13), rgba(0,212,255,0.02) 70%, transparent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s cubic-bezier(0.22,1,0.36,1);
+    }
+    .sk-line::after {
+      content: "";
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: var(--accent-2);
+      box-shadow: 0 0 8px rgba(0,212,255,0.8);
+      transform: scaleY(0);
+      transition: transform 0.2s ease;
+    }
+    .sk-line.sm-active { color: var(--text); }
+    .sk-line.sm-active::before { transform: scaleX(1); }
+    .sk-line.sm-active::after { transform: scaleY(1); }
+    .sk-line > span { position: relative; }
+    .sk-idx { color: var(--muted-2); font-size: 0.66rem; transition: color 0.2s ease; }
+    .sk-line.sm-active .sk-idx { color: var(--accent-2); }
+    .sk-name { flex: 1; min-width: 0; }
+    .sm-loaded { margin-top: 12px; font-size: 0.66rem; letter-spacing: 1px; color: var(--accent); min-height: 1.2em; opacity: 0.8; }
+    @keyframes smSpin { to { transform: rotate(360deg); } }
+    @keyframes smFloat { 50% { transform: translateY(-3px); } }
+    @keyframes smBlink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0.15; } }
+    @keyframes smPulse { 0% { transform: scale(0.8); opacity: 0.9; } 100% { transform: scale(1.9); opacity: 0; } }
+    @media (max-width: 860px) {
+      .sm-body { grid-template-columns: 1fr; }
+      .sm-map { border-right: 0; border-bottom: 1px solid var(--line); min-height: 0; padding: 36px 12px 16px; }
+      .sm-map svg { max-width: 340px; }
+      .sm-stats { display: none; }
+    }
+    @media (max-width: 520px) {
+      .sm-tab { padding: 13px 14px; font-size: 0.58rem; letter-spacing: 1.4px; }
+      .sm-term { padding: 38px 16px 18px; }
+      .sk-line { padding: 7px 8px; font-size: 0.74rem; gap: 10px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .sm-live { animation: none; }
+    }
+    /* ===== Credential records (compact) ===== */
+    .cv {
+      border: 1px solid var(--line-2);
+      background:
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.015), rgba(255,255,255,0.015) 1px, transparent 1px, transparent 5px),
+        var(--panel);
+    }
+
+    .cv-body { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.6fr); }
+
+    /* Record list */
+    .cv-list { border-right: 1px solid var(--line); display: flex; flex-direction: column; }
+    .cv-row {
+      position: relative;
+      display: flex; align-items: center; gap: 14px;
+      width: 100%;
+      padding: 16px 18px;
+      background: none; border: 0; border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      text-align: left;
+      font: inherit;
+      cursor: pointer;
+    }
+    .cv-row::before {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(0,255,136,0.1), rgba(0,255,136,0.02) 70%, transparent);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+    }
+    .cv-row::after {
+      content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+      background: var(--accent); box-shadow: 0 0 10px rgba(0,255,136,0.8);
+      transform: scaleY(0); transition: transform 0.25s ease;
+    }
+    .cv-row > * { position: relative; }
+    .cv-row:hover::before { transform: scaleX(0.35); }
+    .cv-row[aria-selected="true"]::before { transform: scaleX(1); }
+    .cv-row[aria-selected="true"]::after { transform: scaleY(1); }
+    .cv-row:focus-visible { outline: 1px solid var(--accent-2); outline-offset: -1px; }
+    .cv-idx { font-family: "Share Tech Mono", monospace; font-size: 0.6rem; color: var(--muted-2); transition: color 0.2s ease; }
+    .cv-row[aria-selected="true"] .cv-idx { color: var(--accent); }
+    .cv-row-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+    .cv-row-name { font-size: 0.86rem; font-weight: 500; color: var(--muted); line-height: 1.3; transition: color 0.2s ease; }
+    .cv-row:hover .cv-row-name, .cv-row[aria-selected="true"] .cv-row-name { color: var(--text); }
+    .cv-row-meta { font-family: "Share Tech Mono", monospace; font-size: 0.52rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted-2); }
+    .cv-row-meta .st { color: var(--accent); opacity: 0.85; }
+    .cv-row.pending { cursor: default; opacity: 0.42; border-bottom: 0; }
+    .cv-row.pending:hover::before { transform: scaleX(0); }
+    .cv-row.pending:hover .cv-row-name { color: var(--muted); }
+    .cv-row.pending .cv-row-meta .st { color: #ff9d1c; }
+
+    /* Viewer */
+    .cv-view { position: relative; padding: 20px 26px 18px; overflow: hidden; }
+    .cv-scan {
+      position: absolute; left: 0; right: 0; top: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-2), transparent);
+      box-shadow: 0 0 12px rgba(0,212,255,0.8);
+      opacity: 0; pointer-events: none; z-index: 2;
+    }
+    .cv-scan::after {
+      content: ""; position: absolute; left: 0; right: 0; bottom: 2px; height: 50px;
+      background: linear-gradient(0deg, rgba(0,212,255,0.08), transparent);
+    }
+    .cv-scan.run { animation: cvScan 0.6s cubic-bezier(0.45,0,0.55,1); }
+
+    .cv-head { display: flex; align-items: center; gap: 20px; }
+    .cv-head-text { flex: 1; min-width: 0; }
+    .cv-issuer { font-family: "Share Tech Mono", monospace; font-size: 0.58rem; letter-spacing: 2px; color: var(--accent-2); text-transform: uppercase; margin-bottom: 7px; }
+    .cv-name { margin: 0; font-family: "Orbitron", sans-serif; font-weight: 400; font-size: 0.98rem; letter-spacing: 0.5px; line-height: 1.4; }
+    .cv-name small { font-family: "Exo 2", sans-serif; font-size: 0.8rem; color: var(--muted); letter-spacing: 0; margin-left: 8px; }
+    .cv-log { margin-top: 8px; font-family: "Share Tech Mono", monospace; font-size: 0.66rem; color: var(--accent); min-height: 1.4em; }
+
+    .cv-seal { flex: 0 0 auto; width: 74px; height: 74px; opacity: 0; transform: scale(0.6) rotate(-25deg); transition: transform 0.7s cubic-bezier(0.2,1.4,0.4,1), opacity 0.3s ease; }
+    .cv-seal-ring { fill: none; stroke: rgba(0,255,136,0.5); stroke-width: 1; stroke-dasharray: 2 4; }
+    .cv-seal-inner { fill: rgba(0,255,136,0.05); stroke: rgba(0,255,136,0.35); stroke-width: 1; }
+    .cv-seal-text text { font-family: "Share Tech Mono", monospace; font-size: 8px; fill: var(--accent); opacity: 0.85; }
+    .cv-check { fill: none; stroke: var(--accent); stroke-width: 3.5; stroke-linecap: square; stroke-dasharray: 50; stroke-dashoffset: 50; filter: drop-shadow(0 0 4px rgba(0,255,136,0.8)); transition: stroke-dashoffset 0.5s ease; }
+
+    .cv-fields {
+      margin-top: 16px;
+      display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    }
+    .cv-field { padding: 10px 14px; border-left: 1px solid var(--line); min-width: 0; }
+    .cv-field:first-child { border-left: 0; padding-left: 0; }
+    .cv-k { font-family: "Share Tech Mono", monospace; font-size: 0.52rem; letter-spacing: 1.6px; color: var(--muted-2); text-transform: uppercase; margin-bottom: 4px; }
+    .cv-v { font-size: 0.84rem; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .cv-v.mono { font-family: "Share Tech Mono", monospace; letter-spacing: 1px; font-size: 0.78rem; }
+
+    .cv-actions { margin-top: 14px; min-height: 30px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .lbl-short { display: none; }
+    @media (max-width: 520px) {
+      .lbl-full { display: none; }
+      .lbl-short { display: inline; }
+      .cv-actions { flex-wrap: nowrap; }
+      .cv-links { gap: 6px; }
+      .cv-link { padding: 7px 9px; letter-spacing: 1px; }
+      .cv-head { min-height: 86px; }
+    }
+    .cv-items.hold li { opacity: 0 !important; transform: translateX(-6px) !important; transition: none !important; }
+    .cv-toggle {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: none; border: 0; padding: 4px 0;
+      font-family: "Share Tech Mono", monospace; font-size: 0.64rem; letter-spacing: 1.5px;
+      color: var(--muted); cursor: pointer;
+      transition: color 0.2s ease;
+    }
+    .cv-toggle:hover { color: var(--text); }
+    .cv-toggle .pm {
+      display: inline-grid; place-items: center;
+      width: 16px; height: 16px;
+      border: 1px solid var(--line-2); color: var(--accent);
+      transition: transform 0.3s ease, border-color 0.2s ease;
+    }
+    .cv-toggle:hover .pm { border-color: var(--accent); }
+    .cv-toggle[aria-expanded="true"] .pm { transform: rotate(45deg); }
+    .cv-links { display: flex; flex-wrap: wrap; gap: 8px; }
+    .cv-link {
+      position: relative; overflow: hidden;
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid var(--line-2);
+      padding: 7px 12px;
+      color: var(--accent); text-decoration: none;
+      font-family: "Share Tech Mono", monospace; font-size: 0.6rem; letter-spacing: 1.5px; text-transform: uppercase;
+      transition: border-color 0.2s ease;
+    }
+    .cv-link::before {
+      content: ""; position: absolute; inset: 0;
+      background: rgba(0,255,136,0.1);
+      transform: translateX(-101%); transition: transform 0.3s cubic-bezier(0.22,1,0.36,1);
+    }
+    .cv-link span { position: relative; }
+    .cv-link:hover { border-color: var(--accent); }
+    .cv-link:hover::before { transform: none; }
+    .cv-link .arr { transition: transform 0.2s ease; }
+    .cv-link:hover .arr { transform: translate(2px, -2px); }
+
+    .cv-more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.45s cubic-bezier(0.22,1,0.36,1); }
+    .cv-more.open { grid-template-rows: 1fr; }
+    .cv-more-inner { overflow: hidden; min-height: 0; }
+    .cv-items { list-style: none; margin: 0; padding: 12px 0 4px; }
+    .cv-items.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 20px; }
+    .cv-items li {
+      position: relative; padding: 4px 0 4px 18px;
+      color: var(--muted); font-size: 0.8rem; line-height: 1.5;
+      opacity: 0; transform: translateX(-6px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+    .cv-more.open .cv-items li { opacity: 1; transform: none; transition-delay: calc(var(--d, 0) * 45ms + 120ms); }
+    .cv-items li::before { content: ">"; position: absolute; left: 0; color: var(--accent-2); font-family: "Share Tech Mono", monospace; }
+
+    /* Staged reveal */
+    .cv-fade { opacity: 0; transform: translateY(5px); transition: opacity 0.28s ease, transform 0.28s ease; transition-delay: 0s; }
+    .cv-view.ready .cv-fade { opacity: 1; transform: none; transition-delay: calc(var(--d, 0) * 60ms); }
+    .cv-view.sealed .cv-seal { opacity: 1; transform: none; }
+    .cv-view.sealed .cv-check { stroke-dashoffset: 0; transition-delay: 0.25s; }
+
+    @keyframes cvSpin { to { transform: rotate(360deg); } }
+    @keyframes cvScan { 0% { top: 0; opacity: 1; } 85% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+
+    @media (max-width: 1080px) {
+      .cv-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .cv-field { padding: 10px 14px 10px 0; border-left: 0; }
+      .cv-field:nth-child(even) { padding-left: 14px; border-left: 1px solid var(--line); }
+      .cv-field:nth-child(n+3) { border-top: 1px solid var(--line); }
+    }
+    @media (max-width: 860px) {
+      .cv-body { grid-template-columns: 1fr; }
+      .cv-list { border-right: 0; border-bottom: 1px solid var(--line); }
+    }
+    @media (max-width: 520px) {
+      .cv-view { padding: 18px 16px 16px; }
+      .cv-seal { width: 58px; height: 58px; }
+      .cv-items.grid { grid-template-columns: 1fr; }
+      .cv-name small { display: block; margin: 4px 0 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cv-seal-text { }
+      .cv-scan { display: none; }
+    }
+
+    /* ===== Experience record viewer ===== */
+    .xm-backdrop {
+      position: fixed; inset: 0; z-index: 96;
+      display: none; align-items: center; justify-content: center;
+      padding: 16px;
+      background: rgba(2,4,8,0.82);
+      backdrop-filter: blur(3px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .xm-backdrop.open { display: flex; }
+    .xm-backdrop.vis { opacity: 1; }
+    .xm {
+      position: relative;
+      width: min(780px, 100%);
+      max-height: 88vh;
+      display: flex; flex-direction: column;
+      border: 1px solid var(--line-2);
+      background:
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.015), rgba(255,255,255,0.015) 1px, transparent 1px, transparent 5px),
+        var(--panel);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(0,255,136,0.06);
+      overflow: hidden;
+      transform-origin: top left;
+    }
+    .xm::before {
+      content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; z-index: 3;
+      background: linear-gradient(90deg, var(--accent-2), var(--accent));
+    }
+    .xm-scan {
+      position: absolute; left: 0; right: 0; top: 0; height: 2px; z-index: 4;
+      background: linear-gradient(90deg, transparent, var(--accent-2), transparent);
+      box-shadow: 0 0 12px rgba(0,212,255,0.8);
+      opacity: 0; pointer-events: none;
+    }
+    .xm-scan::after {
+      content: ""; position: absolute; left: 0; right: 0; bottom: 2px; height: 60px;
+      background: linear-gradient(0deg, rgba(0,212,255,0.08), transparent);
+    }
+    .xm-scan.run { animation: xmScan 0.7s cubic-bezier(0.45,0,0.55,1); }
+
+    .xm-bar {
+      flex: 0 0 auto;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 12px 14px 12px 20px;
+      border-bottom: 1px solid var(--line);
+      font-family: "Share Tech Mono", monospace; font-size: 0.56rem; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--muted-2);
+    }
+    .xm-title { display: flex; align-items: center; gap: 10px; color: var(--muted); }
+    .xm-live { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px rgba(0,255,136,0.8); animation: xmBlink 1.2s ease-in-out infinite; }
+    .xm-ctrl { display: flex; align-items: center; gap: 8px; }
+    .xm-count { min-width: 44px; text-align: center; color: var(--muted); }
+    .xm-btn {
+      width: 30px; height: 30px;
+      display: inline-grid; place-items: center;
+      background: none; border: 1px solid var(--line-2);
+      color: var(--muted); font-family: "Share Tech Mono", monospace; font-size: 0.9rem; line-height: 1;
+      transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+    }
+    .xm-btn:hover, .xm-btn:focus-visible { color: var(--accent); border-color: var(--accent); background: rgba(0,255,136,0.06); outline: none; }
+    .xm-btn.close:hover { transform: rotate(90deg); }
+
+    .xm-body { overflow-y: auto; padding: 24px 28px 26px; }
+    .xm-org { font-family: "Share Tech Mono", monospace; font-size: 0.6rem; letter-spacing: 2px; color: var(--accent-2); text-transform: uppercase; margin-bottom: 8px; }
+    .xm-role { margin: 0; font-family: "Orbitron", sans-serif; font-weight: 400; font-size: 1.05rem; letter-spacing: 0.5px; line-height: 1.4; color: var(--text); }
+    .xm-log { margin-top: 8px; min-height: 1.4em; font-family: "Share Tech Mono", monospace; font-size: 0.68rem; color: var(--muted); }
+    .xm-log.live { color: var(--accent); }
+
+    .xm-fields { margin-top: 16px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .xm-field { padding: 10px 14px; border-left: 1px solid var(--line); min-width: 0; }
+    .xm-field:first-child { border-left: 0; padding-left: 0; }
+    .xm-k { font-family: "Share Tech Mono", monospace; font-size: 0.52rem; letter-spacing: 1.6px; color: var(--muted-2); text-transform: uppercase; margin-bottom: 4px; }
+    .xm-v { font-size: 0.84rem; color: var(--text); }
+    .xm-v.on { color: var(--accent); }
+
+    .xm-tl { margin-top: 18px; }
+    .xm-tl-track { position: relative; height: 40px; border-left: 1px solid var(--line-2); border-right: 1px solid var(--line-2); }
+    .xm-tl-year { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--line); }
+    .xm-tl-year span { position: absolute; top: 100%; margin-top: 5px; transform: translateX(-50%); font-family: "Share Tech Mono", monospace; font-size: 0.52rem; letter-spacing: 1px; color: var(--muted-2); }
+    .xm-seg {
+      position: absolute; height: 4px; width: 0;
+      background: rgba(122,170,200,0.22);
+      transition: width 0.8s cubic-bezier(0.22,1,0.36,1);
+    }
+    .xm-seg.me { height: 6px; background: linear-gradient(90deg, var(--accent-2), var(--accent)); box-shadow: 0 0 10px rgba(0,255,136,0.5); }
+    .xm-seg.me.now::after {
+      content: ""; position: absolute; right: -4px; top: 50%; width: 8px; height: 8px; margin-top: -4px; border-radius: 50%;
+      background: var(--accent); box-shadow: 0 0 10px var(--accent);
+      animation: xmBlink 1.2s ease-in-out infinite;
+    }
+    .xm-tl-label { margin-bottom: 8px; font-family: "Share Tech Mono", monospace; font-size: 0.6rem; letter-spacing: 1.5px; color: var(--muted-2); }
+
+    .xm-label { margin: 34px 0 6px; font-family: "Share Tech Mono", monospace; font-size: 0.6rem; letter-spacing: 1.5px; color: var(--muted-2); }
+    .xm-points { list-style: none; margin: 0; padding: 0; }
+    .xm-points li { position: relative; padding: 6px 0 6px 18px; color: var(--muted); font-size: 0.84rem; line-height: 1.6; }
+    .xm-points li::before { content: ">"; position: absolute; left: 0; top: 6px; color: var(--accent-2); font-family: "Share Tech Mono", monospace; }
+    .xm-stack { margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--line-2); font-family: "Share Tech Mono", monospace; font-size: 0.66rem; letter-spacing: 0.5px; line-height: 1.8; color: var(--muted-2); }
+    .xm-stack span { color: var(--muted); }
+    .xm-stack i { font-style: normal; color: var(--line-2); padding: 0 6px; }
+
+    .xm-fade { opacity: 0; transform: translateY(6px); transition: opacity 0.3s ease, transform 0.3s ease; transition-delay: 0s; }
+    .xm.ready .xm-fade { opacity: 1; transform: none; transition-delay: calc(var(--d, 0) * 55ms); }
+    .xm-points li.xm-fade { transform: translateX(-8px); }
+    .xm.ready .xm-points li.xm-fade { transform: none; }
+
+    @keyframes xmScan { 0% { top: 0; opacity: 1; } 85% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+    @keyframes xmBlink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0.2; } }
+
+    @media (max-width: 600px) {
+      .xm-body { padding: 20px 16px 22px; }
+      .xm-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .xm-field:nth-child(3) { grid-column: 1 / -1; border-left: 0; padding-left: 0; border-top: 1px solid var(--line); }
+      .xm-bar { padding-left: 14px; }
+      .xm-title .t-full { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .xm-scan { display: none; }
+      .xm-live, .xm-seg.me.now::after { animation: none; }
+    }
+
+    /* ===== Experience cards (refreshed) ===== */
+    :is(#experience, #projects) .exp-card {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      gap: 16px;
+      padding: 20px 22px;
+      border: 1px solid var(--line-2);
+      background:
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.015), rgba(255,255,255,0.015) 1px, transparent 1px, transparent 5px),
+        var(--panel);
+      position: relative;
+      overflow: hidden;
+      transition: opacity 0.55s ease, transform 0.3s ease, border-color 0.25s ease, box-shadow 0.3s ease;
+    }
+    :is(#experience, #projects) .exp-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      height: auto;
+      background: linear-gradient(90deg, rgba(0,255,136,0.08), rgba(0,255,136,0.015) 60%, transparent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+    }
+    :is(#experience, #projects) .exp-card::after {
+      content: "";
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: var(--accent);
+      box-shadow: 0 0 10px rgba(0,255,136,0.8);
+      transform: scaleY(0);
+      transition: transform 0.25s ease;
+    }
+    :is(#experience, #projects) .exp-card > * { position: relative; }
+    :is(#experience, #projects) .exp-card:hover,
+    :is(#experience, #projects) .exp-card:focus-visible {
+      border-color: rgba(0,255,136,0.45);
+      background:
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.015), rgba(255,255,255,0.015) 1px, transparent 1px, transparent 5px),
+        var(--panel);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+      transform: translateY(-2px);
+      outline: none;
+    }
+    :is(#experience, #projects) .exp-card.reveal.in:hover { transform: translateY(-2px); }
+    :is(#experience, #projects) .exp-card:hover::before,
+    :is(#experience, #projects) .exp-card:focus-visible::before { transform: scaleX(1); }
+    :is(#experience, #projects) .exp-card:hover::after,
+    :is(#experience, #projects) .exp-card:focus-visible::after { transform: scaleY(1); }
+
+    :is(#experience, #projects) .exp-idx {
+      font-family: "Share Tech Mono", monospace;
+      font-size: 0.6rem;
+      letter-spacing: 1px;
+      color: var(--muted-2);
+      padding-top: 1px;
+      transition: color 0.2s ease;
+    }
+    :is(#experience, #projects) .exp-card:hover .exp-idx { color: var(--accent); }
+    :is(#experience, #projects) .exp-main {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      padding: 0;
+    }
+    :is(#experience, #projects) .exp-org {
+      font-family: "Share Tech Mono", monospace;
+      font-size: 0.58rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-2);
+    }
+    :is(#experience, #projects) .exp-role {
+      margin: 0;
+      font-family: "Exo 2", sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.35;
+      color: var(--text);
+    }
+    :is(#experience, #projects) .exp-time {
+      font-family: "Share Tech Mono", monospace;
+      font-size: 0.6rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted-2);
+    }
+    :is(#experience, #projects) .exp-side {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    :is(#experience, #projects) .exp-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: "Share Tech Mono", monospace;
+      font-size: 0.54rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    :is(#experience, #projects) .exp-status i {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px rgba(0,255,136,0.8);
+      margin-right: 0.5px;
+      animation: xmBlink 1.2s ease-in-out infinite;
+    }
+    :is(#experience, #projects) .exp-open {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: "Share Tech Mono", monospace;
+      font-size: 0.56rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted-2);
+      white-space: nowrap;
+      transition: color 0.2s ease;
+    }
+    :is(#experience, #projects) .exp-open b { font-weight: 400; display: inline-block; transition: transform 0.2s ease; }
+    :is(#experience, #projects) .exp-card:hover .exp-open { color: var(--accent); }
+    :is(#experience, #projects) .exp-card:hover .exp-open b { transform: translate(2px, -2px); }
+
+    @media (max-width: 520px) {
+      :is(#experience, #projects) .exp-card { padding: 18px 16px; gap: 12px; }
+      :is(#experience, #projects) .exp-open { font-size: 0; gap: 0; }
+      :is(#experience, #projects) .exp-open b { font-size: 0.9rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      :is(#experience, #projects) .exp-status i { animation: none; }
+    }
+
+    /* ===== Projects: view more + viewer additions ===== */
+    #projects .exp-grid .exp-card .exp-role { font-size: 0.95rem; }
+    .pj-more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.55s cubic-bezier(0.22,1,0.36,1); }
+    .pj-more.open { grid-template-rows: 1fr; }
+    .pj-more-inner { overflow: hidden; min-height: 0; }
+    .pj-more-inner > .exp-grid { padding-top: 16px; }
+    #projects .pj-more .exp-card { opacity: 0; transform: translateY(12px); transition-delay: 0s; }
+    #projects .pj-more.open .exp-card { opacity: 1; transform: none; transition-delay: calc(var(--d, 0) * 80ms + 120ms); }
+    #projects .pj-more.open .exp-card:hover,
+    #projects .pj-more.open .exp-card:focus-visible { transform: translateY(-2px); transition-delay: 0s; }
+
+    .pj-toggle {
+      width: 100%;
+      margin-top: 22px;
+      display: flex; align-items: center; gap: 14px;
+      background: none; border: 0; padding: 6px 0;
+      font-family: "Share Tech Mono", monospace; font-size: 0.62rem; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .pj-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--line-2)); transition: background 0.3s ease; }
+    .pj-line:last-child { background: linear-gradient(90deg, var(--line-2), transparent); }
+    .pj-label b { font-weight: 400; color: var(--accent-2); margin-left: 4px; }
+    .pj-chev { display: inline-block; color: var(--accent); transition: transform 0.35s cubic-bezier(0.22,1,0.36,1); }
+    .pj-toggle:hover, .pj-toggle:focus-visible { color: var(--text); outline: none; }
+    .pj-toggle:hover .pj-line, .pj-toggle:focus-visible .pj-line { background: linear-gradient(90deg, transparent, rgba(0,255,136,0.55)); }
+    .pj-toggle:hover .pj-line:last-child, .pj-toggle:focus-visible .pj-line:last-child { background: linear-gradient(90deg, rgba(0,255,136,0.55), transparent); }
+    .pj-toggle:hover .pj-chev { animation: pjNudge 0.9s ease-in-out infinite; }
+    .pj-toggle[aria-expanded="true"] .pj-chev { transform: rotate(180deg); animation: none; }
+    @keyframes pjNudge { 50% { transform: translateY(3px); } }
+
+    .xm.no-tl .xm-label { margin-top: 20px; }
+    .xm-fields.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media (max-width: 600px) {
+      .xm-fields.two .xm-field:nth-child(2) { border-left: 1px solid var(--line); padding-left: 14px; }
+    }
+    .xm-links { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 10px; }
+    .xm-link {
+      position: relative; overflow: hidden;
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid var(--line-2);
+      padding: 8px 13px;
+      color: var(--accent); text-decoration: none;
+      font-family: "Share Tech Mono", monospace; font-size: 0.6rem; letter-spacing: 1.5px; text-transform: uppercase;
+      transition: border-color 0.2s ease;
+    }
+    .xm-link::before { content: ""; position: absolute; inset: 0; background: rgba(0,255,136,0.1); transform: translateX(-101%); transition: transform 0.3s cubic-bezier(0.22,1,0.36,1); }
+    .xm-link span { position: relative; }
+    .xm-link:hover { border-color: var(--accent); }
+    .xm-link:hover::before { transform: none; }
+    .xm-link .arr { transition: transform 0.2s ease; }
+    .xm-link:hover .arr { transform: translate(2px, -2px); }
+    @media (prefers-reduced-motion: reduce) {
+      .pj-toggle:hover .pj-chev { animation: none; }
+    }
+
+    /* ===== Contact cards (refreshed) ===== */
+    .ct-card {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 18px 18px 20px;
+      border: 1px solid var(--line-2);
+      background:
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.015), rgba(255,255,255,0.015) 1px, transparent 1px, transparent 5px),
+        var(--panel);
+      transition: border-color 0.25s ease, box-shadow 0.3s ease;
+    }
+    .ct-card::before {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(0,255,136,0.07), rgba(0,255,136,0.01) 60%, transparent);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+      pointer-events: none;
+    }
+    .ct-card::after {
+      content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+      background: var(--accent); box-shadow: 0 0 10px rgba(0,255,136,0.8);
+      transform: scaleY(0); transition: transform 0.25s ease;
+      pointer-events: none;
+    }
+    .ct-card > * { position: relative; }
+    .ct-card:hover, .ct-card:focus-within { border-color: rgba(0,255,136,0.45); box-shadow: 0 12px 30px rgba(0,0,0,0.35); }
+    .ct-card:hover::before, .ct-card:focus-within::before { transform: scaleX(1); }
+    .ct-card:hover::after, .ct-card:focus-within::after { transform: scaleY(1); }
+    .ct-card.flash::after { animation: ctFlash 0.7s ease; }
+
+    .ct-icon {
+      flex: 0 0 auto;
+      width: 42px; height: 42px;
+      display: grid; place-items: center;
+      border: 1px solid var(--line-2);
+      font-family: "Share Tech Mono", monospace;
+      font-size: 1.05rem;
+      color: var(--accent-2);
+      transition: border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .ct-card:hover .ct-icon { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 12px rgba(0,255,136,0.2); }
+    .ct-info { flex: 1; min-width: 0; }
+    .ct-label {
+      font-family: "Share Tech Mono", monospace;
+      font-size: 0.58rem; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--accent-2);
+      margin-bottom: 5px;
+    }
+    .ct-val { font-size: 0.95rem; font-weight: 500; color: var(--text); overflow-wrap: anywhere; }
+
+    .ct-actions { flex: 0 0 auto; display: flex; gap: 8px; }
+    .ct-btn {
+      position: relative; overflow: hidden;
+      display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+      min-width: 92px;
+      padding: 9px 12px;
+      border: 1px solid var(--line-2);
+      background: none;
+      color: var(--muted);
+      text-decoration: none;
+      font-family: "Share Tech Mono", monospace;
+      font-size: 0.58rem; letter-spacing: 1.5px; text-transform: uppercase;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+    .ct-btn::before {
+      content: ""; position: absolute; inset: 0;
+      background: rgba(0,255,136,0.1);
+      transform: translateX(-101%);
+      transition: transform 0.3s cubic-bezier(0.22,1,0.36,1);
+    }
+    .ct-btn > * { position: relative; }
+    .ct-btn:hover, .ct-btn:focus-visible { border-color: var(--accent); color: var(--accent); outline: none; }
+    .ct-btn:hover::before, .ct-btn:focus-visible::before { transform: none; }
+    .ct-btn.primary { color: var(--accent); }
+    .ct-arr { display: inline-block; transition: transform 0.2s ease; }
+    .ct-btn:hover .ct-arr { transform: translate(2px, -2px); }
+    .ct-svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.4; }
+    .ct-check { display: none; stroke-width: 2; stroke-dasharray: 16; stroke-dashoffset: 16; }
+    .ct-btn.ok { border-color: var(--accent); color: var(--accent); }
+    .ct-btn.ok::before { transform: none; }
+    .ct-btn.ok .ct-svg:not(.ct-check) { display: none; }
+    .ct-btn.ok .ct-check { display: block; animation: ctDraw 0.35s ease forwards; }
+    .ct-btn.fail { border-color: var(--danger); color: var(--danger); }
+
+    @keyframes ctDraw { to { stroke-dashoffset: 0; } }
+    @keyframes ctFlash { 0% { transform: scaleY(0); } 40% { transform: scaleY(1); box-shadow: 0 0 18px rgba(0,255,136,1); } 100% { transform: scaleY(1); } }
+
+    @media (max-width: 1100px) {
+      .ct-card { flex-wrap: wrap; }
+      .ct-actions { width: 100%; padding-left: 58px; }
+      .ct-btn { flex: 1; }
+    }
+    @media (max-width: 900px) {
+      .ct-card { flex-wrap: nowrap; }
+      .ct-actions { width: auto; padding-left: 0; }
+      .ct-btn { flex: 0 0 auto; }
+    }
+    @media (max-width: 600px) {
+      .ct-card { flex-wrap: wrap; padding: 16px; }
+      .ct-actions { width: 100%; padding-left: 0; }
+      .ct-btn { flex: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ct-card.flash::after, .ct-btn.ok .ct-check { animation: none; stroke-dashoffset: 0; }
+    }
+
+    /* ===== Nav with section links ===== */
+    html { scroll-behavior: smooth; }
+    .section { scroll-margin-top: 64px; }
+    .nav2 {
+      position: sticky; top: 0; z-index: 40;
+      border-bottom: 1px solid var(--line-2);
+      background: rgba(2,4,8,0.92);
+      backdrop-filter: blur(8px);
+    }
+    .nav2-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 54px; padding: 0 24px; }
+    .nav2 .brand { text-decoration: none; white-space: nowrap; }
+    .nav2-links { position: relative; display: flex; align-items: stretch; align-self: stretch; }
+    .nav2-link {
+      display: flex; align-items: center; gap: 7px;
+      padding: 0 16px;
+      color: var(--muted-2); text-decoration: none;
+      font-family: "Share Tech Mono", monospace; font-size: 0.62rem; letter-spacing: 2px; text-transform: uppercase;
+      transition: color 0.2s ease;
+    }
+    .nav2-link .n { opacity: 0.6; }
+    .nav2-link:hover, .nav2-link:focus-visible { color: var(--text); outline: none; }
+    .nav2-link.active { color: var(--accent); }
+    .nav2-ind {
+      position: absolute; bottom: -1px; left: 0; width: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent-2), var(--accent));
+      box-shadow: 0 0 10px rgba(0,255,136,0.55);
+      opacity: 0;
+      transition: left 0.4s cubic-bezier(0.65,0,0.35,1), width 0.4s cubic-bezier(0.65,0,0.35,1), opacity 0.3s ease;
+    }
+    .nav2-right { display: flex; align-items: center; gap: 12px; }
+    .sys-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid var(--line-2);
+      padding: 6px 10px;
+      font-family: "Share Tech Mono", monospace; font-size: 0.62rem; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .nav2 #liveClock { white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .menu-btn {
+      display: none;
+      align-items: center; gap: 8px;
+      background: none; border: 1px solid var(--line-2);
+      padding: 7px 10px;
+      color: var(--muted);
+      font-family: "Share Tech Mono", monospace; font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase;
+    }
+    .menu-btn .bars { position: relative; width: 12px; height: 8px; }
+    .menu-btn .bars::before, .menu-btn .bars::after {
+      content: ""; position: absolute; left: 0; right: 0; height: 1px; background: currentColor;
+      transition: transform 0.3s ease, top 0.3s ease;
+    }
+    .menu-btn .bars::before { top: 0; }
+    .menu-btn .bars::after { top: 7px; }
+    .menu-btn[aria-expanded="true"] { color: var(--accent); border-color: var(--accent); }
+    .menu-btn[aria-expanded="true"] .bars::before { top: 4px; transform: rotate(45deg); }
+    .menu-btn[aria-expanded="true"] .bars::after { top: 4px; transform: rotate(-45deg); }
+    .nav2-menu { display: none; border-top: 1px solid var(--line); }
+    .nav2-menu-inner { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.4s cubic-bezier(0.22,1,0.36,1); }
+    .nav2-menu.open .nav2-menu-inner { grid-template-rows: 1fr; }
+    .nav2-menu-list { min-height: 0; overflow: hidden; }
+    .nav2-menu-list a {
+      position: relative;
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 24px;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted); text-decoration: none;
+      font-family: "Share Tech Mono", monospace; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase;
+      opacity: 0; transform: translateX(-10px);
+      transition: opacity 0.25s ease, transform 0.25s ease, color 0.2s ease;
+    }
+    .nav2-menu.open .nav2-menu-list a { opacity: 1; transform: none; transition-delay: calc(var(--d) * 50ms + 80ms); }
+    .nav2-menu-list a .n { color: var(--muted-2); font-size: 0.6rem; }
+    .nav2-menu-list a.active { color: var(--accent); }
+    .nav2-menu-list a.active::after {
+      content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+      background: var(--accent); box-shadow: 0 0 10px rgba(0,255,136,0.8);
+    }
+
+    .hero .hero-title { margin-bottom: 30px; }
+
+    /* Hero buttons: sliding fill for the secondary buttons, primary keeps its cyan hover */
+    .hero-link { position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 10px; }
+    .hero-link > * { position: relative; }
+    .hero-link:not(.primary)::before {
+      content: ""; position: absolute; inset: 0;
+      background: rgba(0,255,136,0.1);
+      transform: translateX(-101%);
+      transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+    }
+    .hero-link:not(.primary):hover, .hero-link:not(.primary):focus-visible { background: transparent; transform: translateY(-2px); outline: none; }
+    .hero-link:not(.primary):hover::before, .hero-link:not(.primary):focus-visible::before { transform: none; }
+    .hero-link .arr { display: inline-block; transition: transform 0.2s ease; }
+    .hero-link:hover .arr { transform: translate(2px, -2px); }
+
+    @media (max-width: 1080px) {
+      .nav2-links, .nav2 #liveClock { display: none; }
+      .menu-btn { display: inline-flex; }
+      .nav2-menu { display: block; }
+    }
+    @media (max-width: 680px) {
+      .hero-link { justify-content: center; }
+    }
+    @media (max-width: 520px) {
+      .nav2-inner { padding: 0 16px; gap: 10px; }
+      .nav2 .brand { font-size: 0.7rem; letter-spacing: 1.4px; }
+      .sys-pill, .menu-btn { padding: 6px 8px; font-size: 0.54rem; }
+      .nav2-menu-list a { padding: 14px 16px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
+    /* ===== Resume request modal (refreshed) ===== */
+    .rm-backdrop {
+      position: fixed; inset: 0; z-index: 96;
+      display: none; align-items: center; justify-content: center;
+      padding: 16px;
+      background: rgba(2,4,8,0.82);
+      backdrop-filter: blur(3px);
+      opacity: 0;
+      transition: opacity 0.28s ease;
+    }
+    .rm-backdrop.open { display: flex; }
+    .rm-backdrop.vis { opacity: 1; }
+    .rm {
+      position: relative;
+      width: min(660px, 100%);
+      max-height: 90vh;
+      display: flex; flex-direction: column;
+      border: 1px solid var(--line-2);
+      background:
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.015), rgba(255,255,255,0.015) 1px, transparent 1px, transparent 5px),
+        var(--panel);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(0,255,136,0.06);
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(16px) scale(0.98);
+      transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), opacity 0.3s ease;
+    }
+    .rm::before {
+      content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; z-index: 3;
+      background: linear-gradient(90deg, var(--accent-2), var(--accent));
+    }
+    .rm-backdrop.vis .rm { opacity: 1; transform: none; }
+    .rm.shake { animation: rmShake 0.4s ease; }
+    .rm-body { overflow-y: auto; padding: 24px 28px 24px; }
+    .rm-org { font-family: "Share Tech Mono", monospace; font-size: 0.6rem; letter-spacing: 2px; color: var(--accent-2); text-transform: uppercase; margin-bottom: 8px; }
+    .rm-title { margin: 0; font-family: "Orbitron", sans-serif; font-weight: 400; font-size: 1.05rem; letter-spacing: 0.5px; line-height: 1.4; color: var(--text); }
+    .rm-log { margin-top: 8px; min-height: 1.4em; font-family: "Share Tech Mono", monospace; font-size: 0.68rem; color: var(--muted); }
+
+    .rm-grid { margin-top: 20px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .rm-field label {
+      display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+      margin-bottom: 7px;
+      font-family: "Share Tech Mono", monospace; font-size: 0.54rem; letter-spacing: 1.6px; text-transform: uppercase;
+      color: var(--muted-2);
+      transition: color 0.2s ease;
+    }
+    .rm-field .req, .rm-hint .req { color: var(--accent); }
+    .rm-field .opt { font-size: 0.5rem; letter-spacing: 1px; text-transform: lowercase; opacity: 0.7; }
+    .rm-input { position: relative; }
+    .rm-input::before {
+      content: ">";
+      position: absolute; left: 11px; top: 50%; transform: translateY(-50%);
+      font-family: "Share Tech Mono", monospace; font-size: 0.75rem; line-height: 1;
+      color: var(--muted-2);
+      pointer-events: none;
+      transform-origin: center;
+      transition: color 0.2s ease, transform 0.2s ease, text-shadow 0.2s ease;
+    }
+    .rm-input:focus-within::before {
+      color: var(--accent);
+      transform: translateY(-50%) scale(1.3);
+      text-shadow: 0 0 6px rgba(0,255,136,0.75), 0 0 12px rgba(0,255,136,0.35);
+    }
+    .rm-input input {
+      width: 100%;
+      height: 42px;
+      padding: 0 12px 0 28px;
+      border: 1px solid var(--line-2);
+      background: rgba(2,6,12,0.6);
+      color: var(--text);
+      font-family: "Exo 2", sans-serif; font-size: 0.86rem; line-height: 42px;
+      outline: none;
+      border-radius: 0;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .rm-input input::placeholder { color: var(--muted-2); opacity: 0.7; }
+    .rm-err { display: none; margin-top: 6px; font-family: "Share Tech Mono", monospace; font-size: 0.56rem; letter-spacing: 1px; color: var(--danger); }
+    .rm-field.err .rm-err:not(:empty) { display: block; animation: rmIn 0.25s ease; }
+    .rm-field.err .rm-input input { border-color: var(--danger); }
+    .rm-field.err .rm-input::before { color: var(--danger); }
+
+    .rm-status { min-height: 1.3em; margin-top: 16px; font-family: "Share Tech Mono", monospace; font-size: 0.66rem; color: var(--accent); }
+    .rm-status.bad { color: var(--danger); }
+    .rm-actions { display: flex; align-items: center; gap: 10px; margin-top: 10px; padding-top: 16px; border-top: 1px dashed var(--line-2); }
+    .rm-hint { margin-right: auto; font-family: "Share Tech Mono", monospace; font-size: 0.54rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted-2); }
+    .rm .ct-btn { min-width: 110px; padding: 10px 14px; font-size: 0.6rem; }
+    .rm .ct-btn.ok { border-color: var(--accent); color: var(--accent); }
+    .rm .ct-btn.ok::before { transform: none; }
+
+    .rm-fade { opacity: 0; transform: translateY(6px); transition: opacity 0.3s ease, transform 0.3s ease; transition-delay: 0s; }
+    .rm.ready .rm-fade { opacity: 1; transform: none; transition-delay: calc(var(--d, 0) * 55ms + 150ms); }
+
+    @keyframes rmShake { 20% { transform: translateX(-6px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(3px); } }
+    @keyframes rmIn { from { opacity: 0; transform: translateY(-3px); } to { opacity: 1; transform: none; } }
+
+    @media (max-width: 600px) {
+      .rm-body { padding: 20px 16px 20px; }
+      .rm-grid { grid-template-columns: 1fr; gap: 14px; }
+      .rm-input input { font-size: 16px; }
+      .rm-actions { flex-wrap: wrap; }
+      .rm-hint { width: 100%; margin-bottom: 4px; }
+      .rm .ct-btn { flex: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .rm, .rm-backdrop { transition: none; }
+      .rm.shake { animation: none; }
+    }
+
+    /* ===== Skill tabs: mobile scroll hints ===== */
+    .sm-tabs-wrap { position: relative; flex: 1; min-width: 0; display: flex; }
+    .sm-tabs-wrap .sm-tabs { flex: 1; min-width: 0; }
+    .sm-fade {
+      position: absolute; top: 0; bottom: 1px; width: 48px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      z-index: 2;
+    }
+    .sm-fade-l { left: 0; width: 72px; background: linear-gradient(90deg, var(--panel) 30%, rgba(10,21,32,0)); }
+    .sm-fade-r { right: 0; width: 72px; background: linear-gradient(270deg, var(--panel) 30%, rgba(10,21,32,0)); }
+    .sm-tabs-wrap.can-left .sm-fade-l,
+    .sm-tabs-wrap.can-right .sm-fade-r { opacity: 1; }
+    .sm-more {
+      position: absolute; right: 6px; top: 50%;
+      width: 28px; height: 28px; margin-top: -14px;
+      display: none; place-items: center;
+      background: none; border: 0; padding: 0;
+      color: var(--accent);
+      text-shadow: 0 0 8px rgba(0,255,136,0.6);
+      font-family: "Share Tech Mono", monospace; font-size: 1.2rem; line-height: 1;
+      z-index: 3;
+      opacity: 0;
+      transition: opacity 0.25s ease, border-color 0.2s ease;
+    }
+    .sm-tabs-wrap.can-scroll .sm-more { display: grid; }
+    .sm-tabs-wrap.can-right .sm-more:not(.sm-more-l) { opacity: 1; animation: smNudge 1.6s ease-in-out infinite; }
+    .sm-tabs-wrap:not(.can-right) .sm-more:not(.sm-more-l) { pointer-events: none; }
+    .sm-more-l { right: auto; left: 6px; }
+    .sm-tabs-wrap.can-left .sm-more-l { opacity: 1; animation: smNudgeL 1.6s ease-in-out infinite; }
+    .sm-tabs-wrap:not(.can-left) .sm-more-l { pointer-events: none; }
+    @keyframes smNudgeL { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-3px); } }
+    .sm-more:focus-visible { outline: 1px solid var(--accent-2); outline-offset: 2px; }
+    @keyframes smNudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(3px); } }
+    @media (prefers-reduced-motion: reduce) {
+      .sm-tabs-wrap .sm-more { animation: none !important; }
+    }
   </style>
 </head>
 <body>
@@ -3182,54 +4262,68 @@
     </div>
   </div>
 
-  <header class="top-nav">
-    <div class="top-nav-inner">
-      <div class="brand">PATEL // PORTFOLIO</div>
-      <div class="nav-meta" aria-label="Portfolio status">
-        <div class="status-pill"><span class="status-dot"></span>SYSTEM ONLINE</div>
+  <header class="nav2">
+    <div class="nav2-inner">
+      <a class="brand" href="#top">PATEL // PORTFOLIO</a>
+      <nav class="nav2-links" id="navLinks" aria-label="Sections">
+        <a class="nav2-link" href="#experience"><span class="n">01</span>Experience</a>
+        <a class="nav2-link" href="#skills"><span class="n">02</span>Skills</a>
+        <a class="nav2-link" href="#credentials"><span class="n">03</span>Credentials</a>
+        <a class="nav2-link" href="#projects"><span class="n">04</span>Projects</a>
+        <a class="nav2-link" href="#contact"><span class="n">05</span>Contact</a>
+        <span class="nav2-ind" id="navInd"></span>
+      </nav>
+      <div class="nav2-right">
+        <div class="sys-pill"><span class="status-dot"></span>System Online</div>
         <div id="liveClock">--:--:-- ET</div>
-        <div class="meta-chip">Location: <span>Knoxville, TN</span></div>
-        <!-- Preserved for future theme toggle restoration.
-        <div class="theme-switcher" aria-label="Theme selector">
-          <button class="theme-btn active" type="button" aria-label="Terminal mode" aria-pressed="true" title="Terminal mode"><span class="theme-icon">&gt;_</span></button>
-          <button class="theme-btn" type="button" aria-label="Clean mode" aria-pressed="false" title="Clean mode"><span class="theme-icon">○</span></button>
+        <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navMenu"><span class="bars"></span>Menu</button>
+      </div>
+    </div>
+    <div class="nav2-menu" id="navMenu">
+      <div class="nav2-menu-inner">
+        <div class="nav2-menu-list">
+          <a href="#experience" style="--d:0"><span class="n">01</span>Experience</a>
+          <a href="#skills" style="--d:1"><span class="n">02</span>Skills</a>
+          <a href="#credentials" style="--d:2"><span class="n">03</span>Credentials</a>
+          <a href="#projects" style="--d:3"><span class="n">04</span>Projects</a>
+          <a href="#contact" style="--d:4"><span class="n">05</span>Contact</a>
         </div>
-        -->
       </div>
     </div>
   </header>
 
-  <main class="container">
+  <main class="container" id="top">
     <section class="hero reveal">
       <div class="hero-left">
         <div class="hero-name glitch" data-text="DHRUV PATEL">DHRUV <span>PATEL</span></div>
-        <div class="hero-title">IT Support, Desktop Support &amp; Cybersecurity</div>
+        <div class="hero-title">Systems Integration, Testing &amp; Security</div>
+        <!-- Typewriter line disabled for now (kept for later)
         <div class="hero-terminal"><span id="typewriter"></span><span class="cursor"></span></div>
+        -->
         <div class="modern-focus-tags" aria-label="Professional focus areas">
-          <span>Help Desk &amp; Desktop Support</span>
-          <span>Endpoint &amp; Hardware Troubleshooting</span>
-          <span>IT Operations</span>
+          <span>Integration Testing</span>
+          <span>Site Acceptance Testing</span>
+          <span>Systems Validation</span>
           <span>Cybersecurity</span>
-          <span>Security Operations (SOC)</span>
         </div>
         <div class="hero-links">
           <button class="hero-link primary" id="openResumeForm" type="button">
             Request Resume
           </button>
           <a class="hero-link" href="https://linkedin.com/in/drvptl" target="_blank" rel="noopener noreferrer">
-            LinkedIn
+            <span>LinkedIn</span>
           </a>
           <a class="hero-link" href="#contact">
-            Contact
+            <span>Contact</span>
           </a>
         </div>
       </div>
 
       <aside class="threat-widget">
-        <div class="threat-row"><span class="threat-key">Status</span><span class="threat-val">Open to Opportunities</span></div>
-        <div class="threat-row"><span class="threat-key">Target</span><span class="threat-val teal">IT / Desktop Support &amp; Help Desk</span></div>
-        <div class="threat-row"><span class="threat-key">Graduated</span><span class="threat-val orange">May 2026</span></div>
-        <div class="threat-row"><span class="threat-key">Location</span><span class="threat-val">Knoxville, TN</span></div>
+        <div class="threat-row"><span class="threat-key">Role</span><span class="threat-val">Integration Engineer</span></div>
+        <div class="threat-row"><span class="threat-key">Company</span><span class="threat-val teal">Swisslog</span></div>
+        <div class="threat-row"><span class="threat-key">Career Focus</span><span class="threat-val">Security Integration</span></div>
+        <div class="threat-row"><span class="threat-key">Location</span><span class="threat-val orange">Knoxville, TN</span></div>
         <div class="threat-row"><span class="threat-key">Citizenship</span><span class="threat-val">US Citizen</span></div>
         <div class="threat-row"><span class="threat-key">Languages</span><span class="threat-val">English / Hindi / Gujarati</span></div>
       </aside>
@@ -3242,40 +4336,52 @@
         <div class="section-line"></div>
       </div>
       <div class="exp-grid">
-        <article class="exp-card reveal" data-experience="voltech-specialist">
+        <article class="exp-card reveal" data-experience="swisslog-integration">
+          <span class="exp-idx">01</span>
           <div class="exp-main">
-            <div class="exp-topline">
-              <div class="exp-org">VolTech - Campus Technology Center</div>
-              <div class="exp-time">Oct 2023 - Present</div>
-            </div>
-            <h3 class="exp-role">Student Supervisor - Technical Specialist</h3>
+            <div class="exp-org">Swisslog</div>
+            <h3 class="exp-role">Integration Engineer</h3>
+            <div class="exp-time">Aug 2026 - Present</div>
           </div>
-          <div class="exp-footer">
-            <span>Learn More</span><span class="pc-arrow">↗</span>
+          <div class="exp-side">
+            <span class="exp-status">Current<i></i></span>
+            <span class="exp-open">Open record <b>&#8599;</b></span>
+          </div>
+        </article>
+        <article class="exp-card reveal" data-experience="voltech-specialist">
+          <span class="exp-idx">02</span>
+          <div class="exp-main">
+            <div class="exp-org">VolTech - Campus Technology Center</div>
+            <h3 class="exp-role">Student Supervisor - Technical Specialist</h3>
+            <div class="exp-time">Oct 2023 - Aug 2026</div>
+          </div>
+          <div class="exp-side">
+            
+            <span class="exp-open">Open record <b>&#8599;</b></span>
           </div>
         </article>
         <article class="exp-card reveal" data-experience="research-assistant">
+          <span class="exp-idx">03</span>
           <div class="exp-main">
-            <div class="exp-topline">
-              <div class="exp-org">The University of Tennessee</div>
-              <div class="exp-time">Jan 2026 - May 2026</div>
-            </div>
+            <div class="exp-org">The University of Tennessee</div>
             <h3 class="exp-role">Research Assistant</h3>
+            <div class="exp-time">Jan 2026 - May 2026</div>
           </div>
-          <div class="exp-footer">
-            <span>Learn More</span><span class="pc-arrow">↗</span>
+          <div class="exp-side">
+            
+            <span class="exp-open">Open record <b>&#8599;</b></span>
           </div>
         </article>
         <article class="exp-card reveal" data-experience="g6-operations">
+          <span class="exp-idx">04</span>
           <div class="exp-main">
-            <div class="exp-topline">
-              <div class="exp-org">G6 Hospitality LLC</div>
-              <div class="exp-time">Nov 2021 - Aug 2024</div>
-            </div>
+            <div class="exp-org">G6 Hospitality LLC</div>
             <h3 class="exp-role">Operations Manager</h3>
+            <div class="exp-time">Nov 2021 - Aug 2024</div>
           </div>
-          <div class="exp-footer">
-            <span>Learn More</span><span class="pc-arrow">↗</span>
+          <div class="exp-side">
+            
+            <span class="exp-open">Open record <b>&#8599;</b></span>
           </div>
         </article>
       </div>
@@ -3287,117 +4393,64 @@
         <h2 class="section-title">Skills</h2>
         <div class="section-line"></div>
       </div>
-      <div class="skills-wrap">
-        <div class="skill-panel">
-          <div class="skill-group">
-            <div class="skill-group-title">Desktop &amp; Endpoint Support</div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Hardware Diagnostics</span><span>Advanced</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
+      <div class="skillmap" id="skillmap">
+        <div class="sm-bar">
+          <div class="sm-tabs-wrap" id="smTabsWrap">
+            <div class="sm-tabs" role="tablist" aria-label="Skill domains" id="smTabs">
+              <span class="sm-indicator" id="smIndicator"></span>
             </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Endpoint Troubleshooting</span><span>Advanced</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Ticketing Systems / Help Desk</span><span>Advanced</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Peripheral Support</span><span>Advanced</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Windows</span><span>Advanced</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>macOS</span><span>Advanced</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
-            </div>
+            <span class="sm-fade sm-fade-l" aria-hidden="true"></span>
+            <span class="sm-fade sm-fade-r" aria-hidden="true"></span>
+            <button type="button" class="sm-more sm-more-l" id="smLess" aria-label="Previous skill domain" tabindex="-1">&lsaquo;</button>
+            <button type="button" class="sm-more" id="smMore" aria-label="Next skill domain" tabindex="-1">&rsaquo;</button>
           </div>
-          <div class="skill-group">
-            <div class="skill-group-title">IT Operations &amp; Support Tools</div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Apple GSX / AST 2</span><span>Advanced</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Device Setup &amp; Configuration</span><span>Advanced</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Documentation &amp; Training</span><span>Advanced</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Customer Service</span><span>Advanced</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Escalation Management</span><span>Proficient</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Active Directory</span><span>Proficient</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
-            </div>
-          </div>
+          <div class="sm-stats"><span><b>03</b> domains</span><span><b id="smStatSkills">00</b> skills</span></div>
         </div>
-        <div class="skill-panel">
-          <div class="skill-group">
-            <div class="skill-group-title">Security Operations</div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Log Analysis</span><span>Proficient</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Security Event Analysis</span><span>Proficient</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>SIEM (Splunk, Chronicle)</span><span>Developing</span></div>
-              <div class="skill-bar"><div class="skill-fill developing" style="--level: 60%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Incident Response</span><span>Intermediate</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 65%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Vulnerability Management</span><span>Proficient</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>NIST Cybersecurity Framework</span><span>Intermediate</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 65%"></div></div>
-            </div>
+        <div class="sm-body">
+          <div class="sm-map">
+            <div class="sm-label"><span class="sm-live"></span>Skill Map</div>
+            <svg viewBox="0 0 400 400" id="smSvg" aria-hidden="true">
+              <defs>
+                <radialGradient id="smHubGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#00ff88" stop-opacity="0.18" />
+                  <stop offset="100%" stop-color="#00ff88" stop-opacity="0" />
+                </radialGradient>
+              </defs>
+              <circle class="sm-ring" cx="200" cy="200" r="145" />
+              <circle class="sm-ring sm-dash-a" cx="200" cy="200" r="72">
+                <animateTransform class="sm-anim" attributeName="transform" type="rotate" from="0 200 200" to="360 200 200" dur="50s" repeatCount="indefinite" />
+              </circle>
+              <circle class="sm-ring sm-dash-b" cx="200" cy="200" r="184">
+                <animateTransform class="sm-anim" attributeName="transform" type="rotate" from="360 200 200" to="0 200 200" dur="80s" repeatCount="indefinite" />
+              </circle>
+              <g id="smTicks">
+                <animateTransform class="sm-anim" attributeName="transform" type="rotate" from="360 200 200" to="0 200 200" dur="80s" repeatCount="indefinite" />
+              </g>
+              <g id="smSweep">
+                <path class="sm-sweep-fill" d="M200 200 L84.3 62.1 A180 180 0 0 1 200 20 Z" />
+                <line class="sm-sweep-edge" x1="200" y1="200" x2="200" y2="20" />
+              </g>
+              <g id="smLinks"></g>
+              <circle cx="200" cy="200" r="90" fill="url(#smHubGlow)" />
+              <g id="smNodes"></g>
+              <g class="sm-hub" id="smHub" transform="translate(200 200)">
+                <circle class="sm-hub-pulse" r="44" />
+                <circle class="sm-hub-bg" r="44" />
+                <circle class="sm-hub-inner" r="38" />
+                <text class="sm-hub-label" id="smHubLabel" y="0">BOOTING</text>
+                <text class="sm-hub-count" id="smHubCount" y="14">-- SKILLS</text>
+              </g>
+              <g class="sm-tip" id="smTip">
+                <rect height="20" />
+                <text x="8" y="13.5"></text>
+              </g>
+            </svg>
           </div>
-          <div class="skill-group">
-            <div class="skill-group-title">Networking &amp; Programming</div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Network Protocols (TCP/IP, DNS, HTTP)</span><span>Proficient</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Linux / Unix</span><span>Proficient</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Python</span><span>Proficient</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>SQL</span><span>Proficient</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Git</span><span>Advanced</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 88%"></div></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-label"><span>Virtual Machines</span><span>Proficient</span></div>
-              <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
-            </div>
+          <div class="sm-term">
+            <div class="sm-label">tty1</div>
+            <div class="sm-prompt"><span class="sm-user">dhruv@portfolio</span>:<span class="sm-path">~</span>$ <span id="smCmd"></span><span class="cursor"></span></div>
+            <ul class="sk-list" id="smList"></ul>
+            <div class="sm-loaded" id="smLoaded"></div>
           </div>
         </div>
       </div>
@@ -3409,200 +4462,148 @@
         <h2 class="section-title">Credentials</h2>
         <div class="section-line"></div>
       </div>
-      <div class="certs-grid">
-        <article class="cert-badge reveal" data-credential="utk-computer-science">
-          <div class="cert-body-wrap">
-            <div class="cert-icon" aria-hidden="true">🎓</div>
-            <div class="cert-main">
-              <div class="cert-topline">
-                <div class="cert-org">University of Tennessee</div>
-                <div class="cert-status">Graduated</div>
-              </div>
-              <div class="cert-name">B.S. Computer Science, Minor in Cybersecurity</div>
-            </div>
+    <div class="cv" id="credVault">
+      <div class="cv-body">
+      <div class="cv-list" role="tablist" aria-label="Credentials" id="cvList"></div>
+      <div class="cv-view" id="cvView" role="tabpanel">
+        <div class="cv-scan" id="cvScan"></div>
+        <div class="cv-head">
+          <div class="cv-head-text">
+            <div class="cv-issuer cv-fade" style="--d:0" id="cvIssuer"></div>
+            <h3 class="cv-name cv-fade" style="--d:1" id="cvName"></h3>
+            <div class="cv-log" id="cvLog"></div>
           </div>
-          <div class="cert-footer">
-            <span>Learn More</span><span class="pc-arrow">↗</span>
-          </div>
-        </article>
-        <article class="cert-badge reveal" data-credential="google-cybersecurity">
-          <div class="cert-body-wrap">
-            <div class="cert-icon" aria-hidden="true">🛡️</div>
-            <div class="cert-main">
-              <div class="cert-topline">
-                <div class="cert-org">Coursera</div>
-                <div class="cert-status">Verified</div>
-              </div>
-              <div class="cert-name">Google Cybersecurity Professional Certificate</div>
-            </div>
-          </div>
-          <div class="cert-footer">
-            <span>Learn More</span><span class="pc-arrow">↗</span>
-          </div>
-        </article>
-        <article class="cert-badge reveal pending disabled" aria-disabled="true">
-          <div class="cert-body-wrap">
-            <div class="cert-icon" aria-hidden="true">🔐</div>
-            <div class="cert-main">
-              <div class="cert-topline">
-                <div class="cert-org">CompTIA</div>
-                <div class="cert-status pending">In Progress</div>
-              </div>
-              <div class="cert-name">CompTIA Security+</div>
-            </div>
-          </div>
-          <div class="cert-footer">
-            <span>Expected: September 2026</span><span class="pc-arrow">↗</span>
-          </div>
-        </article>
+          <svg class="cv-seal" viewBox="0 0 120 120" aria-hidden="true">
+            <defs><path id="cvArc" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0" /></defs>
+            <circle class="cv-seal-ring" cx="60" cy="60" r="56" />
+            <g class="cv-seal-text"><animateTransform class="cv-anim" attributeName="transform" type="rotate" from="0 60 60" to="360 60 60" dur="26s" repeatCount="indefinite" /><text><textPath href="#cvArc" textLength="280" lengthAdjust="spacing" id="cvSealText"></textPath></text></g>
+            <circle class="cv-seal-inner" cx="60" cy="60" r="32" />
+            <path class="cv-check" d="M45 61 L55 71 L76 49" />
+          </svg>
+        </div>
+        <div class="cv-fields" id="cvFields"></div>
+        <div class="cv-actions cv-fade" id="cvActions">
+          <button type="button" class="cv-toggle" id="cvToggle" aria-expanded="false" aria-controls="cvMore">
+            <span class="pm">+</span><span id="cvToggleLabel"></span>
+          </button>
+          <div class="cv-links" id="cvLinks"></div>
+        </div>
+        <div class="cv-more" id="cvMore">
+          <div class="cv-more-inner"><ul class="cv-items" id="cvItems"></ul></div>
+        </div>
       </div>
+      </div>
+    </div>
     </section>
 
-    
     <section class="section reveal" id="projects">
       <div class="section-head">
         <span class="section-num">04</span>
-        <h2 class="section-title">Featured Projects</h2>
+        <h2 class="section-title">Projects</h2>
         <div class="section-line"></div>
       </div>
-      <div class="project-grid">
-        <article class="project-card reveal" data-project="retour-report">
-          <div class="pc-header">
-            <div>
-              <div class="pc-meta">Aug 2025 - May 2026</div>
-              <h3 class="pc-name">ReTour</h3>
-            </div>
+      <div class="exp-grid">
+        <article class="exp-card reveal" data-project="retour-report">
+          <span class="exp-idx">01</span>
+          <div class="exp-main">
+            <div class="exp-org">Web App</div>
+            <h3 class="exp-role">ReTour</h3>
+            <div class="exp-time">Aug 2025 - May 2026</div>
           </div>
-          <div class="pc-body">
-            <p>Built a real estate tour platform with Firebase Authentication, protected routes, role-based access boundaries, and controlled share-link exposure.</p>
-            <div class="tag-row">
-              <span class="tag">React</span><span class="tag">Firebase</span><span class="tag">Mapbox</span>
-            </div>
-          </div>
-          <div class="pc-footer">
-            <span>Learn More</span><span class="pc-arrow">↗</span>
+          <div class="exp-side">
+            <span class="exp-open">Open record <b>&#8599;</b></span>
           </div>
         </article>
-        <article class="project-card reveal" data-project="firewall-security-analysis">
-          <div class="pc-header">
-            <div>
-              <div class="pc-meta">Apr 2026</div>
-              <h3 class="pc-name">Netfilter Firewall Configuration & Analysis</h3>
-            </div>
+        <article class="exp-card reveal" data-project="firewall-security-analysis">
+          <span class="exp-idx">02</span>
+          <div class="exp-main">
+            <div class="exp-org">Security Lab</div>
+            <h3 class="exp-role">Netfilter Firewall Configuration & Analysis</h3>
+            <div class="exp-time">Apr 2026</div>
           </div>
-          <div class="pc-body">
-            <p>Configured and tested a Linux Netfilter firewall across a 3-VM network, comparing static and stateful filtering rules and analyzing traffic with tcpdump and Nmap ACK scans.</p>
-            <div class="tag-row">
-              <span class="tag">Netfilter</span><span class="tag">iptables</span><span class="tag">tcpdump</span><span class="tag">Nmap</span>
-            </div>
-          </div>
-          <div class="pc-footer">
-            <span>Learn More</span><span class="pc-arrow">↗</span>
+          <div class="exp-side">
+            <span class="exp-open">Open record <b>&#8599;</b></span>
           </div>
         </article>
-        <article class="project-card reveal" data-project="network-recon-forensics">
-          <div class="pc-header">
-            <div>
-              <div class="pc-meta">Apr 2026</div>
-              <h3 class="pc-name">Network Reconnaissance & Packet Forensics</h3>
-            </div>
+        <article class="exp-card reveal" data-project="password-security">
+          <span class="exp-idx">03</span>
+          <div class="exp-main">
+            <div class="exp-org">Security Lab</div>
+            <h3 class="exp-role">Password Security Analysis</h3>
+            <div class="exp-time">Nov 2025</div>
           </div>
-          <div class="pc-body">
-            <p>Performed idle scan and ARP poisoning MITM attacks across a multi-VM network, then decoded packet evidence with tcpdump and Wireshark.</p>
-            <div class="tag-row">
-              <span class="tag">Wireshark</span><span class="tag">tcpdump</span><span class="tag">hping3</span><span class="tag">ettercap</span>
-            </div>
-          </div>
-          <div class="pc-footer">
-            <span>Learn More</span><span class="pc-arrow">↗</span>
+          <div class="exp-side">
+            <span class="exp-open">Open record <b>&#8599;</b></span>
           </div>
         </article>
-        <article class="project-card reveal" data-project="tcp-ip-attack-analysis">
-          <div class="pc-header">
-            <div>
-              <div class="pc-meta">Mar 2026</div>
-              <h3 class="pc-name">TCP/IP Attack Analysis</h3>
-            </div>
+        <article class="exp-card reveal" data-project="network-recon-forensics">
+          <span class="exp-idx">04</span>
+          <div class="exp-main">
+            <div class="exp-org">Security Lab</div>
+            <h3 class="exp-role">Network Reconnaissance & Packet Forensics</h3>
+            <div class="exp-time">Apr 2026</div>
           </div>
-          <div class="pc-body">
-            <p>Executed and analyzed SYN flooding, TCP RST, and session hijacking attacks across a 3-VM environment using Netwox, Scapy, and tcpdump.</p>
-            <div class="tag-row">
-              <span class="tag">TCP/IP</span><span class="tag">Scapy</span><span class="tag">Netwox</span><span class="tag">tcpdump</span>
-            </div>
-          </div>
-          <div class="pc-footer">
-            <span>Learn More</span><span class="pc-arrow">↗</span>
-          </div>
-        </article>
-        <article class="project-card reveal" data-project="gsx-inventory-initiative">
-          <div class="pc-header">
-            <div>
-              <div class="pc-meta">Apr 2025 - Feb 2026</div>
-              <h3 class="pc-name">GSX Parts Inventory Accuracy Initiative</h3>
-            </div>
-          </div>
-          <div class="pc-body">
-            <p>Led an end-to-end inventory accuracy initiative for the Apple repair center's parts stock, consolidating and validating GSX records across 500+ parts to reduce discrepancies and improve procurement accuracy.</p>
-            <div class="tag-row">
-              <span class="tag">Apple GSX</span><span class="tag">Inventory Management</span><span class="tag">Process Improvement</span><span class="tag">Asset Tracking</span>
-            </div>
-          </div>
-          <div class="pc-footer">
-            <span>Learn More</span><span class="pc-arrow">↗</span>
-          </div>
-        </article>
-        <article class="project-card reveal" data-project="password-security">
-          <div class="pc-header">
-            <div>
-              <div class="pc-meta">Nov 2025</div>
-              <h3 class="pc-name">Password Security Analysis</h3>
-            </div>
-          </div>
-          <div class="pc-body">
-            <p>Evaluated password strength and offline attack strategies with John the Ripper, assessing hashing, salting, password length, and compute power.</p>
-            <div class="tag-row">
-              <span class="tag">Password Security</span><span class="tag">John the Ripper</span><span class="tag">Vulnerability Assessment</span>
-            </div>
-          </div>
-          <div class="pc-footer">
-            <span>Learn More</span><span class="pc-arrow">↗</span>
-          </div>
-        </article>
-        <article class="project-card reveal" data-project="life-expectancy">
-          <div class="pc-header">
-            <div>
-              <div class="pc-meta">Aug 2025 - Nov 2025</div>
-              <h3 class="pc-name">Global Life Expectancy Analysis</h3>
-            </div>
-          </div>
-          <div class="pc-body">
-            <p>Standardized global country data and built visual analysis around life expectancy trends, correlations, and outliers.</p>
-            <div class="tag-row">
-              <span class="tag">Python</span><span class="tag">Chart.js</span><span class="tag">Data Analysis</span>
-            </div>
-          </div>
-          <div class="pc-footer">
-            <span>Learn More</span><span class="pc-arrow">↗</span>
-          </div>
-        </article>
-        <article class="project-card reveal" data-project="leeterboard">
-          <div class="pc-header">
-            <div>
-              <div class="pc-meta">Jan 2025 - May 2025</div>
-              <h3 class="pc-name">LeeterBoard</h3>
-            </div>
-          </div>
-          <div class="pc-body">
-            <p>Built a full-stack leaderboard platform with automated data collection, validation, sanitization, and anomaly detection.</p>
-            <div class="tag-row">
-              <span class="tag">Flask</span><span class="tag">MongoDB</span><span class="tag">Web Scraping</span>
-            </div>
-          </div>
-          <div class="pc-footer">
-            <span>Learn More</span><span class="pc-arrow">↗</span>
+          <div class="exp-side">
+            <span class="exp-open">Open record <b>&#8599;</b></span>
           </div>
         </article>
       </div>
+      <div class="pj-more" id="pjMore">
+        <div class="pj-more-inner">
+          <div class="exp-grid">
+            <article class="exp-card" data-project="tcp-ip-attack-analysis" style="--d:0">
+          <span class="exp-idx">05</span>
+          <div class="exp-main">
+            <div class="exp-org">Security Lab</div>
+            <h3 class="exp-role">TCP/IP Attack Analysis</h3>
+            <div class="exp-time">Mar 2026</div>
+          </div>
+          <div class="exp-side">
+            <span class="exp-open">Open record <b>&#8599;</b></span>
+          </div>
+        </article>
+            <article class="exp-card" data-project="gsx-inventory-initiative" style="--d:1">
+          <span class="exp-idx">06</span>
+          <div class="exp-main">
+            <div class="exp-org">Process Improvement</div>
+            <h3 class="exp-role">GSX Parts Inventory Accuracy Initiative</h3>
+            <div class="exp-time">Apr 2025 - Feb 2026</div>
+          </div>
+          <div class="exp-side">
+            <span class="exp-open">Open record <b>&#8599;</b></span>
+          </div>
+        </article>
+            <article class="exp-card" data-project="leeterboard" style="--d:2">
+          <span class="exp-idx">07</span>
+          <div class="exp-main">
+            <div class="exp-org">Web App</div>
+            <h3 class="exp-role">LeeterBoard</h3>
+            <div class="exp-time">Jan 2025 - May 2025</div>
+          </div>
+          <div class="exp-side">
+            <span class="exp-open">Open record <b>&#8599;</b></span>
+          </div>
+        </article>
+            <article class="exp-card" data-project="life-expectancy" style="--d:3">
+          <span class="exp-idx">08</span>
+          <div class="exp-main">
+            <div class="exp-org">Data Analysis</div>
+            <h3 class="exp-role">Global Life Expectancy Analysis</h3>
+            <div class="exp-time">Aug 2025 - Nov 2025</div>
+          </div>
+          <div class="exp-side">
+            <span class="exp-open">Open record <b>&#8599;</b></span>
+          </div>
+        </article>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="pj-toggle" id="pjToggle" aria-expanded="false" aria-controls="pjMore">
+        <span class="pj-line"></span>
+        <span class="pj-label">View more projects</span>
+        <span class="pj-chev" aria-hidden="true">&#9662;</span>
+        <span class="pj-line"></span>
+      </button>
     </section>
 
     <section class="section reveal" id="contact">
@@ -3612,21 +4613,30 @@
         <div class="section-line"></div>
       </div>
       <div class="contact-grid">
-        <a class="contact-card" id="emailContactCard" href="#">
-          <div class="contact-icon">@</div>
-          <div class="contact-info">
-            <div class="contact-label">Email</div>
-            <div class="contact-val" id="emailDisplay"></div>
+        <div class="ct-card">
+          <div class="ct-icon" aria-hidden="true">@</div>
+          <div class="ct-info">
+            <div class="ct-label">Email</div>
+            <div class="ct-val" id="emailDisplay"></div>
           </div>
-        </a>
-        <a class="contact-card" href="https://linkedin.com/in/drvptl" target="_blank" rel="noopener noreferrer">
-          <div class="contact-icon">in</div>
-          <div class="contact-info">
-            <div class="contact-label">LinkedIn</div>
-            <div class="contact-val">linkedin.com/in/drvptl</div>
+          <div class="ct-actions">
+            <button type="button" class="ct-btn" data-copy="email" aria-label="Copy email address"><svg class="ct-svg" viewBox="0 0 16 16" aria-hidden="true"><rect x="5" y="5" width="9" height="9" /><path d="M11 5V2H2v9h3" /></svg><svg class="ct-svg ct-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" /></svg><span class="ct-txt">Copy</span></button>
+            <a class="ct-btn primary" id="emailCompose" href="#" aria-label="Compose an email"><span class="ct-txt">Compose</span><span class="ct-arr">&#8599;</span></a>
           </div>
-        </a>
+        </div>
+        <div class="ct-card">
+          <div class="ct-icon" aria-hidden="true">in</div>
+          <div class="ct-info">
+            <div class="ct-label">LinkedIn</div>
+            <div class="ct-val">linkedin.com/in/drvptl</div>
+          </div>
+          <div class="ct-actions">
+            <button type="button" class="ct-btn" data-copy="linkedin" aria-label="Copy LinkedIn link"><svg class="ct-svg" viewBox="0 0 16 16" aria-hidden="true"><rect x="5" y="5" width="9" height="9" /><path d="M11 5V2H2v9h3" /></svg><svg class="ct-svg ct-check" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" /></svg><span class="ct-txt">Copy</span></button>
+            <a class="ct-btn primary" href="https://linkedin.com/in/drvptl" target="_blank" rel="noopener noreferrer" aria-label="Open LinkedIn profile"><span class="ct-txt">Open</span><span class="ct-arr">&#8599;</span></a>
+          </div>
+        </div>
       </div>
+      <div class="sr-only" aria-live="polite" id="ctStatus"></div>
     </section>
 
     <footer>
@@ -3722,11 +4732,12 @@
     const initialTheme = 'terminal';
     playLoadingAnimation(initialTheme);
 
+    /* Typewriter disabled for now (kept for later)
     // Typewriter terminal text in hero
     const terminalMessages = [
       "Loading profile: Dhruv Patel...",
-      "Focus: Desktop support, IT operations, and cybersecurity fundamentals.",
-      "Status: portfolio online and open to opportunities."
+      "Role: Integration Engineer at Swisslog.",
+      "Next: building toward security integration work."
     ];
     const typewriterEl = document.getElementById("typewriter");
     let tLine = 0;
@@ -3754,6 +4765,7 @@
       setTimeout(runTypewriter, tDeleting ? 28 : 45);
     }
     runTypewriter();
+    */
 
     // Live top-bar clock
     const liveClockEl = document.getElementById("liveClock");
@@ -3916,47 +4928,113 @@
 
     // Resume request modal flow
     function setupResumeRequestModal() {
-      const openResumeFormBtn = document.getElementById("openResumeForm");
-      const resumeModal = document.getElementById("resumeModal");
-      const closeResumeFormBtn = document.getElementById("closeResumeForm");
-      const cancelResumeFormBtn = document.getElementById("cancelResumeForm");
-      const resumeRequestForm = document.getElementById("resumeRequestForm");
-      const resumeFormStatus = document.getElementById("resumeFormStatus");
+      const openBtn = document.getElementById("openResumeForm");
+      const backdrop = document.getElementById("resumeModal");
+      const panel = document.getElementById("rmPanel");
+      const closeBtn = document.getElementById("closeResumeForm");
+      const cancelBtn = document.getElementById("cancelResumeForm");
+      const form = document.getElementById("resumeRequestForm");
+      const status = document.getElementById("resumeFormStatus");
+      const logEl = document.getElementById("rmLog");
+      const submitBtn = document.getElementById("rmSubmit");
+      if (!openBtn || !backdrop || !panel || !form) return;
 
-      if (!openResumeFormBtn || !resumeModal || !closeResumeFormBtn || !cancelResumeFormBtn || !resumeRequestForm || !resumeFormStatus) {
-        return;
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+      let token = 0, isOpen = false, closeTimer;
+
+      async function typeLog(text, tok) {
+        logEl.textContent = "";
+        for (let i = 1; i <= text.length; i++) {
+          if (tok !== token) return;
+          logEl.textContent = text.slice(0, i);
+          if (!reduce) await wait(18);
+        }
+      }
+
+      function setStatus(text, bad) {
+        status.textContent = text;
+        status.classList.toggle("bad", !!bad);
+      }
+
+      function resetSubmit() {
+        submitBtn.classList.remove("ok");
+        submitBtn.querySelector(".ct-txt").textContent = "Send Request";
       }
 
       function openModal() {
-        resumeModal.classList.add("open");
+        if (isOpen) return;
+        isOpen = true;
+        clearTimeout(closeTimer);
+        const tok = ++token;
+        setStatus("");
+        resetSubmit();
+        form.querySelectorAll(".rm-field.err").forEach((f) => f.classList.remove("err"));
+        backdrop.classList.add("open");
+        backdrop.setAttribute("aria-hidden", "false");
         document.body.style.overflow = "hidden";
+        void backdrop.offsetWidth;
+        backdrop.classList.add("vis");
+        panel.classList.add("ready");
+        setTimeout(() => {
+          if (tok !== token) return;
+          document.getElementById("fullName").focus({ preventScroll: true });
+          typeLog("> fill in your details to open a pre-filled request email", tok);
+        }, reduce ? 0 : 260);
       }
 
       function closeModal() {
-        resumeModal.classList.remove("open");
-        document.body.style.overflow = "";
+        if (!isOpen) return;
+        isOpen = false;
+        token++;
+        backdrop.classList.remove("vis");
+        panel.classList.remove("ready");
+        closeTimer = setTimeout(() => {
+          backdrop.classList.remove("open");
+          backdrop.setAttribute("aria-hidden", "true");
+          document.body.style.overflow = "";
+          openBtn.focus({ preventScroll: true });
+        }, reduce ? 0 : 300);
       }
 
-      openResumeFormBtn.addEventListener("click", openModal);
-      closeResumeFormBtn.addEventListener("click", closeModal);
-      cancelResumeFormBtn.addEventListener("click", closeModal);
-      resumeModal.addEventListener("click", (event) => {
-        if (event.target === resumeModal) closeModal();
-      });
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && resumeModal.classList.contains("open")) closeModal();
+      openBtn.addEventListener("click", openModal);
+      closeBtn.addEventListener("click", closeModal);
+      cancelBtn.addEventListener("click", closeModal);
+      backdrop.addEventListener("click", (e) => { if (e.target === backdrop) closeModal(); });
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape" && isOpen) closeModal(); });
+
+      // Clear a field's error as soon as the user edits it
+      form.querySelectorAll("input").forEach((input) => {
+        input.addEventListener("input", () => {
+          const f = input.closest(".rm-field");
+          if (f) f.classList.remove("err");
+          if (status.classList.contains("bad")) setStatus("");
+        });
       });
 
-      resumeRequestForm.addEventListener("submit", async (event) => {
+      function validate(payload) {
+        const bad = [];
+        if (!payload.fullName.trim()) bad.push("fullName");
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(payload.email.trim())) bad.push("email");
+        if (payload.profile.trim() && !/^https?:\/\/\S+\.\S+/.test(payload.profile.trim())) bad.push("profile");
+        return bad;
+      }
+
+      form.addEventListener("submit", async (event) => {
         event.preventDefault();
-        resumeFormStatus.textContent = "";
-
-        const formData = new FormData(resumeRequestForm);
-        const payload = Object.fromEntries(formData.entries());
+        setStatus("");
+        const payload = Object.fromEntries(new FormData(form).entries());
 
         // Basic anti-bot honeypot
-        if (payload.website) {
-          resumeFormStatus.textContent = "Request blocked.";
+        if (payload.website) { setStatus("> request blocked", true); return; }
+
+        const bad = validate(payload);
+        form.querySelectorAll(".rm-field").forEach((f) => f.classList.remove("err"));
+        if (bad.length) {
+          bad.forEach((id) => document.getElementById(id).closest(".rm-field").classList.add("err"));
+          document.getElementById(bad[0]).focus();
+          setStatus("> check the highlighted fields", true);
+          if (!reduce) { panel.classList.remove("shake"); void panel.offsetWidth; panel.classList.add("shake"); }
           return;
         }
 
@@ -3971,10 +5049,10 @@
               body: JSON.stringify(payload)
             });
             if (!res.ok) throw new Error("Failed request");
-            resumeFormStatus.textContent = "Request submitted. You will hear back soon.";
-            resumeRequestForm.reset();
+            setStatus("> request submitted. you will hear back soon.");
+            form.reset();
           } catch (err) {
-            resumeFormStatus.textContent = "Could not submit right now. Please try again.";
+            setStatus("> could not submit right now. please try again.", true);
           }
           return;
         }
@@ -3990,7 +5068,9 @@
           "LinkedIn/Website: " + (payload.profile || "") + "\n"
         );
         window.location.href = "mailto:" + ownerEmail + "?subject=" + subject + "&body=" + body;
-        resumeFormStatus.textContent = "Email draft opened. Send it to complete the request.";
+        submitBtn.classList.add("ok");
+        submitBtn.querySelector(".ct-txt").textContent = "Draft Opened";
+        setStatus("> email draft opened. send it to complete the request.");
       });
     }
 
@@ -4004,93 +5084,53 @@
     (function() {
       const u = "drvptl19", d = "gmail", t = "com";
       const email = u + "@" + d + "." + t;
-      const card = document.getElementById("emailContactCard");
+      const values = { email: email, linkedin: "https://linkedin.com/in/drvptl" };
       const display = document.getElementById("emailDisplay");
-      if (card) card.href = "mailto:" + email;
+      const compose = document.getElementById("emailCompose");
+      const status = document.getElementById("ctStatus");
       if (display) display.textContent = email;
+      if (compose) compose.href = "mailto:" + email + "?subject=" + encodeURIComponent("Reaching out from your portfolio");
+
+      async function copyText(text) {
+        try {
+          await navigator.clipboard.writeText(text);
+          return true;
+        } catch (e) {
+          const ta = document.createElement("textarea");
+          ta.value = text;
+          ta.setAttribute("readonly", "");
+          ta.style.position = "fixed";
+          ta.style.opacity = "0";
+          document.body.appendChild(ta);
+          ta.select();
+          let ok = false;
+          try { ok = document.execCommand("copy"); } catch (err) {}
+          ta.remove();
+          return ok;
+        }
+      }
+
+      document.querySelectorAll(".ct-btn[data-copy]").forEach((btn) => {
+        const txt = btn.querySelector(".ct-txt");
+        let timer;
+        btn.addEventListener("click", async () => {
+          const ok = await copyText(values[btn.dataset.copy]);
+          clearTimeout(timer);
+          btn.classList.remove("ok", "fail");
+          void btn.offsetWidth;
+          btn.classList.add(ok ? "ok" : "fail");
+          txt.textContent = ok ? "Copied" : "Failed";
+          const card = btn.closest(".ct-card");
+          if (card && ok) { card.classList.remove("flash"); void card.offsetWidth; card.classList.add("flash"); }
+          if (status) status.textContent = ok ? "Copied to clipboard" : "Copy failed";
+          timer = setTimeout(() => { btn.classList.remove("ok", "fail"); txt.textContent = "Copy"; }, 1800);
+        });
+      });
     })();
 
     // Project detail modal flow
     function setupProjectDetailModal() {
-    const projectDetails = {
-      "gsx-inventory-initiative": {
-        title: "GSX Parts Inventory Accuracy Initiative",
-        meta: "Apr 2025 - Feb 2026",
-        bullets: [
-          "Led an end-to-end inventory accuracy initiative for the Apple repair center's parts stock at VolTech, identifying recurring discrepancies between physical stock and system records.",
-          "Consolidated and validated GSX inventory and pricing records across 500+ Apple parts, correcting mismatched entries and standardizing data upkeep going forward.",
-          "Reduced stock discrepancies and improved procurement accuracy, giving the team more reliable data for reordering and repair part availability."
-        ],
-        skills: ["Apple GSX", "Inventory Management", "Process Improvement", "Asset Tracking", "Data Validation", "Procurement"]
-      },
-      "firewall-security-analysis": {
-        title: "Netfilter Firewall Configuration & Analysis",
-        meta: "Apr 2026",
-        bullets: [
-          "Configured and tested a Linux Netfilter (iptables) firewall across a 3-VM network environment, implementing and comparing static versus stateful packet filtering rules.",
-          "Analyzed traffic behavior using tcpdump and Nmap ACK scans to evaluate firewall logging, packet flow, scan leakage, and ICMP error handling."
-        ],
-        skills: ["Netfilter", "iptables", "tcpdump", "Nmap", "Packet Filtering", "Network Security"]
-      },
-      "retour-report": {
-        title: "ReTour",
-        meta: "Aug 2025 - May 2026",
-        bullets: [
-          "Built a web-based tour-planning platform for residential real estate agents, improving day-to-day coordination by consolidating listing discovery, scheduling, calendar views, and route visualization into one workflow instead of fragmented tools.",
-          "Implemented end-to-end product workflows that connected a React frontend with Firebase, SparksAPI, and Mapbox, enabling agents to create multi-stop tours and buyers to view shared read-only itineraries in a practical real-world deployment model.",
-          "Strengthened identity and access management by implementing Firebase Authentication with protected routes, profile-completion verification, and role-scoped access boundaries, reducing unauthorized exposure between agent and buyer experiences.",
-          "Improved security posture by enforcing authenticated Firestore access patterns, using controlled share-link exposure for public views, and integrating external services through HTTPS and environment-managed credentials to align with secure engineering practices."
-        ],
-        skills: ["React", "Firebase", "Mapbox", "SparksAPI"]
-      },
-      "life-expectancy": {
-        title: "Global Life Expectancy Analysis",
-        meta: "Aug 2025 - Nov 2025",
-        bullets: [
-          "Engineered a standardized master dataset for 193 countries by developing Python scripts to ingest and integrate 8 heterogeneous CSV sources, resolving complex data fragmentation and naming inconsistencies.",
-          "Identified key global trends and anomalies by performing Pearson correlation analysis on 9 socio-economic factors and co-developing an interactive dashboard using Chart.js to enable visual outlier detection across groups."
-        ],
-        skills: ["Chart.js", "Project Coordination", "Python", "Data Analysis", "Data Integration", "Statistical Analysis", "Dashboard Design"]
-      },
-      "password-security": {
-        title: "Password Security Analysis",
-        meta: "Nov 2025",
-        bullets: [
-          "Conducted credential security analysis using John the Ripper to evaluate password strength and test offline attack strategies.",
-          "Assessed the impact of hashing, salting, password length, and compute power on resistance to cracking, connecting results to stronger password practices."
-        ],
-        skills: ["John the Ripper", "Password Security", "Hashing", "Salting", "Offline Attacks", "Risk Evaluation"]
-      },
-      "network-recon-forensics": {
-        title: "Network Reconnaissance & Packet Forensics",
-        meta: "Apr 2026",
-        bullets: [
-          "Performed idle scan and ARP poisoning MITM attacks using hping3 and ettercap across a multi-VM network environment.",
-          "Conducted packet-level forensic analysis on a live capture using tcpdump and Wireshark to decode TCP flags, identify DNS/HTTP servers, and detect active port scanning activity."
-        ],
-        skills: ["Wireshark", "tcpdump", "hping3", "ettercap", "ARP Poisoning", "Packet Forensics", "Network Reconnaissance"]
-      },
-      "tcp-ip-attack-analysis": {
-        title: "TCP/IP Attack Analysis",
-        meta: "Mar 2026",
-        bullets: [
-          "Executed and analyzed SYN flooding, TCP RST, and session hijacking attacks across a 3-VM network environment using Netwox, Scapy, and tcpdump.",
-          "Validated the impact of SYN cookies on DoS resilience and demonstrated live command injection into active Telnet sessions."
-        ],
-        skills: ["TCP/IP", "SYN Flooding", "Session Hijacking", "Netwox", "Scapy", "tcpdump", "Telnet"]
-      },
-      "leeterboard": {
-        title: "LeeterBoard",
-        meta: "Jan 2025 - May 2025",
-        bullets: [
-          "Built a full-stack web application using Python (Flask) and MongoDB to automate the collection of large-scale data, implementing validation and sanitization controls to prevent data corruption within the ingestion pipeline.",
-          "Engineered custom scraping scripts to ingest complex datasets, enabling baseline trend analysis and the detection of scoring anomalies to ensure the accuracy of university-specific leaderboards."
-        ],
-        skills: ["HTML", "Project Coordination", "Flask", "MongoDB", "Python", "Data Validation", "Web Scraping"],
-        link: "https://leeterboard.io",
-        linkLabel: "Visit leeterboard.io"
-      }
-    };
+    const projectDetails = {};
 
     const credentialDetails = {
       "google-cybersecurity": {
@@ -4123,40 +5163,7 @@
       }
     };
 
-    const experienceDetails = {
-      "research-assistant": {
-        title: "Research Assistant",
-        meta: "The University of Tennessee | January 2026 - May 2026",
-        bullets: [
-          "Produced 12,000+ validated data points for Tennessee health outcome analysis by collecting, cleaning, and integrating multi-source CDC, Census, and CHR data across 95 counties spanning 2018-2023.",
-          "Designed and presented an original research poster at UTK's university-wide EURECA showcase, a 300+ presenter research symposium, to an audience of faculty, students, and industry professionals, translating complex public health findings into accessible visuals using PowerPoint and Tableau.",
-          "Developed 3 interactive Tableau dashboards with 25+ views to support data analysis, reporting, and stakeholder communication around Tennessee health outcomes."
-        ],
-        skills: ["Data Validation", "Data Integrity", "Data Documentation", "Quality Assurance", "Tableau", "Technical Communication", "Stakeholder Communication", "Research Presentation"]
-      },
-      "voltech-specialist": {
-        title: "Student Supervisor - Technical Specialist",
-        meta: "VolTech - Campus Technology Center | October 2023 - Present",
-        bullets: [
-          "Resolved 100+ hardware, software, account, and support requests per week across macOS and Windows by managing ticketing workflows for students, faculty, staff, and 10+ university departments, maintaining high resolution accuracy in a fast-paced environment.",
-          "Led an inventory accuracy initiative by consolidating and validating GSX records across 500+ Apple parts, reducing stock discrepancies and improving procurement accuracy.",
-          "Developed standardized documentation, setup checklists, and best-practice guides that addressed recurring workflow gaps, improving team-wide support consistency and reducing escalations.",
-          "Onboarded and trained 10+ student technicians on hardware diagnostics, ticketing standards, customer communication, and escalation workflows, ensuring consistent adherence to service guidelines.",
-          "Supported device setup, OS recovery, system migration, and repair intake for university-owned and department-purchased endpoints, using structured troubleshooting procedures and coordinating with repair technicians."
-        ],
-        skills: ["Help Desk", "Desktop Support", "Hardware Diagnostics", "Endpoint Troubleshooting", "Device Setup & Migration", "OS Recovery", "GSX Inventory", "Documentation", "Process Improvement", "Team Training", "Customer Service"]
-      },
-      "g6-operations": {
-        title: "Operations Manager",
-        meta: "G6 Hospitality LLC | November 2021 - August 2024",
-        bullets: [
-          "Managed employee system access and role-based permissions across hotel operational systems, supporting secure access to guest, booking, and payment data.",
-          "Trained 15+ staff on secure data handling and account access practices, reducing exposure to unauthorized access.",
-          "Supported data-informed business decisions by analyzing guest booking patterns and occupancy trends, contributing to 26% year-over-year revenue growth."
-        ],
-        skills: ["Access Management", "Role-Based Permissions", "Data Handling", "Process Improvement", "Staff Training", "Operations Management"]
-      }
-    };
+    const experienceDetails = {};
 
     const projectModal = document.getElementById("projectModal");
     const closeProjectModalBtn = document.getElementById("closeProjectModal");
@@ -4165,9 +5172,9 @@
     const projectModalList = document.getElementById("projectModalList");
     const projectModalSkills = document.getElementById("projectModalSkills");
     const projectModalLinks = document.getElementById("projectModalLinks");
-    const projectCards = document.querySelectorAll(".project-card[data-project]");
+    const projectCards = []; // project cards use the record viewer
     const credentialCards = document.querySelectorAll(".cert-badge[data-credential]");
-    const experienceCards = document.querySelectorAll(".exp-card[data-experience]");
+    const experienceCards = []; // experience cards use the record viewer below
 
     function openDetailModal(detailKey, detailType) {
       const collection = detailType === "credential"
@@ -4272,42 +5279,50 @@
     }
   </script>
 
-  <div class="modal-backdrop" id="resumeModal" aria-hidden="true">
-    <div class="resume-modal">
-      <div class="modal-head">
-        <h3 class="modal-title">Request Resume</h3>
-        <button type="button" class="close-btn" id="closeResumeForm">×</button>
+  <div class="rm-backdrop" id="resumeModal" aria-hidden="true">
+    <div class="rm" id="rmPanel" role="dialog" aria-modal="true" aria-labelledby="rmTitle">
+      <div class="xm-bar">
+        <div class="xm-title"><span class="xm-live"></span><span>Resume Request</span></div>
+        <div class="xm-ctrl">
+          <button type="button" class="xm-btn close" id="closeResumeForm" aria-label="Close">&times;</button>
+        </div>
       </div>
+      <form id="resumeRequestForm" class="rm-body" novalidate>
+        <div class="rm-org rm-fade" style="--d:0">Dhruv Patel // Resume</div>
+        <h3 class="rm-title rm-fade" style="--d:1" id="rmTitle">Request a copy of my resume</h3>
+        <div class="rm-log" id="rmLog"></div>
 
-      <form id="resumeRequestForm" novalidate>
-        <div class="form-grid">
-          <div class="field">
-            <label for="fullName">Full Name</label>
-            <input id="fullName" name="fullName" type="text" required />
+        <div class="rm-grid">
+          <div class="rm-field rm-fade" style="--d:2">
+            <label for="fullName"><span>Full Name</span><span class="req">*</span></label>
+            <div class="rm-input"><input id="fullName" name="fullName" type="text" autocomplete="name" required /></div>
+            <div class="rm-err">Enter your name</div>
           </div>
-          <div class="field">
-            <label for="email">Email to Receive Resume</label>
-            <input id="email" name="email" type="email" required />
+          <div class="rm-field rm-fade" style="--d:3">
+            <label for="email"><span>Email to Receive Resume</span><span class="req">*</span></label>
+            <div class="rm-input"><input id="email" name="email" type="email" autocomplete="email" required /></div>
+            <div class="rm-err">Enter a valid email</div>
           </div>
-          <div class="field">
-            <label for="company">Company / Organization (optional)</label>
-            <input id="company" name="company" type="text" />
+          <div class="rm-field rm-fade" style="--d:4">
+            <label for="company"><span>Company / Organization</span><span class="opt">optional</span></label>
+            <div class="rm-input"><input id="company" name="company" type="text" autocomplete="organization" /></div>
+            <div class="rm-err"></div>
           </div>
-          <div class="field">
-            <label for="profile">LinkedIn or Company Website (optional)</label>
-            <input id="profile" name="profile" type="url" placeholder="https://..." />
+          <div class="rm-field rm-fade" style="--d:5">
+            <label for="profile"><span>LinkedIn or Website</span><span class="opt">optional</span></label>
+            <div class="rm-input"><input id="profile" name="profile" type="url" placeholder="https://..." /></div>
+            <div class="rm-err">Enter a full link starting with https://</div>
           </div>
-
           <label class="sr-only" for="website">Website</label>
           <input class="sr-only" id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
         </div>
 
+        <div class="rm-status" id="resumeFormStatus" aria-live="polite"></div>
 
-        <p class="tiny-note" id="resumeFormStatus"></p>
-
-        <div class="form-actions">
-          <button type="button" class="btn" id="cancelResumeForm">Cancel</button>
-          <button type="submit" class="btn primary">Send Request</button>
+        <div class="rm-actions rm-fade" style="--d:6">
+          <span class="rm-hint"><span class="req">*</span> required</span>
+          <button type="button" class="ct-btn" id="cancelResumeForm"><span class="ct-txt">Cancel</span></button>
+          <button type="submit" class="ct-btn primary" id="rmSubmit"><span class="ct-txt">Send Request</span><span class="ct-arr">&#8599;</span></button>
         </div>
       </form>
     </div>
@@ -4325,5 +5340,1081 @@
       <div class="project-modal-links" id="projectModalLinks" hidden></div>
     </div>
   </div>
+  <script>
+    // Skill map console
+    (function () {
+      const DOMAINS = [
+        {
+          tab: "Integration & Testing", hub: "TESTING", cmd: "integration",
+          skills: [
+            "Integration Testing",
+            "Site Acceptance Testing",
+            "Test Case Execution",
+            "Defect Reporting & Escalation",
+            "Throughput Testing",
+            "WMS Workflows",
+            "SoapUI",
+            "XML & Interface Specs",
+            "Data Validation & QA"
+          ]
+        },
+        {
+          tab: "Security & Access", hub: "SECURITY", cmd: "security",
+          skills: [
+            "Privileged Access (BeyondTrust)",
+            "User Access Management",
+            "Role-Based Access Control",
+            "Secure Data Handling",
+            "NIST Cybersecurity Framework",
+            "Firewall Configuration",
+            "Packet Analysis (Wireshark, tcpdump)",
+            "Network Scanning (Nmap)",
+            "SIEM Basics (Splunk, Chronicle)",
+            "Password & Credential Security"
+          ]
+        },
+        {
+          tab: "IT Support & Systems", hub: "SYSTEMS", cmd: "systems",
+          skills: [
+            "Windows",
+            "macOS",
+            "Linux",
+            "Hardware Diagnostics",
+            "Endpoint Troubleshooting",
+            "Ticketing (TeamDynamix)",
+            "Device Provisioning & Migration",
+            "OS Recovery",
+            "Apple GSX",
+            "Documentation & Training"
+          ]
+        }
+      ];
+
+      const root = document.getElementById("skillmap");
+      if (!root) return;
+      const NS = "http://www.w3.org/2000/svg";
+      const C = 200;
+      const RADII = [136, 152];
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      const tabsEl = document.getElementById("smTabs");
+      const indicator = document.getElementById("smIndicator");
+      const linkG = document.getElementById("smLinks");
+      const nodeG = document.getElementById("smNodes");
+      const hub = document.getElementById("smHub");
+      const hubLabel = document.getElementById("smHubLabel");
+      const hubCount = document.getElementById("smHubCount");
+      const tip = document.getElementById("smTip");
+      const tipRect = tip.querySelector("rect");
+      const tipText = tip.querySelector("text");
+      const sweep = document.getElementById("smSweep");
+      const cmdEl = document.getElementById("smCmd");
+      const listEl = document.getElementById("smList");
+      const loadedEl = document.getElementById("smLoaded");
+
+      const pad = (n) => String(n).padStart(2, "0");
+      const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+      const svgEl = (tag, attrs) => {
+        const n = document.createElementNS(NS, tag);
+        for (const k in attrs) n.setAttribute(k, attrs[k]);
+        return n;
+      };
+
+      if (reduce) document.querySelectorAll(".sm-anim, .cv-anim").forEach((a) => a.remove());
+
+      document.getElementById("smStatSkills").textContent =
+        pad(DOMAINS.reduce((n, d) => n + d.skills.length, 0));
+
+      const ticks = document.getElementById("smTicks");
+      for (let i = 0; i < 72; i++) {
+        const a = (i * 5 - 90) * Math.PI / 180;
+        const major = i % 6 === 0;
+        const r1 = 190, r2 = major ? 198 : 194;
+        ticks.appendChild(svgEl("line", {
+          x1: C + r1 * Math.cos(a), y1: C + r1 * Math.sin(a),
+          x2: C + r2 * Math.cos(a), y2: C + r2 * Math.sin(a),
+          class: major ? "sm-tick sm-major" : "sm-tick"
+        }));
+      }
+
+      let current = -1, token = 0, nodes = [], links = [], lines = [], web = null;
+
+      const tabs = DOMAINS.map((d, i) => {
+        const b = document.createElement("button");
+        b.className = "sm-tab";
+        b.type = "button";
+        b.setAttribute("role", "tab");
+        b.setAttribute("aria-selected", "false");
+        b.innerHTML = '<span class="sm-tab-num">' + pad(i + 1) + "</span><span></span>";
+        b.lastChild.textContent = d.tab;
+        b.addEventListener("click", () => select(i));
+        b.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+            e.preventDefault();
+            const next = (i + (e.key === "ArrowRight" ? 1 : -1) + DOMAINS.length) % DOMAINS.length;
+            tabs[next].focus();
+            select(next);
+          }
+        });
+        tabsEl.insertBefore(b, indicator);
+        return b;
+      });
+
+      function moveIndicator(btn) {
+        indicator.style.left = btn.offsetLeft + "px";
+        indicator.style.width = btn.offsetWidth + "px";
+      }
+      window.addEventListener("resize", () => { if (current >= 0) moveIndicator(tabs[current]); });
+
+      function polar(i, n) {
+        const deg = i * 360 / n;
+        const rad = (deg - 90) * Math.PI / 180;
+        const r = RADII[i % 2];
+        return { deg, x: C + r * Math.cos(rad), y: C + r * Math.sin(rad) };
+      }
+
+      function select(i) {
+        if (i === current) return;
+        current = i;
+        tabs.forEach((t, j) => {
+          t.setAttribute("aria-selected", String(j === i));
+          t.tabIndex = j === i ? 0 : -1;
+        });
+        moveIndicator(tabs[i]);
+        const t = tabs[i];
+        tabsEl.scrollTo({ left: t.offsetLeft - (tabsEl.clientWidth - t.offsetWidth) / 2, behavior: reduce ? "auto" : "smooth" });
+        render(DOMAINS[i]);
+      }
+
+      // Move a node by tweening its SVG transform attribute (CSS px transforms drift in Safari when zoomed)
+      function moveNode(nd, x, y, ms, delay) {
+        const id = ++nd.anim;
+        const fx = nd.x, fy = nd.y;
+        const set = (cx, cy) => { nd.x = cx; nd.y = cy; nd.g.setAttribute("transform", "translate(" + cx.toFixed(2) + " " + cy.toFixed(2) + ")"); };
+        if (!ms) { set(x, y); return; }
+        const ease = (t) => 1 - Math.pow(1 - t, 4);
+        const t0 = performance.now() + delay;
+        (function step(now) {
+          if (id !== nd.anim) return;
+          const t = Math.max(0, Math.min(1, (now - t0) / ms));
+          set(fx + (x - fx) * ease(t), fy + (y - fy) * ease(t));
+          if (t < 1) requestAnimationFrame(step);
+        })(performance.now());
+      }
+
+      function render(d) {
+        const tok = ++token;
+        clearActive();
+
+        const oldNodes = nodes, oldLinks = links, oldWeb = web;
+        oldNodes.forEach((nd) => {
+          nd.g.style.transitionDelay = "0ms";
+          moveNode(nd, C, C, reduce ? 0 : 400, 0);
+          nd.g.style.opacity = "0";
+        });
+        oldLinks.forEach((l) => { l.style.transitionDelay = "0ms"; l.style.opacity = "0"; });
+        if (oldWeb) oldWeb.classList.add("sm-out");
+        setTimeout(() => {
+          oldNodes.forEach(({ g }) => g.remove());
+          oldLinks.forEach((l) => l.remove());
+          if (oldWeb) oldWeb.remove();
+        }, 500);
+
+        hubLabel.textContent = d.hub;
+        hubCount.textContent = pad(d.skills.length) + " SKILLS";
+        hub.classList.remove("sm-pulse");
+        void hub.getBBox();
+        hub.classList.add("sm-pulse");
+
+        const n = d.skills.length;
+        const pts = d.skills.map((_, i) => polar(i, n));
+
+        web = svgEl("polygon", { points: pts.map((p) => p.x + "," + p.y).join(" "), class: "sm-web" });
+        linkG.appendChild(web);
+
+        links = pts.map((p, i) => {
+          const len = Math.hypot(p.x - C, p.y - C);
+          const l = svgEl("line", { x1: C, y1: C, x2: p.x, y2: p.y, class: "sm-link" });
+          l.style.strokeDasharray = len;
+          l.style.strokeDashoffset = len;
+          l.style.transitionDelay = (reduce ? 0 : 220 + i * 55) + "ms";
+          linkG.appendChild(l);
+          return l;
+        });
+
+        nodes = pts.map((p, i) => {
+          const g = svgEl("g", { class: "sm-node", transform: "translate(" + C + " " + C + ")" });
+          g.style.opacity = "0";
+          g.style.transitionDelay = (reduce ? 0 : 160 + i * 55) + "ms";
+          const inner = svgEl("g", { class: "sm-float" });
+          if (!reduce) {
+            const fl = svgEl("animateTransform", {
+              attributeName: "transform", type: "translate", values: "0 0; 0 -3; 0 0",
+              dur: "4s", begin: (Math.random() * 3).toFixed(2) + "s", repeatCount: "indefinite",
+              calcMode: "spline", keyTimes: "0; 0.5; 1", keySplines: "0.45 0 0.55 1; 0.45 0 0.55 1"
+            });
+            inner.appendChild(fl);
+          }
+          inner.appendChild(svgEl("circle", { r: 18, class: "sm-hit" }));
+          inner.appendChild(svgEl("circle", { r: 13, class: "sm-halo" }));
+          inner.appendChild(svgEl("circle", { r: 4.5, class: "sm-core" }));
+          g.appendChild(inner);
+          g.addEventListener("mouseenter", () => setActive(i));
+          g.addEventListener("mouseleave", clearActive);
+          g.addEventListener("click", () => setActive(i));
+          nodeG.appendChild(g);
+          return { g, p, name: d.skills[i], x: C, y: C, anim: 0 };
+        });
+
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          if (tok !== token) return;
+          nodes.forEach((nd, i) => {
+            moveNode(nd, nd.p.x, nd.p.y, reduce ? 0 : 750, reduce ? 0 : 160 + i * 55);
+            nd.g.style.opacity = "1";
+          });
+          links.forEach((l) => { l.style.strokeDashoffset = "0"; });
+          web.classList.add("sm-in");
+        }));
+
+        typeTerminal(d, tok);
+      }
+
+      async function typeTerminal(d, tok) {
+        listEl.innerHTML = "";
+        lines = [];
+        loadedEl.textContent = "";
+        cmdEl.textContent = "";
+        const cmd = "skills --domain " + d.cmd;
+        for (let i = 1; i <= cmd.length; i++) {
+          if (tok !== token) return;
+          cmdEl.textContent = cmd.slice(0, i);
+          if (!reduce) await wait(24);
+        }
+        if (!reduce) await wait(140);
+        if (tok !== token) return;
+
+        d.skills.forEach((s, i) => {
+          const li = document.createElement("li");
+          li.className = "sk-line";
+          li.innerHTML = '<span class="sk-idx">[' + pad(i + 1) + ']</span><span class="sk-name"></span>';
+          li.querySelector(".sk-name").textContent = s;
+          li.addEventListener("mouseenter", () => setActive(i));
+          li.addEventListener("mouseleave", clearActive);
+          listEl.appendChild(li);
+          lines.push(li);
+          setTimeout(() => { if (tok === token) li.classList.add("sm-in"); }, reduce ? 0 : i * 70);
+        });
+        setTimeout(() => {
+          if (tok === token) loadedEl.textContent = "> " + d.skills.length + " skills loaded";
+        }, reduce ? 0 : d.skills.length * 70 + 150);
+      }
+
+      function setActive(i) {
+        clearActive();
+        if (lines[i]) lines[i].classList.add("sm-active");
+        if (links[i]) links[i].classList.add("sm-active");
+        const node = nodes[i];
+        if (!node) return;
+        node.g.classList.add("sm-active");
+        tipText.textContent = node.name;
+        const w = tipText.getComputedTextLength() + 16;
+        tipRect.setAttribute("width", w);
+        const x = Math.max(-10, Math.min(410 - w, node.p.x - w / 2));
+        const y = node.p.y < C ? node.p.y - 40 : node.p.y + 20;
+        tip.setAttribute("transform", "translate(" + x + " " + y + ")");
+        tip.classList.add("sm-show");
+      }
+
+      function clearActive() {
+        lines.forEach((l) => l.classList.remove("sm-active"));
+        links.forEach((l) => l.classList.remove("sm-active"));
+        nodes.forEach(({ g }) => g.classList.remove("sm-active"));
+        tip.classList.remove("sm-show");
+      }
+
+      if (reduce) {
+        sweep.style.display = "none";
+      } else {
+        const PERIOD = 6000;
+        const t0 = performance.now();
+        const loop = (now) => {
+          const a = ((now - t0) % PERIOD) / PERIOD * 360;
+          sweep.setAttribute("transform", "rotate(" + a.toFixed(2) + " " + C + " " + C + ")");
+          nodes.forEach(({ g, p }) => {
+            g.classList.toggle("sm-blip", (a - p.deg + 360) % 360 < 10);
+          });
+          requestAnimationFrame(loop);
+        };
+        requestAnimationFrame(loop);
+      }
+
+      // Mobile scroll hints for the domain tabs: edge fades, next arrow, one-time peek
+      const wrap = document.getElementById("smTabsWrap");
+      const moreBtn = document.getElementById("smMore");
+      let touched = false;
+      function updateHints() {
+        const max = tabsEl.scrollWidth - tabsEl.clientWidth;
+        const overflow = max > 2;
+        wrap.classList.toggle("can-scroll", overflow);
+        wrap.classList.toggle("can-left", overflow && tabsEl.scrollLeft > 2);
+        wrap.classList.toggle("can-right", overflow && tabsEl.scrollLeft < max - 2);
+      }
+      tabsEl.addEventListener("scroll", updateHints, { passive: true });
+      ["touchstart", "pointerdown", "wheel"].forEach((ev) => tabsEl.addEventListener(ev, () => { touched = true; }, { passive: true }));
+      window.addEventListener("resize", updateHints);
+      moreBtn.addEventListener("click", () => { touched = true; select((current + 1) % DOMAINS.length); });
+      document.getElementById("smLess").addEventListener("click", () => { touched = true; select((current - 1 + DOMAINS.length) % DOMAINS.length); });
+      // Slow out-and-back nudge, then a smaller second one
+      function glide(from, to, ms) {
+        return new Promise((resolve) => {
+          const t0 = performance.now();
+          const ease = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+          (function step(now) {
+            if (touched) return resolve(false);
+            const t = Math.min(1, (now - t0) / ms);
+            tabsEl.scrollLeft = from + (to - from) * ease(t);
+            if (t < 1) requestAnimationFrame(step); else resolve(true);
+          })(t0);
+        });
+      }
+      async function peek() {
+        updateHints();
+        if (reduce || touched || !wrap.classList.contains("can-right")) return;
+        const start = tabsEl.scrollLeft;
+        if (!(await glide(start, start + 48, 700))) return;
+        await wait(180);
+        if (!(await glide(start + 48, start, 650))) return;
+        await wait(120);
+        if (!(await glide(start, start + 16, 320))) return;
+        await glide(start + 16, start, 380);
+      }
+      updateHints();
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            setTimeout(() => select(0), reduce ? 0 : 450);
+            setTimeout(peek, reduce ? 0 : 2400);
+            io.disconnect();
+          }
+        });
+      }, { threshold: 0.2 });
+      io.observe(root);
+    })();
+  </script>
+  <script>
+    // Credential records
+(function () {
+  const CREDS = [
+    {
+      tab: "B.S. Computer Science",
+      org: "Univ. of Tennessee",
+      status: "Graduated",
+      issuer: "The University of Tennessee, Knoxville",
+      name: "B.S. Computer Science",
+      sub: "Minor in Cybersecurity",
+      seal: "UNIVERSITY OF TENNESSEE • CLASS OF 2026 • ",
+      log: "> status: graduated",
+      fields: [["Degree", "Bachelor of Science"], ["Minor", "Cybersecurity"], ["Graduated", "May 2026"], ["GPA", "3.88 / 4.00"]],
+      label: "relevant coursework",
+      style: "grid",
+      items: [
+        "Data Structures & Algorithms I & II",
+        "Systems Programming",
+        "Operating Systems",
+        "Introduction to Cybersecurity",
+        "Applied Cryptography",
+        "Network Security",
+        "Cyber-Physical Systems Security",
+        "Human-Computer Interaction"
+      ],
+      links: []
+    },
+    {
+      tab: "Google Cybersecurity Professional Certificate",
+      org: "Google / Coursera",
+      status: "Verified",
+      issuer: "Google via Coursera",
+      name: "Google Cybersecurity Professional Certificate",
+      sub: "Professional Certificate",
+      seal: "GOOGLE CYBERSECURITY • VERIFIED 2026 • ",
+      log: "> status: verified",
+      fields: [["Issuer", "Google"], ["Completed", "January 2026"], ["Platform", "Coursera"], ["Credential ID", "9FQ4HIEWQL8N", true]],
+      label: "what it covered",
+      style: "points",
+      items: [
+        "Zero trust concepts, access control models, and threat detection tools through hands-on labs.",
+        "Security operations with Splunk, Chronicle, and Wireshark to monitor traffic, analyze logs, and flag suspicious activity.",
+        "Python, SQL, and Linux for security tasks, plus the NIST CSF for risk assessment and incident response playbooks."
+      ],
+      links: [
+        { href: "https://www.coursera.org/account/accomplishments/professional-cert/9FQ4HIEWQL8N?utm_product=prof", label: "Coursera" },
+        { href: "https://www.credly.com/badges/1ff5afa0-5a1f-418c-8123-873fe4fd2968/public_url", label: "Credly" }
+      ]
+    },
+    { tab: "CompTIA Security+", org: "CompTIA", status: "In Progress", pending: true }
+  ];
+
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const pad = (n) => String(n).padStart(2, "0");
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+  const $ = (id) => document.getElementById(id);
+
+  const listEl = $("cvList");
+  const view = $("cvView"), scan = $("cvScan");
+  const issuerEl = $("cvIssuer"), nameEl = $("cvName"), logEl = $("cvLog");
+  const fieldsEl = $("cvFields"), itemsEl = $("cvItems"), linksEl = $("cvLinks");
+  const toggle = $("cvToggle"), toggleLabel = $("cvToggleLabel"), more = $("cvMore");
+  const sealText = $("cvSealText");
+
+  let current = -1, token = 0;
+  const selectable = CREDS.map((c, i) => (c.pending ? -1 : i)).filter((i) => i >= 0);
+
+  const rows = CREDS.map((c, i) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "cv-row" + (c.pending ? " pending" : "");
+    b.setAttribute("role", "tab");
+    b.setAttribute("aria-selected", "false");
+    if (c.pending) { b.setAttribute("aria-disabled", "true"); b.tabIndex = -1; }
+    b.innerHTML =
+      '<span class="cv-idx">' + pad(i + 1) + '</span>' +
+      '<span class="cv-row-main"><span class="cv-row-name"></span>' +
+      '<span class="cv-row-meta"><span class="org"></span> / <span class="st"></span></span></span>';
+    b.querySelector(".cv-row-name").textContent = c.tab;
+    b.querySelector(".org").textContent = c.org;
+    b.querySelector(".st").textContent = c.status;
+    if (!c.pending) {
+      b.addEventListener("click", () => select(i));
+      b.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+          e.preventDefault();
+          const pos = selectable.indexOf(i);
+          const next = selectable[(pos + (e.key === "ArrowDown" ? 1 : -1) + selectable.length) % selectable.length];
+          rows[next].focus();
+          select(next);
+        }
+      });
+    }
+    listEl.appendChild(b);
+    return b;
+  });
+
+  function setOpen(open) {
+    more.classList.toggle("open", open);
+    toggle.setAttribute("aria-expanded", String(open));
+  }
+  toggle.addEventListener("click", () => setOpen(!more.classList.contains("open")));
+
+  async function select(i) {
+    if (i === current) return;
+    current = i;
+    const tok = ++token;
+    const c = CREDS[i];
+    rows.forEach((r, j) => {
+      r.setAttribute("aria-selected", String(j === i));
+      if (!CREDS[j].pending) r.tabIndex = j === i ? 0 : -1;
+    });
+
+    const wasOpen = more.classList.contains("open");
+    view.classList.remove("ready", "sealed");
+    if (!reduce) {
+      scan.classList.remove("run");
+      void scan.offsetWidth;
+      scan.classList.add("run");
+      await wait(220);
+      if (tok !== token) return;
+    }
+
+    const beforeH = view.offsetHeight;
+    issuerEl.textContent = c.issuer;
+    nameEl.textContent = c.name;
+    sealText.textContent = c.seal + c.seal;
+
+    fieldsEl.innerHTML = "";
+    c.fields.forEach(([k, v, mono], j) => {
+      const f = document.createElement("div");
+      f.className = "cv-field cv-fade";
+      f.style.setProperty("--d", 2 + j);
+      f.innerHTML = '<div class="cv-k"></div><div class="cv-v' + (mono ? " mono" : "") + '"></div>';
+      f.firstChild.textContent = k;
+      f.lastChild.textContent = v;
+      f.lastChild.title = v;
+      fieldsEl.appendChild(f);
+    });
+    $("cvActions").style.setProperty("--d", 2 + c.fields.length);
+
+    toggleLabel.innerHTML = '<span class="lbl-full"></span><span class="lbl-short">// details</span>';
+    toggleLabel.firstChild.textContent = "// " + c.label;
+    itemsEl.className = "cv-items " + c.style;
+    itemsEl.innerHTML = "";
+    c.items.forEach((text, j) => {
+      const li = document.createElement("li");
+      li.style.setProperty("--d", j);
+      li.textContent = text;
+      itemsEl.appendChild(li);
+    });
+
+    linksEl.innerHTML = "";
+    c.links.forEach((l) => {
+      const a = document.createElement("a");
+      a.className = "cv-link";
+      a.href = l.href;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      a.innerHTML = '<span></span><span class="arr">↗</span>';
+      a.firstChild.textContent = l.label;
+      linksEl.appendChild(a);
+    });
+
+    // Re-run the item stagger without collapsing the open panel
+    if (wasOpen) { itemsEl.classList.add("hold"); void itemsEl.offsetWidth; itemsEl.classList.remove("hold"); }
+
+    // Ease the panel between record heights instead of snapping
+    const afterH = view.offsetHeight;
+    if (!reduce && beforeH && beforeH !== afterH) {
+      view.animate([{ height: beforeH + "px" }, { height: afterH + "px" }], { duration: 340, easing: "cubic-bezier(0.22,1,0.36,1)" });
+    }
+
+    void view.offsetWidth;
+    view.classList.add("ready");
+
+    logEl.textContent = "";
+    for (let k = 1; k <= c.log.length; k++) {
+      if (tok !== token) return;
+      logEl.textContent = c.log.slice(0, k);
+      if (!reduce) await wait(22);
+    }
+    if (tok !== token) return;
+    view.classList.add("sealed");
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        setTimeout(() => select(0), reduce ? 0 : 300);
+        io.disconnect();
+      }
+    });
+  }, { threshold: 0.2 });
+  io.observe($("credVault"));
+})();
+  </script>
+  <div class="xm-backdrop" id="xmBackdrop" aria-hidden="true">
+    <div class="xm" id="xm" role="dialog" aria-modal="true" aria-labelledby="xmRole">
+      <div class="xm-scan" id="xmScan"></div>
+      <div class="xm-bar">
+        <div class="xm-title"><span class="xm-live"></span><span class="t-full" id="xmKind">Experience Record</span></div>
+        <div class="xm-ctrl">
+          <button type="button" class="xm-btn" id="xmPrev" aria-label="Previous role">&lsaquo;</button>
+          <span class="xm-count" id="xmCount">01 / 04</span>
+          <button type="button" class="xm-btn" id="xmNext" aria-label="Next role">&rsaquo;</button>
+          <button type="button" class="xm-btn close" id="xmClose" aria-label="Close">&times;</button>
+        </div>
+      </div>
+      <div class="xm-body" id="xmBody">
+        <div class="xm-org xm-fade" style="--d:0" id="xmOrg"></div>
+        <h3 class="xm-role xm-fade" style="--d:1" id="xmRole"></h3>
+        <div class="xm-log" id="xmLog"></div>
+        <div class="xm-fields" id="xmFields"></div>
+        <div class="xm-tl xm-fade" id="xmTl">
+          <div class="xm-tl-label">// career timeline</div>
+          <div class="xm-tl-track" id="xmTrack"></div>
+        </div>
+        <div class="xm-label xm-fade" id="xmLabel">// highlights</div>
+        <ul class="xm-points" id="xmPoints"></ul>
+        <div class="xm-stack xm-fade" id="xmStack"></div>
+        <div class="xm-links xm-fade" id="xmLinks"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Record viewer (experience + projects)
+    (function () {
+      const EXP = {
+        "swisslog-integration": {
+          title: "Integration Engineer",
+          meta: "Swisslog | August 2026 - Present",
+          bullets: [
+            "Validated a warehouse management software upgrade covering 300+ test cases by executing integration and site acceptance tests on site, confirming core workflows such as putaway, picking, cycle counting and expiration date control.",
+            "Accelerated defect resolution by logging and escalating issues to the software team with detailed reproduction steps, evidence and expected vs. actual results.",
+            "Verified host-to-WMS communication by building and sending XML messages in SoapUI and verifying the system's responses against the interface specs.",
+            "Confirmed system performance under load by running throughput testing at customer workstations during a return site visit.",
+            "Supported secure remote testing by accessing customer systems through BeyondTrust privileged access under logged, audited sessions."
+          ],
+          skills: ["Integration Testing", "Site Acceptance Testing", "Warehouse Management Systems", "SoapUI", "XML", "Defect Reporting", "Throughput Testing", "BeyondTrust"]
+        },
+        "research-assistant": {
+          title: "Research Assistant",
+          meta: "The University of Tennessee | January 2026 - May 2026",
+          bullets: [
+            "Produced 12,000+ validated data points for Tennessee health outcome analysis by collecting, cleaning, and integrating multi-source CDC, Census, and CHR data across 95 counties spanning 2018-2023.",
+            "Designed and presented an original research poster at UTK's university-wide EURECA showcase, a 300+ presenter research symposium, to an audience of faculty, students, and industry professionals, translating complex public health findings into accessible visuals using PowerPoint and Tableau.",
+            "Developed 3 interactive Tableau dashboards with 25+ views to support data analysis, reporting, and stakeholder communication around Tennessee health outcomes."
+          ],
+          skills: ["Data Validation", "Data Integrity", "Data Documentation", "Quality Assurance", "Tableau", "Technical Communication", "Stakeholder Communication", "Research Presentation"]
+        },
+        "voltech-specialist": {
+          title: "Student Supervisor - Technical Specialist",
+          meta: "VolTech - Campus Technology Center | October 2023 - August 2026",
+          bullets: [
+            "Resolved 100+ hardware, software, account, and support requests per week across macOS and Windows by managing ticketing workflows for students, faculty, staff, and 10+ university departments, maintaining high resolution accuracy in a fast-paced environment.",
+            "Led an inventory accuracy initiative by consolidating and validating GSX records across 500+ Apple parts, reducing stock discrepancies and improving procurement accuracy.",
+            "Developed standardized documentation, setup checklists, and best-practice guides that addressed recurring workflow gaps, improving team-wide support consistency and reducing escalations.",
+            "Onboarded and trained 10+ student technicians on hardware diagnostics, ticketing standards, customer communication, and escalation workflows, ensuring consistent adherence to service guidelines.",
+            "Supported device setup, OS recovery, system migration, and repair intake for university-owned and department-purchased endpoints, using structured troubleshooting procedures and coordinating with repair technicians."
+          ],
+          skills: ["Help Desk", "Desktop Support", "Hardware Diagnostics", "Endpoint Troubleshooting", "Device Setup & Migration", "OS Recovery", "GSX Inventory", "Documentation", "Process Improvement", "Team Training", "Customer Service"]
+        },
+        "g6-operations": {
+          title: "Operations Manager",
+          meta: "G6 Hospitality LLC | November 2021 - August 2024",
+          bullets: [
+            "Managed employee system access and role-based permissions across hotel operational systems, supporting secure access to guest, booking, and payment data.",
+            "Trained 15+ staff on secure data handling and account access practices, reducing exposure to unauthorized access.",
+            "Supported data-informed business decisions by analyzing guest booking patterns and occupancy trends, contributing to 26% year-over-year revenue growth."
+          ],
+          skills: ["Access Management", "Role-Based Permissions", "Data Handling", "Process Improvement", "Staff Training", "Operations Management"]
+        }
+      };
+
+      // Start and end months for duration and the career timeline (end null = current)
+
+      const PROJ = {
+        "gsx-inventory-initiative": {
+          title: "GSX Parts Inventory Accuracy Initiative",
+          meta: "Apr 2025 - Feb 2026",
+          bullets: [
+            "Led an end-to-end inventory accuracy initiative for the Apple repair center's parts stock at VolTech, identifying recurring discrepancies between physical stock and system records.",
+            "Consolidated and validated GSX inventory and pricing records across 500+ Apple parts, correcting mismatched entries and standardizing data upkeep going forward.",
+            "Reduced stock discrepancies and improved procurement accuracy, giving the team more reliable data for reordering and repair part availability."
+          ],
+          skills: ["Apple GSX", "Inventory Management", "Process Improvement", "Asset Tracking", "Data Validation", "Procurement"]
+        },
+        "firewall-security-analysis": {
+          title: "Netfilter Firewall Configuration & Analysis",
+          meta: "Apr 2026",
+          bullets: [
+            "Configured and tested a Linux Netfilter (iptables) firewall across a 3-VM network environment, implementing and comparing static versus stateful packet filtering rules.",
+            "Analyzed traffic behavior using tcpdump and Nmap ACK scans to evaluate firewall logging, packet flow, scan leakage, and ICMP error handling."
+          ],
+          skills: ["Netfilter", "iptables", "tcpdump", "Nmap", "Packet Filtering", "Network Security"]
+        },
+        "retour-report": {
+          title: "ReTour",
+          meta: "Aug 2025 - May 2026",
+          bullets: [
+            "Built a web-based tour-planning platform for residential real estate agents, improving day-to-day coordination by consolidating listing discovery, scheduling, calendar views, and route visualization into one workflow instead of fragmented tools.",
+            "Implemented end-to-end product workflows that connected a React frontend with Firebase, SparksAPI, and Mapbox, enabling agents to create multi-stop tours and buyers to view shared read-only itineraries in a practical real-world deployment model.",
+            "Strengthened identity and access management by implementing Firebase Authentication with protected routes, profile-completion verification, and role-scoped access boundaries, reducing unauthorized exposure between agent and buyer experiences.",
+            "Improved security posture by enforcing authenticated Firestore access patterns, using controlled share-link exposure for public views, and integrating external services through HTTPS and environment-managed credentials to align with secure engineering practices."
+          ],
+          skills: ["React", "Firebase", "Mapbox", "SparksAPI"]
+        },
+        "life-expectancy": {
+          title: "Global Life Expectancy Analysis",
+          meta: "Aug 2025 - Nov 2025",
+          bullets: [
+            "Engineered a standardized master dataset for 193 countries by developing Python scripts to ingest and integrate 8 heterogeneous CSV sources, resolving complex data fragmentation and naming inconsistencies.",
+            "Identified key global trends and anomalies by performing Pearson correlation analysis on 9 socio-economic factors and co-developing an interactive dashboard using Chart.js to enable visual outlier detection across groups."
+          ],
+          skills: ["Chart.js", "Project Coordination", "Python", "Data Analysis", "Data Integration", "Statistical Analysis", "Dashboard Design"]
+        },
+        "password-security": {
+          title: "Password Security Analysis",
+          meta: "Nov 2025",
+          bullets: [
+            "Conducted credential security analysis using John the Ripper to evaluate password strength and test offline attack strategies.",
+            "Assessed the impact of hashing, salting, password length, and compute power on resistance to cracking, connecting results to stronger password practices."
+          ],
+          skills: ["John the Ripper", "Password Security", "Hashing", "Salting", "Offline Attacks", "Risk Evaluation"]
+        },
+        "network-recon-forensics": {
+          title: "Network Reconnaissance & Packet Forensics",
+          meta: "Apr 2026",
+          bullets: [
+            "Performed idle scan and ARP poisoning MITM attacks using hping3 and ettercap across a multi-VM network environment.",
+            "Conducted packet-level forensic analysis on a live capture using tcpdump and Wireshark to decode TCP flags, identify DNS/HTTP servers, and detect active port scanning activity."
+          ],
+          skills: ["Wireshark", "tcpdump", "hping3", "ettercap", "ARP Poisoning", "Packet Forensics", "Network Reconnaissance"]
+        },
+        "tcp-ip-attack-analysis": {
+          title: "TCP/IP Attack Analysis",
+          meta: "Mar 2026",
+          bullets: [
+            "Executed and analyzed SYN flooding, TCP RST, and session hijacking attacks across a 3-VM network environment using Netwox, Scapy, and tcpdump.",
+            "Validated the impact of SYN cookies on DoS resilience and demonstrated live command injection into active Telnet sessions."
+          ],
+          skills: ["TCP/IP", "SYN Flooding", "Session Hijacking", "Netwox", "Scapy", "tcpdump", "Telnet"]
+        },
+        "leeterboard": {
+          title: "LeeterBoard",
+          meta: "Jan 2025 - May 2025",
+          bullets: [
+            "Built a full-stack web application using Python (Flask) and MongoDB to automate the collection of large-scale data, implementing validation and sanitization controls to prevent data corruption within the ingestion pipeline.",
+            "Engineered custom scraping scripts to ingest complex datasets, enabling baseline trend analysis and the detection of scoring anomalies to ensure the accuracy of university-specific leaderboards."
+          ],
+          skills: ["HTML", "Project Coordination", "Flask", "MongoDB", "Python", "Data Validation", "Web Scraping"],
+          link: "https://leeterboard.io",
+          linkLabel: "Visit leeterboard.io"
+        }
+      };
+
+      // Start and end months for duration and the career timeline (end null = current)
+      const DATES = {
+        "swisslog-integration": { start: [2026, 8], end: null },
+        "voltech-specialist": { start: [2023, 10], end: [2026, 8] },
+        "research-assistant": { start: [2026, 1], end: [2026, 5] },
+        "g6-operations": { start: [2021, 11], end: [2024, 8] }
+      };
+      const CATEGORY = {
+        "retour-report": "Web App",
+        "firewall-security-analysis": "Security Lab",
+        "network-recon-forensics": "Security Lab",
+        "password-security": "Security Lab",
+        "tcp-ip-attack-analysis": "Security Lab",
+        "gsx-inventory-initiative": "Process Improvement",
+        "life-expectancy": "Data Analysis",
+        "leeterboard": "Web App"
+      };
+      const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+      const $ = (id) => document.getElementById(id);
+      const backdrop = $("xmBackdrop"), panel = $("xm"), scan = $("xmScan"), body = $("xmBody");
+      if (!backdrop) return;
+      const orgEl = $("xmOrg"), roleEl = $("xmRole"), logEl = $("xmLog"), fieldsEl = $("xmFields");
+      const tl = $("xmTl"), track = $("xmTrack"), pointsEl = $("xmPoints"), stackEl = $("xmStack");
+      const linksEl = $("xmLinks"), countEl = $("xmCount"), kindEl = $("xmKind");
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+      const pad = (n) => String(n).padStart(2, "0");
+
+      // ---- Experience timing helpers ----
+      const now = new Date();
+      const nowM = now.getFullYear() * 12 + now.getMonth();
+      const toM = (ym) => ym[0] * 12 + (ym[1] - 1);
+      const endM = (k) => (DATES[k].end ? toM(DATES[k].end) : nowM);
+      const expKeys = Object.keys(DATES).filter((k) => EXP[k]);
+      const minM = Math.min.apply(null, expKeys.map((k) => toM(DATES[k].start)));
+      const span = nowM - minM + 1;
+      function duration(k) {
+        const m = endM(k) - toM(DATES[k].start) + 1;
+        const y = Math.floor(m / 12), r = m % 12;
+        const parts = [];
+        if (y) parts.push(y + (y === 1 ? " yr" : " yrs"));
+        if (r) parts.push(r + (r === 1 ? " mo" : " mos"));
+        return parts.join(" ");
+      }
+      function period(k) {
+        const d = DATES[k];
+        const st = MONTHS[d.start[1] - 1] + " " + d.start[0];
+        return st + " - " + (d.end ? MONTHS[d.end[1] - 1] + " " + d.end[0] : "Present");
+      }
+
+      // Timeline gridlines + one lane per role (order of the experience cards)
+      const expOrder = Array.from(document.querySelectorAll(".exp-card[data-experience]")).map((c) => c.dataset.experience).filter((k) => DATES[k]);
+      for (let y = Math.floor(minM / 12) + 1; y <= now.getFullYear(); y++) {
+        const g = document.createElement("div");
+        g.className = "xm-tl-year";
+        g.style.left = ((y * 12 - minM) / span * 100) + "%";
+        g.innerHTML = "<span>" + y + "</span>";
+        track.appendChild(g);
+      }
+      const segs = expOrder.map((k, lane) => {
+        const sg = document.createElement("div");
+        sg.className = "xm-seg";
+        sg.style.left = ((toM(DATES[k].start) - minM) / span * 100) + "%";
+        sg.style.top = (6 + lane * 8) + "px";
+        sg.dataset.w = ((endM(k) - toM(DATES[k].start) + 1) / span * 100) + "%";
+        sg.dataset.key = k;
+        track.appendChild(sg);
+        return sg;
+      });
+
+      // ---- Record sets ----
+      const SETS = {
+        experience: {
+          kind: "Experience Record",
+          attr: "experience",
+          cards: Array.from(document.querySelectorAll(".exp-card[data-experience]")),
+          has: (k) => !!(EXP[k] && DATES[k]),
+          get(k) {
+            const d = EXP[k], live = !DATES[k].end;
+            return {
+              org: d.meta.split(" | ")[0], title: d.title, live, timeline: true,
+              log: "> status: " + (live ? "active" : "completed"),
+              fields: [["Period", period(k)], ["Duration", duration(k)], ["Status", live ? "Current" : "Completed", live]],
+              bullets: d.bullets, skills: d.skills, links: []
+            };
+          }
+        },
+        projects: {
+          kind: "Project Record",
+          attr: "project",
+          cards: Array.from(document.querySelectorAll(".exp-card[data-project]")),
+          has: (k) => !!PROJ[k],
+          get(k) {
+            const d = PROJ[k], cat = CATEGORY[k] || "Project";
+            const links = d.links || (d.link ? [{ href: d.link, label: d.linkLabel || "View project" }] : []);
+            return {
+              org: cat, title: d.title, live: false, timeline: false,
+              log: "> status: completed",
+              fields: [["Period", d.meta], ["Status", "Completed"]],
+              bullets: d.bullets, skills: d.skills, links
+            };
+          }
+        }
+      };
+      Object.values(SETS).forEach((set) => { set.keys = set.cards.map((c) => c.dataset[set.attr]).filter(set.has); });
+
+      let S = null, current = -1, token = 0, openCard = null, isOpen = false, rec = null;
+
+      function fill(idx) {
+        current = (idx + S.keys.length) % S.keys.length;
+        const k = S.keys[current];
+        rec = S.get(k);
+        kindEl.textContent = S.kind;
+        countEl.textContent = pad(current + 1) + " / " + pad(S.keys.length);
+
+        panel.classList.remove("ready");
+        segs.forEach((sg) => { sg.style.transition = "none"; sg.style.width = "0"; sg.classList.remove("me", "now"); });
+        tl.style.display = rec.timeline ? "" : "none";
+        panel.classList.toggle("no-tl", !rec.timeline);
+
+        orgEl.textContent = rec.org;
+        roleEl.textContent = rec.title;
+        logEl.className = "xm-log" + (rec.live ? " live" : "");
+        logEl.textContent = "";
+        body.scrollTop = 0;
+
+        fieldsEl.innerHTML = "";
+        fieldsEl.classList.toggle("two", rec.fields.length === 2);
+        rec.fields.forEach(([key, val, on], j) => {
+          const f = document.createElement("div");
+          f.className = "xm-field xm-fade";
+          f.style.setProperty("--d", 2 + j);
+          f.innerHTML = '<div class="xm-k"></div><div class="xm-v' + (on ? " on" : "") + '"></div>';
+          f.firstChild.textContent = key;
+          f.lastChild.textContent = val;
+          fieldsEl.appendChild(f);
+        });
+        tl.style.setProperty("--d", 5);
+        $("xmLabel").style.setProperty("--d", rec.timeline ? 6 : 5);
+
+        pointsEl.innerHTML = "";
+        rec.bullets.forEach((b, j) => {
+          const li = document.createElement("li");
+          li.className = "xm-fade";
+          li.style.setProperty("--d", 7 + j);
+          li.textContent = b;
+          pointsEl.appendChild(li);
+        });
+
+        stackEl.style.setProperty("--d", 7 + rec.bullets.length);
+        stackEl.innerHTML = "// stack: ";
+        rec.skills.forEach((sk, j) => {
+          if (j) { const i = document.createElement("i"); i.textContent = "/"; stackEl.appendChild(i); }
+          const sp = document.createElement("span");
+          sp.textContent = sk;
+          stackEl.appendChild(sp);
+        });
+
+        linksEl.innerHTML = "";
+        linksEl.style.display = rec.links.length ? "" : "none";
+        linksEl.style.setProperty("--d", 8 + rec.bullets.length);
+        rec.links.forEach((l) => {
+          const a = document.createElement("a");
+          a.className = "xm-link";
+          a.href = l.href;
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+          a.innerHTML = "<span></span><span class=\"arr\">&#8599;</span>";
+          a.firstChild.textContent = l.label;
+          linksEl.appendChild(a);
+        });
+      }
+
+      async function reveal(tok) {
+        void panel.offsetWidth;
+        panel.classList.add("ready");
+        if (rec.timeline) {
+          const k = S.keys[current];
+          requestAnimationFrame(() => {
+            segs.forEach((sg, j) => {
+              sg.style.transition = "";
+              sg.style.transitionDelay = reduce ? "0ms" : (300 + j * 90) + "ms";
+              if (sg.dataset.key === k) { sg.classList.add("me"); if (rec.live) sg.classList.add("now"); }
+              sg.style.width = sg.dataset.w;
+            });
+          });
+        }
+        const line = rec.log;
+        for (let c = 1; c <= line.length; c++) {
+          if (tok !== token) return;
+          logEl.textContent = line.slice(0, c);
+          if (!reduce) await wait(20);
+        }
+      }
+
+      async function show(idx) {
+        const tok = ++token;
+        panel.classList.remove("ready");
+        if (!reduce) {
+          scan.classList.remove("run");
+          void scan.offsetWidth;
+          scan.classList.add("run");
+          await wait(200);
+          if (tok !== token) return;
+        }
+        const before = panel.offsetHeight;
+        fill(idx);
+        const after = panel.offsetHeight;
+        if (!reduce && before !== after) {
+          panel.animate([{ height: before + "px" }, { height: after + "px" }], { duration: 320, easing: "cubic-bezier(0.22,1,0.36,1)" });
+        }
+        reveal(tok);
+      }
+
+      const cardVisible = (c) => c && !c.closest(".pj-more:not(.open)") && c.getBoundingClientRect().height > 0;
+
+      function flipFrom(rect, reverse) {
+        const to = panel.getBoundingClientRect();
+        const t = "translate(" + (rect.left - to.left) + "px," + (rect.top - to.top) + "px) scale(" + (rect.width / to.width) + "," + (rect.height / to.height) + ")";
+        const frames = [{ transform: t, opacity: 0.5 }, { transform: "none", opacity: 1 }];
+        return panel.animate(reverse ? frames.reverse() : frames, {
+          duration: reverse ? 320 : 480,
+          easing: reverse ? "cubic-bezier(0.55,0,0.85,0.35)" : "cubic-bezier(0.22,1,0.36,1)",
+          fill: reverse ? "both" : "none"
+        });
+      }
+
+      function open(card, set) {
+        if (isOpen) return;
+        isOpen = true;
+        S = set;
+        openCard = card;
+        const tok = ++token;
+        panel.getAnimations().forEach((a) => a.cancel());
+        scan.classList.remove("run");
+        fill(S.keys.indexOf(card.dataset[S.attr]));
+        backdrop.classList.add("open");
+        backdrop.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        void backdrop.offsetWidth;
+        backdrop.classList.add("vis");
+        $("xmClose").focus({ preventScroll: true });
+        if (reduce) { reveal(tok); return; }
+        flipFrom(card.getBoundingClientRect(), false);
+        setTimeout(() => { if (tok === token) reveal(tok); }, 300);
+      }
+
+      function close() {
+        if (!isOpen) return;
+        isOpen = false;
+        token++;
+        scan.classList.remove("run");
+        panel.classList.remove("ready");
+        backdrop.classList.remove("vis");
+        const target = S.cards.find((c) => c.dataset[S.attr] === S.keys[current]);
+        const done = () => {
+          backdrop.classList.remove("open");
+          backdrop.setAttribute("aria-hidden", "true");
+          document.body.style.overflow = "";
+          panel.getAnimations().forEach((a) => a.cancel());
+          if (cardVisible(openCard)) openCard.focus({ preventScroll: true });
+        };
+        if (reduce) { done(); return; }
+        if (!cardVisible(target)) {
+          panel.animate([{ opacity: 1, transform: "none" }, { opacity: 0, transform: "scale(0.96)" }], { duration: 240, easing: "ease-in", fill: "both" }).finished.then(done, done);
+          return;
+        }
+        flipFrom(target.getBoundingClientRect(), true).finished.then(done, done);
+      }
+
+      Object.values(SETS).forEach((set) => {
+        set.cards.forEach((card) => {
+          if (!set.keys.includes(card.dataset[set.attr])) return;
+          card.setAttribute("tabindex", "0");
+          card.setAttribute("role", "button");
+          card.addEventListener("click", () => open(card, set));
+          card.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(card, set); }
+          });
+        });
+      });
+      $("xmClose").addEventListener("click", close);
+      $("xmPrev").addEventListener("click", () => show(current - 1));
+      $("xmNext").addEventListener("click", () => show(current + 1));
+      backdrop.addEventListener("click", (e) => { if (e.target === backdrop) close(); });
+      document.addEventListener("keydown", (e) => {
+        if (!isOpen) return;
+        if (e.key === "Escape") close();
+        else if (e.key === "ArrowRight") show(current + 1);
+        else if (e.key === "ArrowLeft") show(current - 1);
+      });
+
+      // ---- Projects: view more toggle ----
+      const more = $("pjMore"), toggle = $("pjToggle");
+      if (more && toggle) {
+        const label = toggle.querySelector(".pj-label");
+        const hiddenCount = more.querySelectorAll(".exp-card").length;
+        const setLabel = (open) => {
+          label.innerHTML = open ? "Show fewer projects" : "View more projects <b>" + pad(hiddenCount) + "</b>";
+        };
+        setLabel(false);
+        toggle.addEventListener("click", () => {
+          const willOpen = !more.classList.contains("open");
+          more.classList.toggle("open", willOpen);
+          toggle.setAttribute("aria-expanded", String(willOpen));
+          setLabel(willOpen);
+          if (!willOpen) {
+            const r = toggle.getBoundingClientRect();
+            if (r.top < 0 || r.top > window.innerHeight) toggle.scrollIntoView({ block: "center", behavior: reduce ? "auto" : "smooth" });
+          }
+        });
+      }
+    })();
+  </script>
+  <script>
+    // Nav: scroll spy, sliding indicator, mobile menu
+    (function () {
+      const links = Array.from(document.querySelectorAll(".nav2-link"));
+      const menuLinks = Array.from(document.querySelectorAll(".nav2-menu-list a"));
+      const ind = document.getElementById("navInd");
+      const sections = links.map((l) => document.querySelector(l.getAttribute("href"))).filter(Boolean);
+      let active = null;
+      function setActive(id) {
+        if (id === active) return;
+        active = id;
+        links.forEach((l) => l.classList.toggle("active", l.getAttribute("href") === "#" + id));
+        menuLinks.forEach((l) => l.classList.toggle("active", l.getAttribute("href") === "#" + id));
+        const on = links.find((l) => l.classList.contains("active"));
+        if (on) {
+          ind.style.left = on.offsetLeft + "px";
+          ind.style.width = on.offsetWidth + "px";
+          ind.style.opacity = "1";
+        } else {
+          ind.style.opacity = "0";
+        }
+      }
+      function spy() {
+        const y = window.innerHeight * 0.35;
+        let id = null;
+        sections.forEach((sec) => { if (sec.getBoundingClientRect().top <= y) id = sec.id; });
+        if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2 && sections.length) id = sections[sections.length - 1].id;
+        setActive(id);
+      }
+      window.addEventListener("scroll", spy, { passive: true });
+      window.addEventListener("resize", () => { const a = active; active = null; setActive(a); });
+      spy();
+
+      const btn = document.getElementById("menuBtn"), menu = document.getElementById("navMenu");
+      const setMenu = (open) => { menu.classList.toggle("open", open); btn.setAttribute("aria-expanded", String(open)); };
+      btn.addEventListener("click", () => setMenu(!menu.classList.contains("open")));
+      menuLinks.forEach((a) => a.addEventListener("click", () => setMenu(false)));
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape") setMenu(false); });
+      window.addEventListener("resize", () => { if (window.innerWidth > 1080) setMenu(false); });
+    })();
+  </script>
 </body>
 </html>
